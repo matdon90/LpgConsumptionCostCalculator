@@ -1,0 +1,71 @@
+﻿@model LpgConsumptionCostCalculator.Data.Models.Car
+
+    <div class="jumbotron jumbotron-fluid">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h3>@Html.DisplayFor(model => model.CarProducer) @Html.DisplayFor(model => model.CarModel) edition</h3>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.CarId)
+
+                <h5 class="text-center">Car</h5>
+                <hr />
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.CarProducer, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.CarProducer, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CarProducer, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.CarModel, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.CarModel, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CarModel, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.CarProductionYear, htmlAttributes: new { @class = "control-label col-md-8" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.CarProductionYear, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CarProductionYear, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <h5 class="text-center">LPG installation</h5>
+                <hr />
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label class="control-label col-md-12">Producer</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.LpgInstallationProducer, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LpgInstallationProducer, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label class="control-label col-md-12">Model</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.LpgInstallationModel, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LpgInstallationModel, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-outline-dark btn-sm" />
+                            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-outline-dark btn-sm" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>

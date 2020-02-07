@@ -1,0 +1,60 @@
+﻿@model LpgConsumptionCostCalculator.Data.Models.Car
+
+    <div class="jumbotron jumbotron-fluid">
+        <h3>Are you sure you want to delete @Html.DisplayFor(model => model.CarProducer) @Html.DisplayFor(model => model.CarModel)?</h3>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.CarProducer)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CarProducer)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CarModel)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CarModel)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CarProductionYear)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CarProductionYear)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.LpgInstallationProducer)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.LpgInstallationProducer)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.LpgInstallationModel)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.LpgInstallationModel)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-outline-dark btn-sm" />
+                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-outline-dark btn-sm" })
+                </div>
+            }
+        </div>
+    </div>

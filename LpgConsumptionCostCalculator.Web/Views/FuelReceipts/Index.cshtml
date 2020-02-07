@@ -1,0 +1,75 @@
+﻿@model IEnumerable<LpgConsumptionCostCalculator.Web.ViewModels.FuelReceiptViewModel>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FueledCarId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RefuelingDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetrolStationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FuelPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FuelAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DistanceFromLastRefueling)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FuelConsumption)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PriceFor100km)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FueledCarId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RefuelingDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetrolStationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FuelPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FuelAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DistanceFromLastRefueling)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FuelConsumption)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriceFor100km)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.FuelReceiptId }, new { @class = "btn btn-outline-dark btn-sm" }) 
+            @Html.ActionLink("Details", "Details", new { id = item.FuelReceiptId }, new { @class = "btn btn-outline-dark btn-sm" }) 
+            @Html.ActionLink("Delete", "Delete", new { id = item.FuelReceiptId }, new { @class = "btn btn-outline-dark btn-sm" })
+        </td>
+    </tr>
+}
+
+</table>
