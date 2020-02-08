@@ -1,92 +1,80 @@
 ﻿@model LpgConsumptionCostCalculator.Web.ViewModels.FuelReceiptViewModel
 
-<div>
-    <h4>FuelReceiptViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FuelReceiptId)
-        </dt>
+    <div class="jumbotron jumbotron-fluid">
+        <div>
+            <h3>Receipt (@Html.DisplayFor(model => model.PetrolStationName) - @Html.ValueFor(model => model.RefuelingDate, "{0:yyyy/MM/dd}")) details</h3>
+            <hr />
+            <dl class="dl-horizontal">
 
-        <dd>
-            @Html.DisplayFor(model => model.FuelReceiptId)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.RefuelingDate)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FueledCarId)
-        </dt>
+                <dd>
+                    @Html.ValueFor(model => model.RefuelingDate, "{0:yyyy/MM/dd}")
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FueledCarId)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PetrolStationName)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RefuelingDate)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.PetrolStationName)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.RefuelingDate)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.FuelPrice)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PetrolStationName)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.FuelPrice)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PetrolStationName)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.FuelAmount)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FuelPrice)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.FuelAmount)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FuelPrice)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.DistanceFromLastRefueling)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FuelAmount)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.DistanceFromLastRefueling)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FuelAmount)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.FuelConsumption)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DistanceFromLastRefueling)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.FuelConsumption)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DistanceFromLastRefueling)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PriceFor100km)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Comment)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.PriceFor100km)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Comment)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Comment)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FuelConsumption)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Comment)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FuelConsumption)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PriceFor100km)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PriceFor100km)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.FuelReceiptId }, new { @class = "btn btn-outline-dark btn-sm" })
+            @Html.ActionLink("Delete", "Delete", new { id = Model.FuelReceiptId }, new { @class = "btn btn-outline-dark btn-sm" })
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-outline-dark btn-sm" })
+        </p>
+    </div>
