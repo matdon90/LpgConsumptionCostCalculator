@@ -30,12 +30,12 @@ namespace LpgConsumptionCostCalculator.Web.ViewModels
         public decimal DistanceFromLastRefueling { get; set; }
         [MaxLength(255)]
         public string Comment { get; set; }
-        [Display(Name = "Consumption [l/100 km]")]
+        [Display(Name = "Consumption/100 km")]
         public decimal FuelConsumption
         {
             get { return (FuelAmount / DistanceFromLastRefueling * 100); }
         }
-        [Display(Name = "Price for 100 km")]
+        [Display(Name = "Price/100 km")]
         public decimal PriceFor100km
         {
             get { return FuelPrice * (FuelAmount / DistanceFromLastRefueling * 100); }
