@@ -13,7 +13,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.RefuelingDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.RefuelingDate, new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.RefuelingDate, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
                 @Html.ValidationMessageFor(model => model.RefuelingDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -29,8 +29,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FuelType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.FuelType, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FueledCarId, "", new { @class = "text-danger" })
+                @Html.EnumDropDownListFor(model => model.FuelType, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.FuelType, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -83,4 +83,25 @@
             </div>
         </div>
     </div>
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+
+    <script type="text/javascript">
+
+     $(document).ready(function () {
+         $('input[type=datetime]').datepicker({
+             showAnim: "slideDown",
+             dateFormat: "yy-mm-dd",
+             changeMonth: true,
+             changeYear: true,
+             yearRange: "-50:+0"
+         });
+
+     });
+    </script>
+
 }
