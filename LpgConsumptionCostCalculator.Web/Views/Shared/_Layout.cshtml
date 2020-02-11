@@ -43,11 +43,11 @@
         </div>
     </nav>
 
-    <div class="jumbotron">
+    <div class="jumbotron jumbotron-fluid">
         @RenderBody()
         <hr />
         <footer class="border-top footer text-muted">
-            <p>&copy; @DateTime.Now.Year - LPG Consumption Costs Calculator - @Html.ActionLink("Privacy", "Privacy", "Home", null , new {@class = "text-secondary"})</p>
+            <p>&copy; @DateTime.Now.Year - LPG Consumption Costs Calculator - @Html.ActionLink("Privacy", "Privacy", "Home", null, new { @class = "text-secondary" })</p>
         </footer>
     </div>
 

@@ -4,57 +4,61 @@
     ViewBag.Title = "List of cars";
 }
 
-    <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">@ViewBag.Title</h1>
 
-        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-outline-dark" })
-        <p></p>
+<h1 class="display-4">@ViewBag.Title</h1>
 
-        <table class="table table-striped">
+@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-outline-dark" })
+<p></p>
+
+<table class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CarProducer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarModel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarProductionYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LpgInstallationProducer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LpgInstallationModel)
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.CarProducer)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CarModel)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CarProductionYear)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LpgInstallationProducer)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LpgInstallationModel)
-                </th>
-                <th></th>
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.CarProducer)</b>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarModel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarProductionYear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LpgInstallationProducer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LpgInstallationModel)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.CarId }, new { @class = "btn btn-outline-dark btn-sm" })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CarId }, new { @class = "btn btn-outline-dark btn-sm" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CarId }, new { @class = "btn btn-outline-dark btn-sm" })
+                </td>
             </tr>
+        }
+    </tbody>
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        <b>@Html.DisplayFor(modelItem => item.CarProducer)</b>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CarModel)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CarProductionYear)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LpgInstallationProducer)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LpgInstallationModel)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Details", "Details", new { id = item.CarId }, new { @class = "btn btn-outline-dark btn-sm" })
-                        @Html.ActionLink("Edit", "Edit", new { id = item.CarId }, new { @class = "btn btn-outline-dark btn-sm" })
-                        @Html.ActionLink("Delete", "Delete", new { id = item.CarId }, new { @class = "btn btn-outline-dark btn-sm" })
-                    </td>
-                </tr>
-            }
-
-        </table>
-    </div>
+</table>
