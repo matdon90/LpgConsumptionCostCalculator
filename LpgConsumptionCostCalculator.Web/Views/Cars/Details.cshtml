@@ -1,55 +1,53 @@
 ﻿@model LpgConsumptionCostCalculator.Data.Models.Car
 
-    <div class="jumbotron jumbotron-fluid">
-        <div>
-            <h3>@Html.DisplayFor(model => model.CarProducer) @Html.DisplayFor(model => model.CarModel) details</h3>
-            <hr />
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.CarProducer)
-                </dt>
+<div>
+    <h3>@Html.DisplayFor(model => model.CarProducer) @Html.DisplayFor(model => model.CarModel) details</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CarProducer)
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.CarProducer)
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.CarProducer)
+        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.CarModel)
-                </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.CarModel)
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.CarModel)
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.CarModel)
+        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.CarProductionYear)
-                </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.CarProductionYear)
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.CarProductionYear)
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.CarProductionYear)
+        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.LpgInstallationProducer)
-                </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.LpgInstallationProducer)
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.LpgInstallationProducer)
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.LpgInstallationProducer)
+        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.LpgInstallationModel)
-                </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.LpgInstallationModel)
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.LpgInstallationModel)
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.LpgInstallationModel)
+        </dd>
 
-            </dl>
-        </div>
-        <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.CarId }, new { @class = "btn btn-outline-dark btn-sm" })
-            @Html.ActionLink("Delete", "Delete", new { id = Model.CarId }, new { @class = "btn btn-outline-dark btn-sm" })
-            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-outline-dark btn-sm" })
-        </p>
-    </div>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CarId }, new { @class = "btn btn-outline-dark btn-sm" })
+    @Html.ActionLink("Delete", "Delete", new { id = Model.CarId }, new { @class = "btn btn-outline-dark btn-sm" })
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-outline-dark btn-sm" })
+</p>

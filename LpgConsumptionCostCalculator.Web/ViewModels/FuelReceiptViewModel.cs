@@ -11,6 +11,8 @@ namespace LpgConsumptionCostCalculator.Web.ViewModels
     {
         public int FuelReceiptId { get; set; }
         public int FueledCarId { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         [Required]
         [Display(Name = "Date")]
         public DateTime RefuelingDate { get; set; }
