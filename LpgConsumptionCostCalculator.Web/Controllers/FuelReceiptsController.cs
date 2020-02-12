@@ -18,9 +18,9 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             this.db = db;
         }
         // GET: FuelReceipts
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            IEnumerable<FuelReceiptViewModel> receiptViewModels = db.GetAll().Select(vm => new FuelReceiptViewModel
+            IEnumerable<FuelReceiptViewModel> receiptViewModels = db.GetAll().Where(vm=>vm.FueledCarId==id).Select(vm => new FuelReceiptViewModel
                                                                     {
                                                                         FuelReceiptId = vm.FuelReceiptId,
                                                                         FueledCarId = vm.FueledCarId,
