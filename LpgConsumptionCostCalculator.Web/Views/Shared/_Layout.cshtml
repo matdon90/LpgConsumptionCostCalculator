@@ -11,37 +11,7 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        @Html.ActionLink("LPG CCC", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsLPG" aria-controls="navbarsLPG" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarsLPG">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    @Html.ActionLink("About", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Cars", "Index", "Cars", new { area = "" }, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Fuel Receipts", "Index", "FuelReceipts", new { area = "" }, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
-                </li>
-                @*<li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown05">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>*@
-            </ul>
-        </div>
-    </nav>
+    @Html.Action("Menu", "Navigation")
 
     <div class="jumbotron jumbotron-fluid">
         @RenderBody()
