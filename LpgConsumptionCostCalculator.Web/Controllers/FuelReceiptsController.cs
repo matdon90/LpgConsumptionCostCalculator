@@ -18,22 +18,25 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             this.db = db;
         }
         // GET: FuelReceipts
-        public ActionResult Index(int id)
+        public ActionResult Index(int? id)
         {
-            IEnumerable<FuelReceiptViewModel> receiptViewModels = db.GetAll().Where(vm=>vm.FueledCarId==id).Select(vm => new FuelReceiptViewModel
-                                                                    {
-                                                                        FuelReceiptId = vm.FuelReceiptId,
-                                                                        FueledCarId = vm.FueledCarId,
-                                                                        DistanceFromLastRefueling = vm.DistanceFromLastRefueling,
-                                                                        Comment = vm.Comment,
-                                                                        FuelAmount = vm.FuelAmount,
-                                                                        RefuelingDate = vm.RefuelingDate,
-                                                                        FuelPrice = vm.FuelPrice,
-                                                                        FuelType = vm.FuelType,
-                                                                        PetrolStationName = vm.PetrolStationName
-                                                                    }).ToList();
-
-            return View(receiptViewModels);
+            if (id!=null)
+            {
+                IEnumerable<FuelReceiptViewModel> receiptViewModels = db.GetAll().Where(vm => vm.FueledCarId == id).Select(vm => new FuelReceiptViewModel
+                {
+                    FuelReceiptId = vm.FuelReceiptId,
+                    FueledCarId = vm.FueledCarId,
+                    DistanceFromLastRefueling = vm.DistanceFromLastRefueling,
+                    Comment = vm.Comment,
+                    FuelAmount = vm.FuelAmount,
+                    RefuelingDate = vm.RefuelingDate,
+                    FuelPrice = vm.FuelPrice,
+                    FuelType = vm.FuelType,
+                    PetrolStationName = vm.PetrolStationName
+                }).ToList();
+                return View(receiptViewModels);
+            }
+            return RedirectToAction("Index", "Cars");
         }
 
         // GET: FuelReceipts/Details/5
@@ -63,8 +66,9 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         }
 
         // GET: FuelReceipts/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
+            ViewBag.CarID = id;
             return View();
         }
 
@@ -91,7 +95,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             }
             else
             {
-                var viewModel = new FuelReceiptViewModel
+                var viewModel = new FuelReceiptViewModel()
                 {
                     FuelReceiptId = model.FuelReceiptId,
                     FueledCarId = model.FueledCarId,
@@ -128,7 +132,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
                 };
                 db.Update(fuelReceipt);
                 TempData["Message"] = "You have saved the fuel receipt!";
-                return RedirectToAction("Details", new { id = fuelReceipt.FuelReceiptId });
+                return RedirectToAction("Details", "FuelReceipts", new { id = fuelReceiptViewModel.FuelReceiptId });
             }
             return View(fuelReceiptViewModel);
         }

@@ -74,6 +74,6 @@
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.FuelReceiptId }, new { @class = "btn btn-outline-dark btn-sm" })
     @Html.ActionLink("Delete", "Delete", new { id = Model.FuelReceiptId }, new { @class = "btn btn-outline-dark btn-sm" })
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-outline-dark btn-sm" })
+    @Html.ActionLink("Back to List", "Index", new { id = Model.FueledCarId }, new { @class = "btn btn-outline-dark btn-sm" })
 </p>
 
