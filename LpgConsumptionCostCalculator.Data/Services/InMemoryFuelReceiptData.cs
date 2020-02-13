@@ -83,6 +83,7 @@ namespace LpgConsumptionCostCalculator.Data.Services
             var existingReceipt = Get(receipt.FuelReceiptId);
             if (existingReceipt != null)
             {
+                existingReceipt.FuelReceiptId = receipt.FuelReceiptId;
                 existingReceipt.RefuelingDate = receipt.RefuelingDate;
                 existingReceipt.PetrolStationName = receipt.PetrolStationName;
                 existingReceipt.FuelType = receipt.FuelType;

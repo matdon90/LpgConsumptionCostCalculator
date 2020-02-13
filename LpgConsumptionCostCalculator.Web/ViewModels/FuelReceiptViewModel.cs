@@ -10,6 +10,8 @@ namespace LpgConsumptionCostCalculator.Web.ViewModels
     public class FuelReceiptViewModel
     {
         public int FuelReceiptId { get; set; }
+        [Required]
+        [Display(Name = "Fuelled car")]
         public int FueledCarId { get; set; }
         [Required]
         [Display(Name = "Date")]

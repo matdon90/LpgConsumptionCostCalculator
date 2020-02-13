@@ -2,10 +2,11 @@
 
 @{
     ViewBag.Title = "List of fuel receipts";
+    ViewBag.CarId = Model.ToList().FirstOrDefault().FueledCarId;
 }
 <h1 class="display-4">@ViewBag.Title</h1>
 
-@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-outline-dark" })
+@Html.ActionLink("Create New", "Create", new { id = ViewBag.CarId }, new { @class = "btn btn-outline-dark" })
 <p></p>
 
 <table class="table table-striped table-bordered table-hover">

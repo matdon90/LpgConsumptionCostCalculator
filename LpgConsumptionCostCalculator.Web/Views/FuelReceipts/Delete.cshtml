@@ -74,9 +74,9 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-outline-dark btn-sm" />
-            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-outline-dark btn-sm" })
-        </div>
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-outline-dark btn-sm" />
+        @Html.ActionLink("Back to List", "Index", new { id = Model.FueledCarId }, new { @class = "btn btn-outline-dark btn-sm" })
+    </div>
     }
 </div>
