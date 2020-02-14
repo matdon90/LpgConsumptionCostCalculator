@@ -1,35 +1,39 @@
 ﻿@using LpgConsumptionCostCalculator.Web.ViewModels
 @model IEnumerable<MenuViewModel>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    @Html.ActionLink("LPG CCC", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsLPG" aria-controls="navbarsLPG" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-    <div class="collapse navbar-collapse" id="navbarsLPG">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                @Html.ActionLink("About", "Index", "Home", new { area = "" }, new { @class = "nav-link btn btn-dark" })
-            </li>
-            <li class="nav-item">
-                @Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link btn btn-dark" })
-            </li>
-            <li class="btn-group">
-                @Html.ActionLink("CARS", "Index", "Cars", new { area = "" }, new { @class = "nav-link btn btn-dark" })
-                <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <div class="dropdown-menu">
-                    @foreach (var item in Model)
-                    {
-                        <a class="dropdown-item" href="/FuelReceipts/Index/@Html.DisplayFor(modelItem => item.CarId)">@Html.DisplayFor(modelItem => item.CarProducer) @Html.DisplayFor(modelItem => item.CarModel)</a>
-                    }
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/Cars/Create">Create New</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-</nav>
+        <a href="/Home/Index" class="navbar-brand d-flex align-items-center">
+            <i class="fa fa-calculator fa-lg"></i>
+            <strong style="margin-left:10px">LPG CCC</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsLPG" aria-controls="navbarsLPG" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsLPG">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-dark" href="/Home/Index"><i class="fa fa-building-o fa-fw" style="color:#d6d8db"></i>About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-dark" href="/Home/Contact"><i class="fa fa-envelope-o" style="color:#d6d8db; margin-right:5px"></i>Contact</a>
+                </li>
+                <li class="btn-group">
+                    <a class="nav-link btn btn-dark" href="/Cars/Index"><i class="fa fa-car fa-fw" style="color:#d6d8db; margin-right:5px"></i>CARS</a>
+                    <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        @foreach (var item in Model)
+                        {
+                            <a class="dropdown-item" href="/FuelReceipts/Index/@Html.DisplayFor(modelItem => item.CarId)">@Html.DisplayFor(modelItem => item.CarProducer) @Html.DisplayFor(modelItem => item.CarModel)</a>
+                        }
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/Cars/Create">Create New</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
