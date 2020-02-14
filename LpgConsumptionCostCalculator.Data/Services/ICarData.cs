@@ -1,5 +1,6 @@
 ﻿using LpgConsumptionCostCalculator.Data.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace LpgConsumptionCostCalculator.Data.Services
 {
@@ -7,7 +8,7 @@ namespace LpgConsumptionCostCalculator.Data.Services
     {
         IEnumerable<Car> GetAll();
         Car Get(int id);
-        void Add(Car car);
+        Task Add(Car car);
         void Update(Car car);
         void Delete(int id);
     }

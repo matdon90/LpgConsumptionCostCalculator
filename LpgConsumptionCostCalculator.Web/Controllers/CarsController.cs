@@ -46,6 +46,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                car.CarId = 10;
                 db.Add(car);
                 return RedirectToAction("Details", new { id = car.CarId });
             }
