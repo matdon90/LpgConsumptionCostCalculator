@@ -26,12 +26,3 @@
         <td>Check fuel consumption</td>
     </tr>
 </table>
-
-<h3>Login History</h3>
-<p>Current user: @ViewBag.CurrentUser</p>
-<ul>
-    @foreach (var timestamp in ViewBag.Logins)
-    {
-        <li>Login at @timestamp</li>
-    }
-</ul>

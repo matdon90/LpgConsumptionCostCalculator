@@ -15,7 +15,7 @@ namespace LpgConsumptionCostCalculator.Web
 
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
             builder.RegisterApiControllers(typeof(MvcApplication).Assembly);
-            builder.RegisterType<InMemoryCarData>()
+            builder.RegisterType<FirebaseDatabaseCarData>()
                 .As<ICarData>()
                 .InstancePerRequest();
             builder.RegisterType<InMemoryFuelReceiptData>()

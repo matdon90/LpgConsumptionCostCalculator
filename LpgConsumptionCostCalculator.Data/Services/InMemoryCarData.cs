@@ -39,7 +39,7 @@ namespace LpgConsumptionCostCalculator.Data.Services
         /// Adds new cart in program memory.
         /// </summary>
         /// <param name="car"></param>
-        public void Add(Car car)
+        public async Task Add(Car car)
         {
             car.CarId = cars.Max(c => c.CarId) + 1;
             cars.Add(car);
