@@ -53,34 +53,34 @@ namespace LpgConsumptionCostCalculator.Data.Services
                 }
             };
         }
-        public void Add(FuelReceipt receipt)
+        public async Task Add(FuelReceipt receipt)
         {
             receipt.FuelReceiptId = fuelReceipts.Max(r => r.FuelReceiptId) + 1;
             fuelReceipts.Add(receipt);
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            var receipt = Get(id);
+            var receipt = await Get(id);
             if (receipt != null)
             {
                 fuelReceipts.Remove(receipt);
             }
         }
 
-        public FuelReceipt Get(int id)
+        public async Task<FuelReceipt> Get(int id)
         {
             return fuelReceipts.FirstOrDefault(r => r.FuelReceiptId == id);
         }
 
-        public IEnumerable<FuelReceipt> GetAll()
+        public async Task<IEnumerable<FuelReceipt>> GetAll()
         {
             return fuelReceipts.OrderBy(r => r.RefuelingDate).ThenBy(r => r.PetrolStationName);
         }
 
-        public void Update(FuelReceipt receipt)
+        public async Task Update(FuelReceipt receipt)
         {
-            var existingReceipt = Get(receipt.FuelReceiptId);
+            var existingReceipt = await Get(receipt.FuelReceiptId);
             if (existingReceipt != null)
             {
                 existingReceipt.FuelReceiptId = receipt.FuelReceiptId;
