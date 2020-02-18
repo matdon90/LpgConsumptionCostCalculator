@@ -18,7 +18,7 @@ namespace LpgConsumptionCostCalculator.Web
             builder.RegisterType<FirebaseDatabaseCarData>()
                 .As<ICarData>()
                 .InstancePerRequest();
-            builder.RegisterType<InMemoryFuelReceiptData>()
+            builder.RegisterType<FirebaseDatabaseFuelReceiptData>()
                 .As<IFuelReceiptData>()
                 .InstancePerRequest();
             builder.RegisterType<FirebaseDatabaseCarData>().InstancePerRequest();

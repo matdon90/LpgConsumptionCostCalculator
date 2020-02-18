@@ -4,6 +4,7 @@ using LpgConsumptionCostCalculator.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -18,11 +19,12 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             this.db = db;
         }
         // GET: FuelReceipts
-        public ActionResult Index(int? id)
+        public async Task<ActionResult> Index(int? id)
         {
             if (id!=null)
             {
-                IEnumerable<FuelReceiptViewModel> receiptViewModels = db.GetAll().Where(vm => vm.FueledCarId == id).Select(vm => new FuelReceiptViewModel
+                var results = await db.GetAll();
+                IEnumerable<FuelReceiptViewModel> receiptViewModels = results.Where(vm => vm.FueledCarId == id).Select(vm => new FuelReceiptViewModel
                 {
                     FuelReceiptId = vm.FuelReceiptId,
                     FueledCarId = vm.FueledCarId,
@@ -40,9 +42,9 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         }
 
         // GET: FuelReceipts/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            var model = db.Get(id);
+            var model = await db.Get(id);
             if (model == null)
             {
                 return View("NotFound");
@@ -75,20 +77,20 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         // POST: FuelReceipts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(FuelReceipt fuelReceipt)
+        public async Task<ActionResult> Create(FuelReceipt fuelReceipt)
         {
             if (ModelState.IsValid)
             {
-                db.Add(fuelReceipt);
+                await db.Add(fuelReceipt);
                 return RedirectToAction("Details", new { id = fuelReceipt.FuelReceiptId });
             }
             return View();
         }
 
         // GET: FuelReceipts/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            var model = db.Get(id);
+            var model = await db.Get(id);
             if (model == null)
             {
                 return View("NotFound");
@@ -114,7 +116,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         // POST: FuelReceipts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(FuelReceiptViewModel fuelReceiptViewModel)
+        public async Task<ActionResult> Edit(FuelReceiptViewModel fuelReceiptViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -130,7 +132,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
                     FuelType = fuelReceiptViewModel.FuelType,
                     PetrolStationName = fuelReceiptViewModel.PetrolStationName
                 };
-                db.Update(fuelReceipt);
+                await db.Update(fuelReceipt);
                 TempData["Message"] = "You have saved the fuel receipt!";
                 return RedirectToAction("Details", "FuelReceipts", new { id = fuelReceiptViewModel.FuelReceiptId });
             }
@@ -138,9 +140,9 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         }
 
         // GET: FuelReceipts/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var model = db.Get(id);
+            var model = await db.Get(id);
 
             if (model == null)
             {
@@ -166,9 +168,9 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
 
         // POST: FuelReceipts/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public async Task<ActionResult> Delete(int id, FormCollection collection)
         {
-            db.Delete(id);
+            await db.Delete(id);
             return RedirectToAction("Index");
         }
     }
