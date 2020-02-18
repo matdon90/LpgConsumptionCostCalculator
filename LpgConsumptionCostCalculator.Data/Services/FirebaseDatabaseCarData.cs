@@ -20,36 +20,66 @@ namespace LpgConsumptionCostCalculator.Data.Services
         public FirebaseDatabaseCarData()
         {
             this.firebase = new FirebaseClient(
-                databaseUrl,
-                new FirebaseOptions
-                {
-                    AuthTokenAsyncFactory = () => Task.FromResult(databaseSecret)
-                });
+                databaseUrl
+                //,
+                //new FirebaseOptions
+                //{
+                //    AuthTokenAsyncFactory = () => Task.FromResult(databaseSecret)
+                //}
+                );
         }
 
         public async Task Add(Car car)
         {
+            IEnumerable<Car> cars = await GetAll();
+            car.CarId = cars.Max(c => c.CarId) + 1;
             await firebase.Child(node).PostAsync<Car>(car);
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var results = await firebase.Child(node).OnceAsync<Car>();
+            var car = results.FirstOrDefault(o => o.Object.CarId == id);
+            if (car != null)
+            {
+                await firebase.Child(node).Child(car.Key).DeleteAsync();
+            }
         }
 
-        public Car Get(int id)
+        public async Task<Car> Get(int id)
         {
-            throw new NotImplementedException();
+            var results = await firebase.Child(node).OnceAsync<Car>();
+            return results.Select(o => new Car
+            {
+                CarId = o.Object.CarId,
+                CarModel = o.Object.CarModel,
+                CarProducer = o.Object.CarProducer,
+                CarProductionYear = o.Object.CarProductionYear,
+                LpgInstallationModel = o.Object.LpgInstallationModel,
+                LpgInstallationProducer = o.Object.LpgInstallationProducer
+            }).FirstOrDefault(c => c.CarId == id);
         }
 
-        public IEnumerable<Car> GetAll()
+        public async Task<IEnumerable<Car>> GetAll()
         {
-            throw new NotImplementedException();
+            var results = await firebase.Child(node).OnceAsync<Car>();
+            var cars = results.Select(o => new Car
+            {
+                CarId = o.Object.CarId,
+                CarModel = o.Object.CarModel,
+                CarProducer = o.Object.CarProducer,
+                CarProductionYear = o.Object.CarProductionYear,
+                LpgInstallationModel = o.Object.LpgInstallationModel,
+                LpgInstallationProducer = o.Object.LpgInstallationProducer
+            }).ToList();
+            return cars.OrderBy(c => c.CarProducer).ThenBy(c => c.CarModel).ThenBy(c => c.CarProductionYear);
         }
 
-        public void Update(Car car)
+        public async Task Update(Car car)
         {
-            throw new NotImplementedException();
+            var results = await firebase.Child(node).OnceAsync<Car>();
+            var carDb = results.FirstOrDefault(o => o.Object.CarId == car.CarId);
+            await firebase.Child(node).Child(carDb.Key).PutAsync<Car>(car);
         }
     }
 }

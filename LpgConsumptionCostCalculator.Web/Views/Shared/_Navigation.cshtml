@@ -25,11 +25,14 @@
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <div class="dropdown-menu">
-                        @foreach (var item in Model)
+                        @if (Model != null)
                         {
-                            <a class="dropdown-item" href="/FuelReceipts/Index/@Html.DisplayFor(modelItem => item.CarId)">@Html.DisplayFor(modelItem => item.CarProducer) @Html.DisplayFor(modelItem => item.CarModel)</a>
+                            foreach (var item in Model)
+                            {
+                                <a class="dropdown-item" href="/FuelReceipts/Index/@Html.DisplayFor(modelItem => item.CarId)">@Html.DisplayFor(modelItem => item.CarProducer) @Html.DisplayFor(modelItem => item.CarModel)</a>
+                            }
+                            <div class="dropdown-divider"></div>
                         }
-                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/Cars/Create">Create New</a>
                     </div>
                 </li>

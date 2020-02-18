@@ -21,7 +21,7 @@ namespace LpgConsumptionCostCalculator.Web
             builder.RegisterType<InMemoryFuelReceiptData>()
                 .As<IFuelReceiptData>()
                 .InstancePerRequest();
-            builder.RegisterType<InMemoryCarData>().InstancePerRequest();
+            builder.RegisterType<FirebaseDatabaseCarData>().InstancePerRequest();
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
