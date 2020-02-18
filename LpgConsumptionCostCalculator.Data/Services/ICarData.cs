@@ -6,10 +6,10 @@ namespace LpgConsumptionCostCalculator.Data.Services
 {
     public interface ICarData
     {
-        IEnumerable<Car> GetAll();
-        Car Get(int id);
+        Task<IEnumerable<Car>> GetAll();
+        Task<Car> Get(int id);
         Task Add(Car car);
-        void Update(Car car);
-        void Delete(int id);
+        Task Update(Car car);
+        Task Delete(int id);
     }
 }

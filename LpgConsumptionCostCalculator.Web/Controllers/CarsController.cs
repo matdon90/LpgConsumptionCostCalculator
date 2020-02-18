@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Threading.Tasks;
 
 namespace LpgConsumptionCostCalculator.Web.Controllers
 {
@@ -18,16 +19,16 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var model = db.GetAll();
+            var model = await db.GetAll();
             return View(model);
         }
 
         [HttpGet]
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            var model = db.Get(id);
+            var model = await db.Get(id);
             if (model == null)
             {
                 return View("NotFound");
@@ -42,21 +43,21 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Car car)
+        public async Task<ActionResult> Create(Car car)
         {
             if (ModelState.IsValid)
             {
                 car.CarId = 10;
-                db.Add(car);
+                await db.Add(car);
                 return RedirectToAction("Details", new { id = car.CarId });
             }
             return View();
         }
 
         [HttpGet]
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            var model = db.Get(id);
+            var model = await db.Get(id);
 
             if (model == null)
             {
@@ -67,11 +68,11 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Car car)
+        public async Task<ActionResult> Edit(Car car)
         {
             if (ModelState.IsValid)
             {
-                db.Update(car);
+                await db.Update(car);
                 TempData["Message"] = "You have saved the car!";
                 return RedirectToAction("Details", new { id = car.CarId });
             }
@@ -79,9 +80,9 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var model = db.Get(id);
+            var model = await db.Get(id);
 
             if (model == null)
             {
@@ -92,9 +93,9 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, FormCollection form)
+        public async Task<ActionResult> Delete(int id, FormCollection form)
         {
-            db.Delete(id);
+            await db.Delete(id);
             return RedirectToAction("Index");
         }
     }

@@ -49,9 +49,9 @@ namespace LpgConsumptionCostCalculator.Data.Services
         /// Deletes car with chosen ID from in memory car list.
         /// </summary>
         /// <param name="id"></param>
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            var car = Get(id);
+            var car = await Get(id);
             if (car != null)
             {
                 cars.Remove(car);
@@ -63,7 +63,7 @@ namespace LpgConsumptionCostCalculator.Data.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Car Get(int id)
+        public async Task<Car> Get(int id)
         {
             return cars.FirstOrDefault(c => c.CarId == id);
         }
@@ -72,7 +72,7 @@ namespace LpgConsumptionCostCalculator.Data.Services
         /// Gets all cars from in memory list.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Car> GetAll()
+        public async Task<IEnumerable<Car>> GetAll()
         {
             return cars.OrderBy(c => c.CarProducer).ThenBy(c => c.CarModel).ThenBy(c => c.CarProductionYear);
         }
@@ -81,9 +81,9 @@ namespace LpgConsumptionCostCalculator.Data.Services
         /// Udpates a car with selected ID.
         /// </summary>
         /// <param name="car"></param>
-        public void Update(Car car)
+        public async Task Update(Car car)
         {
-            var existingCar = Get(car.CarId);
+            var existingCar = await Get(car.CarId);
             if (existingCar != null)
             {
                 existingCar.CarModel = car.CarModel;
