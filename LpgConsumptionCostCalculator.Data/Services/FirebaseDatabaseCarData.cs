@@ -11,28 +11,18 @@ namespace LpgConsumptionCostCalculator.Data.Services
 {
     public class FirebaseDatabaseCarData : ICarData
     {
-        private const String databaseUrl = "https://lpgconsumptioncostcalculator.firebaseio.com/";
-        private const String databaseSecret = "EzKZld9GBLP5o6BzvWQqXqpQeD1NHIDQ7NdPKKu2";
         private const String node = "cars/";
-
         private FirebaseClient firebase;
 
         public FirebaseDatabaseCarData()
         {
-            this.firebase = new FirebaseClient(
-                databaseUrl
-                //,
-                //new FirebaseOptions
-                //{
-                //    AuthTokenAsyncFactory = () => Task.FromResult(databaseSecret)
-                //}
-                );
+            this.firebase = new FirebaseConn().firebase;
         }
 
         public async Task Add(Car car)
         {
             IEnumerable<Car> cars = await GetAll();
-            car.CarId = cars.Max(c => c.CarId) + 1;
+            car.CarId = cars.Count() != 0 ? cars.Max(c => c.CarId) + 1 : 1;
             await firebase.Child(node).PostAsync<Car>(car);
         }
 

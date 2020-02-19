@@ -11,36 +11,18 @@ namespace LpgConsumptionCostCalculator.Data.Services
 {
     public class FirebaseDatabaseFuelReceiptData :IFuelReceiptData
     {
-        private const String databaseUrl = "https://lpgconsumptioncostcalculator.firebaseio.com/";
-        private const String databaseSecret = "EzKZld9GBLP5o6BzvWQqXqpQeD1NHIDQ7NdPKKu2";
         private const String node = "receipts/";
-
         private FirebaseClient firebase;
 
         public FirebaseDatabaseFuelReceiptData()
         {
-            this.firebase = new FirebaseClient(
-                databaseUrl
-                //,
-                //new FirebaseOptions
-                //{
-                //    AuthTokenAsyncFactory = () => Task.FromResult(databaseSecret)
-                //}
-                );
+            this.firebase = new FirebaseConn().firebase;
         }
 
         public async Task Add(FuelReceipt receipt)
         {
             var receipts = await GetAll();
-
-            if (receipts.Count() != 0)
-            {
-                receipt.FuelReceiptId = receipts.Max(r => r.FuelReceiptId) + 1;
-            }
-            else
-            {
-                receipt.FuelReceiptId = 1;
-            }
+            receipt.FuelReceiptId = receipts.Count() != 0 ? receipts.Max(r => r.FuelReceiptId) + 1 : 1;
             await firebase.Child(node).PostAsync<FuelReceipt>(receipt);
         }
 
