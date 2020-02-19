@@ -19,7 +19,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string sortOrder)
         {
             var model = await db.GetAll();
             return View(model);
