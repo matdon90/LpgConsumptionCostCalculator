@@ -2,67 +2,69 @@
 
 @{
     ViewBag.Title = "List of fuel receipts";
-    ViewBag.CarId = Model.ToList().FirstOrDefault().FueledCarId;
 }
 <h1 class="display-4">@ViewBag.Title</h1>
 
-@Html.ActionLink("Create New", "Create", new { id = ViewBag.CarId }, new { @class = "btn btn-outline-dark" })
-<p></p>
+@if (Model != null)
+{
+    @Html.ActionLink("Create New", "Create", new { id = ViewBag.CarId }, new { @class = "btn btn-outline-dark" })
+    <p></p>
 
-<table class="table table-striped table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.RefuelingDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PetrolStationName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FuelPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FuelAmount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FuelConsumption)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PriceFor100km)
-            </th>
-            <th>
-                Actions
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
             <tr>
-                <td>
-                    <b>@Html.ValueFor(modelItem => item.RefuelingDate, "{0:yyyy/MM/dd}")</b>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PetrolStationName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FuelPrice)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FuelAmount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FuelConsumption)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PriceFor100km)
-                </td>
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.FuelReceiptId }, new { @class = "btn btn-outline-dark btn-sm" })
-                    @Html.ActionLink("Edit", "Edit", new { id = item.FuelReceiptId }, new { @class = "btn btn-outline-dark btn-sm" })
-                    @Html.ActionLink("Delete", "Delete", new { id = item.FuelReceiptId }, new { @class = "btn btn-outline-dark btn-sm" })
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.RefuelingDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PetrolStationName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FuelPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FuelAmount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FuelConsumption)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PriceFor100km)
+                </th>
+                <th>
+                    Actions
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <b>@Html.ValueFor(modelItem => item.RefuelingDate, "{0:yyyy/MM/dd}")</b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PetrolStationName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FuelPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FuelAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FuelConsumption)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PriceFor100km)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.FuelReceiptId }, new { @class = "btn btn-outline-dark btn-sm" })
+                        @Html.ActionLink("Edit", "Edit", new { id = item.FuelReceiptId }, new { @class = "btn btn-outline-dark btn-sm" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.FuelReceiptId }, new { @class = "btn btn-outline-dark btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

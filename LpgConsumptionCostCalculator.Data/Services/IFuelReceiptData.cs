@@ -9,10 +9,10 @@ namespace LpgConsumptionCostCalculator.Data.Services
 {
     public interface IFuelReceiptData
     {
-        IEnumerable<FuelReceipt> GetAll();
-        FuelReceipt Get(int id);
-        void Add(FuelReceipt receipt);
-        void Update(FuelReceipt receipt);
-        void Delete(int id);
+        Task<IEnumerable<FuelReceipt>> GetAll();
+        Task<FuelReceipt> Get(int id);
+        Task Add(FuelReceipt receipt);
+        Task Update(FuelReceipt receipt);
+        Task Delete(int id);
     }
 }
