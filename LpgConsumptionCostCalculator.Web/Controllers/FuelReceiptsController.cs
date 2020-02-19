@@ -21,6 +21,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         // GET: FuelReceipts
         public async Task<ActionResult> Index(int? id)
         {
+            ViewBag.CarId = id;
             if (id!=null)
             {
                 var results = await db.GetAll();
@@ -170,8 +171,9 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         [HttpPost]
         public async Task<ActionResult> Delete(int id, FormCollection collection)
         {
+            var model = await db.Get(id);
             await db.Delete(id);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "FuelReceipts", new { id = model.FuelReceiptId });
         }
     }
 }
