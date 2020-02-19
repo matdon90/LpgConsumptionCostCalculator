@@ -29,7 +29,7 @@
                         {
                             foreach (var item in Model)
                             {
-                                <a class="dropdown-item" href="/FuelReceipts/Index/@Html.DisplayFor(modelItem => item.CarId)">@Html.DisplayFor(modelItem => item.CarProducer) @Html.DisplayFor(modelItem => item.CarModel)</a>
+                                <a class="dropdown-item" href="/FuelReceipts/Index/@Html.DisplayFor(modelItem => item.CarId)">@Html.DisplayFor(modelItem => item.CarProducer) @Html.DisplayFor(modelItem => item.CarModel) - receipts</a>
                             }
                             <div class="dropdown-divider"></div>
                         }
