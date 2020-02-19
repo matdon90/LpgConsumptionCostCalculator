@@ -60,7 +60,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FueledCarId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FueledCarId, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.CarID, @readonly = "true"} })
+                @Html.EditorFor(model => model.FueledCarId, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.CarID, @readonly = "true" } })
                 @Html.ValidationMessageFor(model => model.FueledCarId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -68,7 +68,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "form-control", placeholder = "optional" }})
                 @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
             </div>
         </div>
