@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<LpgConsumptionCostCalculator.Data.Models.Car>
-
+@using LpgConsumptionCostCalculator.Data.Models
 @{
     ViewBag.Title = "List of cars";
+    var queryOptions = (QueryOptions)ViewBag.QueryOptions;
 }
 
 
@@ -14,7 +15,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CarProducer)
+                @Html.BuildSortableLink("Producer", "Index", "CarProducer", queryOptions)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CarModel)
@@ -26,7 +27,7 @@
                 @Html.DisplayNameFor(model => model.LpgInstallationProducer)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LpgInstallationModel)
+                @ViewBag.Title
             </th>
             <th>
                 Actions
@@ -53,9 +54,9 @@
                     @Html.DisplayFor(modelItem => item.LpgInstallationModel)
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.CarId }, new { @class = "btn btn-outline-dark btn-sm" })
-                    @Html.ActionLink("Edit", "Edit", new { id = item.CarId }, new { @class = "btn btn-outline-dark btn-sm" })
-                    @Html.ActionLink("Delete", "Delete", new { id = item.CarId }, new { @class = "btn btn-outline-dark btn-sm" })
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm" })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm" })
                 </td>
             </tr>
         }

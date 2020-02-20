@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<LpgConsumptionCostCalculator.Web.ViewModels.FuelReceiptViewModel>
+@using LpgConsumptionCostCalculator.Data.Models
 
 @{
     ViewBag.Title = "List of fuel receipts";
+    var queryOptions = (QueryOptions)ViewBag.QueryOptions;
 }
 <h1 class="display-4">@ViewBag.Title</h1>
 

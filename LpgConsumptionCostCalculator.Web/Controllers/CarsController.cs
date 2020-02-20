@@ -3,9 +3,11 @@ using LpgConsumptionCostCalculator.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
+using System.Web.ModelBinding;
 
 namespace LpgConsumptionCostCalculator.Web.Controllers
 {
@@ -19,10 +21,11 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Index(string sortOrder)
+        public async Task<ActionResult> Index([Form] QueryOptions queryOptions)
         {
+            ViewBag.QueryOptions = queryOptions;
             var model = await db.GetAll();
-            return View(model);
+            return View(model.OrderBy(queryOptions.Sort).ToList());
         }
 
         [HttpGet]
@@ -47,9 +50,9 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                car.CarId = 10;
+                car.Id = 10;
                 await db.Add(car);
-                return RedirectToAction("Details", new { id = car.CarId });
+                return RedirectToAction("Details", new { id = car.Id });
             }
             return View();
         }
@@ -74,7 +77,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             {
                 await db.Update(car);
                 TempData["Message"] = "You have saved the car!";
-                return RedirectToAction("Details", new { id = car.CarId });
+                return RedirectToAction("Details", new { id = car.Id });
             }
             return View(car);
         }

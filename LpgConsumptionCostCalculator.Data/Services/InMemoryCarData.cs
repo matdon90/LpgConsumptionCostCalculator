@@ -17,7 +17,7 @@ namespace LpgConsumptionCostCalculator.Data.Services
             {
                 new Car()
                 {
-                    CarId = 1,
+                    Id = 1,
                     CarProducer = "KIA",
                     CarModel = "Ceed Kombi 1.4 MPI",
                     CarProductionYear = 2019,
@@ -26,7 +26,7 @@ namespace LpgConsumptionCostCalculator.Data.Services
                 },
                 new Car()
                 {
-                    CarId = 2,
+                    Id = 2,
                     CarProducer = "Skoda",
                     CarModel = "Fabia 1.2 TSI",
                     CarProductionYear = 2015,
@@ -41,7 +41,7 @@ namespace LpgConsumptionCostCalculator.Data.Services
         /// <param name="car"></param>
         public async Task Add(Car car)
         {
-            car.CarId = cars.Max(c => c.CarId) + 1;
+            car.Id = cars.Max(c => c.Id) + 1;
             cars.Add(car);
         }
 
@@ -65,7 +65,7 @@ namespace LpgConsumptionCostCalculator.Data.Services
         /// <returns></returns>
         public async Task<Car> Get(int id)
         {
-            return cars.FirstOrDefault(c => c.CarId == id);
+            return cars.FirstOrDefault(c => c.Id == id);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace LpgConsumptionCostCalculator.Data.Services
         /// <param name="car"></param>
         public async Task Update(Car car)
         {
-            var existingCar = await Get(car.CarId);
+            var existingCar = await Get(car.Id);
             if (existingCar != null)
             {
                 existingCar.CarModel = car.CarModel;

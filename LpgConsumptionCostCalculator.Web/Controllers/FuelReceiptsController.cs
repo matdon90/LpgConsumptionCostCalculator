@@ -4,8 +4,10 @@ using LpgConsumptionCostCalculator.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.ModelBinding;
 using System.Web.Mvc;
 
 namespace LpgConsumptionCostCalculator.Web.Controllers
@@ -19,13 +21,14 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             this.db = db;
         }
         // GET: FuelReceipts
-        public async Task<ActionResult> Index(int? id)
+        public async Task<ActionResult> Index(int? id, [Form] QueryOptions queryOptions)
         {
+            ViewBag.QueryOptions = queryOptions;
             ViewBag.CarId = id;
             if (id!=null)
             {
                 var results = await db.GetAll();
-                IEnumerable<FuelReceiptViewModel> receiptViewModels = results.Where(vm => vm.FueledCarId == id).Select(vm => new FuelReceiptViewModel
+                var receiptViewModels = results.Where(vm => vm.FueledCarId == id).Select(vm => new FuelReceiptViewModel
                 {
                     FuelReceiptId = vm.FuelReceiptId,
                     FueledCarId = vm.FueledCarId,
@@ -36,7 +39,8 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
                     FuelPrice = vm.FuelPrice,
                     FuelType = vm.FuelType,
                     PetrolStationName = vm.PetrolStationName
-                }).ToList();
+                }).AsQueryable<FuelReceiptViewModel>().OrderBy(queryOptions.Sort).ToList();
+
                 return View(receiptViewModels);
             }
             return RedirectToAction("Index", "Cars");
