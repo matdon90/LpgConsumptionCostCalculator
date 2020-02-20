@@ -20,7 +20,7 @@ namespace LpgConsumptionCostCalculatorDataTests
             //Act
             Car car = new Car()
             {
-                CarId=1,
+                Id=1,
                 CarProducer = "KIA",
                 CarModel = "Ceed Kombi 1.4 MPI",
                 CarProductionYear = 2019,
@@ -29,7 +29,7 @@ namespace LpgConsumptionCostCalculatorDataTests
             };
 
             //Assert
-            Assert.AreEqual(1, car.CarId);
+            Assert.AreEqual(1, car.Id);
             Assert.AreEqual(expectedCarProducer, car.CarProducer);
             Assert.AreEqual(expectedCarModel, car.CarModel);
             Assert.AreEqual(expectedCarProductionYear, car.CarProductionYear);

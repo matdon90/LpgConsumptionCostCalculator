@@ -13,7 +13,7 @@ namespace LpgConsumptionCostCalculator.Data.Models
         {
 
         }
-        public int CarId { get; set; }
+        public int Id { get; set; }
         [Required]
         [Display(Name = "Producer")]
         public string CarProducer { get; set; }
