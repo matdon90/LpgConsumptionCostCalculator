@@ -22,14 +22,14 @@ namespace LpgConsumptionCostCalculator.Data.Services
         public async Task Add(FuelReceipt receipt)
         {
             var receipts = await GetAll();
-            receipt.FuelReceiptId = receipts.Count() != 0 ? receipts.Max(r => r.FuelReceiptId) + 1 : 1;
+            receipt.Id = receipts.Count() != 0 ? receipts.Max(r => r.Id) + 1 : 1;
             await firebase.Child(node).PostAsync<FuelReceipt>(receipt);
         }
 
         public async Task Delete(int id)
         {
             var results = await firebase.Child(node).OnceAsync<FuelReceipt>();
-            var receipt = results.FirstOrDefault(o => o.Object.FuelReceiptId == id);
+            var receipt = results.FirstOrDefault(o => o.Object.Id == id);
             if (receipt != null)
             {
                 await firebase.Child(node).Child(receipt.Key).DeleteAsync();
@@ -41,7 +41,7 @@ namespace LpgConsumptionCostCalculator.Data.Services
             var results = await firebase.Child(node).OnceAsync<FuelReceipt>();
             return results.Select(r => new FuelReceipt
             {
-                FuelReceiptId = r.Object.FuelReceiptId,
+                Id = r.Object.Id,
                 FuelAmount = r.Object.FuelAmount,
                 Comment = r.Object.Comment,
                 DistanceFromLastRefueling = r.Object.DistanceFromLastRefueling,
@@ -50,7 +50,7 @@ namespace LpgConsumptionCostCalculator.Data.Services
                 FuelType = r.Object.FuelType,
                 PetrolStationName = r.Object.PetrolStationName,
                 RefuelingDate = r.Object.RefuelingDate
-            }).FirstOrDefault(r => r.FuelReceiptId == id);
+            }).FirstOrDefault(r => r.Id == id);
         }
 
         public async Task<IEnumerable<FuelReceipt>> GetAll()
@@ -58,7 +58,7 @@ namespace LpgConsumptionCostCalculator.Data.Services
             var results = await firebase.Child(node).OnceAsync<FuelReceipt>();
             var receipts = results.Select(r => new FuelReceipt
             {
-                FuelReceiptId = r.Object.FuelReceiptId,
+                Id = r.Object.Id,
                 FuelAmount = r.Object.FuelAmount,
                 Comment = r.Object.Comment,
                 DistanceFromLastRefueling = r.Object.DistanceFromLastRefueling,
@@ -75,7 +75,7 @@ namespace LpgConsumptionCostCalculator.Data.Services
         public async Task Update(FuelReceipt receipt)
         {
             var results = await firebase.Child(node).OnceAsync<FuelReceipt>();
-            var receiptDb = results.FirstOrDefault(r => r.Object.FuelReceiptId == receipt.FuelReceiptId);
+            var receiptDb = results.FirstOrDefault(r => r.Object.Id == receipt.Id);
             await firebase.Child(node).Child(receiptDb.Key).PutAsync<FuelReceipt>(receipt);
         }
     }

@@ -17,7 +17,7 @@ namespace LpgConsumptionCostCalculator.Data.Services
             {
                 new FuelReceipt()
                 {
-                    FuelReceiptId = 1,
+                    Id = 1,
                     RefuelingDate = new DateTime(DateTime.Now.Year, 2, 1),
                     PetrolStationName = "Shell",
                     FuelType = TypeOfFuel.LPG,
@@ -29,7 +29,7 @@ namespace LpgConsumptionCostCalculator.Data.Services
                 },
                 new FuelReceipt()
                 {
-                    FuelReceiptId = 2,
+                    Id = 2,
                     RefuelingDate = new DateTime(DateTime.Now.Year, 1, 13),
                     PetrolStationName = "BP",
                     FuelType = TypeOfFuel.LPG,
@@ -41,7 +41,7 @@ namespace LpgConsumptionCostCalculator.Data.Services
                 },
                 new FuelReceipt()
                 {
-                    FuelReceiptId = 3,
+                    Id = 3,
                     RefuelingDate = new DateTime(DateTime.Now.Year, 2, 6),
                     PetrolStationName = "Orlen",
                     FuelType = TypeOfFuel.LPG,
@@ -55,7 +55,7 @@ namespace LpgConsumptionCostCalculator.Data.Services
         }
         public async Task Add(FuelReceipt receipt)
         {
-            receipt.FuelReceiptId = fuelReceipts.Max(r => r.FuelReceiptId) + 1;
+            receipt.Id = fuelReceipts.Max(r => r.Id) + 1;
             fuelReceipts.Add(receipt);
         }
 
@@ -70,7 +70,7 @@ namespace LpgConsumptionCostCalculator.Data.Services
 
         public async Task<FuelReceipt> Get(int id)
         {
-            return fuelReceipts.FirstOrDefault(r => r.FuelReceiptId == id);
+            return fuelReceipts.FirstOrDefault(r => r.Id == id);
         }
 
         public async Task<IEnumerable<FuelReceipt>> GetAll()
@@ -80,10 +80,10 @@ namespace LpgConsumptionCostCalculator.Data.Services
 
         public async Task Update(FuelReceipt receipt)
         {
-            var existingReceipt = await Get(receipt.FuelReceiptId);
+            var existingReceipt = await Get(receipt.Id);
             if (existingReceipt != null)
             {
-                existingReceipt.FuelReceiptId = receipt.FuelReceiptId;
+                existingReceipt.Id = receipt.Id;
                 existingReceipt.RefuelingDate = receipt.RefuelingDate;
                 existingReceipt.PetrolStationName = receipt.PetrolStationName;
                 existingReceipt.FuelType = receipt.FuelType;

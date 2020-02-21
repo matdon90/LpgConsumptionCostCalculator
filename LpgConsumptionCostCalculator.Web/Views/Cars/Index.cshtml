@@ -15,19 +15,19 @@
     <thead>
         <tr>
             <th>
-                @Html.BuildSortableLink("Producer", "Index", "CarProducer", queryOptions)
+                @Html.BuildSortableLink("Manufacturer", "Index", "CarProducer", queryOptions)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarModel)
+                @Html.BuildSortableLink("Model", "Index", "CarModel", queryOptions)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarProductionYear)
+                @Html.BuildSortableLink("Production year", "Index", "CarProductionYear", queryOptions)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LpgInstallationProducer)
+                @Html.BuildSortableLink("LPG installation manufacturer", "Index", "LpgInstallationProducer", queryOptions)
             </th>
             <th>
-                @ViewBag.Title
+                @Html.BuildSortableLink("LPG installation model", "Index", "LpgInstallationModel", queryOptions)
             </th>
             <th>
                 Actions
