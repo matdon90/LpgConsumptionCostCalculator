@@ -24,6 +24,8 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         public async Task<ActionResult> Index([Form] QueryOptions queryOptions, string searchString)
         {
             ViewBag.QueryOptions = queryOptions;
+            var start = (queryOptions.CurrentPage - 1 ) * queryOptions.PageSize;
+
             var model = await db.GetAll();
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -32,7 +34,8 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
                 || c.CarProductionYear.ToString().Contains(searchString) || c.LpgInstallationModel.ToUpper().Contains(searchString)
                 || c.LpgInstallationProducer.ToUpper().Contains(searchString));
             }
-            return View(model.OrderBy(queryOptions.Sort).ToList());
+            queryOptions.TotalPages = (int)Math.Ceiling((double)model.Count() / queryOptions.PageSize);
+            return View(model.OrderBy(queryOptions.Sort).Skip(start).Take(queryOptions.PageSize).ToList());
         }
 
         [HttpGet]
