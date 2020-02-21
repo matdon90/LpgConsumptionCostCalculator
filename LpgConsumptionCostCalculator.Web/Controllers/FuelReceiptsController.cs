@@ -21,13 +21,14 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             this.db = db;
         }
         // GET: FuelReceipts
-        public async Task<ActionResult> Index(int? id, [Form] QueryOptions queryOptions)
+        public async Task<ActionResult> Index(int? id, [Form] QueryOptions queryOptions, string searchString)
         {
             ViewBag.QueryOptions = queryOptions;
             ViewBag.CarId = id;
             if (id!=null)
             {
                 var results = await db.GetAll();
+
                 var receiptViewModels = results.Where(vm => vm.FueledCarId == id).Select(vm => new FuelReceiptViewModel
                 {
                     Id = vm.Id,
@@ -41,6 +42,13 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
                     PetrolStationName = vm.PetrolStationName
                 }).AsQueryable<FuelReceiptViewModel>().OrderBy(queryOptions.Sort).ToList();
 
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    searchString = searchString.ToUpper();
+                    receiptViewModels = receiptViewModels.Where(r => r.RefuelingDate.ToString().Contains(searchString) || r.PetrolStationName.ToUpper().Contains(searchString)
+                    || r.FuelPrice.ToString().Contains(searchString) || r.FuelAmount.ToString().Contains(searchString)
+                    || r.FuelConsumption.ToString().Contains(searchString) || r.PriceFor100km.ToString().Contains(searchString)).ToList();
+                }
                 return View(receiptViewModels);
             }
             return RedirectToAction("Index", "Cars");

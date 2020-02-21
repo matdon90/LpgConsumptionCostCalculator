@@ -12,6 +12,16 @@
     @Html.ActionLink("Create New", "Create", new { id = ViewBag.CarId }, new { @class = "btn btn-outline-dark" })
     <p></p>
 
+    using (Html.BeginForm("Index", "FuelReceipts", FormMethod.Get))
+    {
+        <div class="form-horizontal">
+            <div class="form-row">
+                <input type="text" name="searchString" class="form-control" />
+                <input type="submit" value="Search" id="btnSubmit" class="btn btn-outline-dark btn-sm" />
+            </div>
+        </div>
+    }
+
     <table class="table table-striped table-bordered table-hover">
         <thead>
             <tr>

@@ -21,10 +21,17 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Index([Form] QueryOptions queryOptions)
+        public async Task<ActionResult> Index([Form] QueryOptions queryOptions, string searchString)
         {
             ViewBag.QueryOptions = queryOptions;
             var model = await db.GetAll();
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                searchString = searchString.ToUpper();
+                model = model.Where(c => c.CarModel.ToUpper().Contains(searchString) || c.CarProducer.ToUpper().Contains(searchString) 
+                || c.CarProductionYear.ToString().Contains(searchString) || c.LpgInstallationModel.ToUpper().Contains(searchString)
+                || c.LpgInstallationProducer.ToUpper().Contains(searchString));
+            }
             return View(model.OrderBy(queryOptions.Sort).ToList());
         }
 
