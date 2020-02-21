@@ -16,22 +16,22 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.RefuelingDate)
+                    @Html.BuildSortableLink("Date", "Index", "RefuelingDate", queryOptions)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PetrolStationName)
+                    @Html.BuildSortableLink("Station name", "Index", "PetrolStationName", queryOptions)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.FuelPrice)
+                    @Html.BuildSortableLink("Fuel price", "Index", "FuelPrice", queryOptions)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.FuelAmount)
+                    @Html.BuildSortableLink("Fuel amount", "Index", "FuelAmount", queryOptions)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.FuelConsumption)
+                    @Html.BuildSortableLink("Consumption per 100 km", "Index", "FuelConsumption", queryOptions)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PriceFor100km)
+                    @Html.BuildSortableLink("Total price per 100 km", "Index", "PriceFor100km", queryOptions)
                 </th>
                 <th>
                     Actions
@@ -61,9 +61,9 @@
                         @Html.DisplayFor(modelItem => item.PriceFor100km)
                     </td>
                     <td>
-                        @Html.ActionLink("Details", "Details", new { id = item.FuelReceiptId }, new { @class = "btn btn-outline-dark btn-sm" })
-                        @Html.ActionLink("Edit", "Edit", new { id = item.FuelReceiptId }, new { @class = "btn btn-outline-dark btn-sm" })
-                        @Html.ActionLink("Delete", "Delete", new { id = item.FuelReceiptId }, new { @class = "btn btn-outline-dark btn-sm" })
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm" })
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm" })
                     </td>
                 </tr>
             }
