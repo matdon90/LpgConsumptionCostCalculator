@@ -50,12 +50,15 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
         {
             var urlHelper = new UrlHelper(htmlHelper.ViewContext.RequestContext);
             return new MvcHtmlString(string.Format(
-                "<nav>" +
-                "   <ul class=\"pager\">" +
-                "       <li class=\"previous {0}\">{1}</li>" +
-                "       <li class=\"next {2}\">{3}</li>" +
-                "   </ul>" +
-                "</nav>",
+                "<div class=\"pagination\">" +
+                "   <nav aria-label=\"...\">" +
+                "       <ul class=\"pagination pagination-sm\">" +
+                "           <li class=\"page-item {0}\">{1}</li>" +
+                "           <li class=\"page-item {2}\">{3}</li>" +
+                "       </ul>" +
+                "   </nav>" +
+                "</div>"
+                ,
                 IsPreviousDisabled(queryOptions),
                 BuildPreviousLink(urlHelper, queryOptions, actionName),
                 IsNextDisabled(queryOptions),
@@ -73,7 +76,7 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
         private static string BuildPreviousLink(UrlHelper urlHelper, QueryOptions queryOptions, string actionName)
         {
             return string.Format(
-                "<a href=\"{0}\">Previous <span aria-hidden=\"true\">&larr;</span></a>",
+                "<a class=\"text-dark page-link\" href=\"{0}\">Prev</a>",
                 urlHelper.Action(actionName, new
                 {
                     SortOrder = queryOptions.SortOrder,
@@ -85,7 +88,7 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
         private static string BuildNextLink(UrlHelper urlHelper, QueryOptions queryOptions, string actionName)
         {
             return string.Format(
-                "<a href=\"{0}\">Next <span aria-hidden=\"true\">&rarr;</span></a>",
+                "<a class=\"text-dark page-link\" href=\"{0}\">Next</a>",
                 urlHelper.Action(actionName, new
                 {
                     SortOrder = queryOptions.SortOrder,
@@ -93,6 +96,62 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
                     CurrentPage = queryOptions.CurrentPage + 1,
                     PageSize = queryOptions.PageSize
                 }));
+        }
+
+        public static MvcHtmlString BuildPaginationDetails(this HtmlHelper htmlHelper, QueryOptions queryOptions, string actionName)
+        {
+            var urlHelper = new UrlHelper(htmlHelper.ViewContext.RequestContext);
+            return new MvcHtmlString(string.Format(
+                "<div class=\"navbar\">" +
+                "   <span class=\"page-list\">" +
+                "       <span class=\"btn-group\">" +
+                "           <button class=\"btn btn-secondary btn-sm dropdown-toggle\" data-toggle=\"dropdown\">" +
+                "                <span class=\"page-size\">" +
+                "                   {4}" + 
+                "                </span>" +
+                "                <span class=\"caret\">" +
+                "                </span>" +
+                "           </button>" +
+                "           <div class=\"dropdown-menu\">" +
+                "               <a class=\"dropdown-item\" href=\"{0}\">10</a>" +
+                "               <a class=\"dropdown-item\" href=\"{1}\">25</a>" +
+                "               <a class=\"dropdown-item\" href=\"{2}\">50</a>" +
+                "               <a class=\"dropdown-item\" href=\"{3}\">100</a>" +
+                "           </div>" +
+                "       </span>" +
+                "   </span>" +
+                "</div>"
+                ,
+                urlHelper.Action(actionName, new
+                {
+                    SortOrder = queryOptions.SortOrder,
+                    SortField = queryOptions.SortField,
+                    CurrentPage = queryOptions.CurrentPage,
+                    PageSize = 10
+                }),
+                urlHelper.Action(actionName, new
+                {
+                    SortOrder = queryOptions.SortOrder,
+                    SortField = queryOptions.SortField,
+                    CurrentPage = queryOptions.CurrentPage,
+                    PageSize = 25
+                }),
+                urlHelper.Action(actionName, new
+                {
+                    SortOrder = queryOptions.SortOrder,
+                    SortField = queryOptions.SortField,
+                    CurrentPage = queryOptions.CurrentPage,
+                    PageSize = 50
+                }),
+                urlHelper.Action(actionName, new
+                {
+                    SortOrder = queryOptions.SortOrder,
+                    SortField = queryOptions.SortField,
+                    CurrentPage = queryOptions.CurrentPage,
+                    PageSize = 100
+                }),
+                queryOptions.PageSize
+            ));
         }
 
     }

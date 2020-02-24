@@ -11,7 +11,7 @@ namespace LpgConsumptionCostCalculator.Data.Models
         public QueryOptions()
         {
             CurrentPage = 1;
-            PageSize = 1;
+            PageSize = 10;
             SortField = "Id";
             SortOrder = SortOrder.descending;
         }
