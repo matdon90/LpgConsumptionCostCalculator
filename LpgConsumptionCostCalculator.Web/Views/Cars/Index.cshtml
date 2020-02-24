@@ -11,12 +11,12 @@
 @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-outline-dark" })
 <p></p>
 
-@using (Html.BeginForm("Index","Cars", FormMethod.Get))
+@using (Html.BeginForm("Index", "Cars", FormMethod.Get))
 {
     <div class="form-horizontal">
         <div class="form-row">
-                <input type="text" name="searchString" class="form-control" />
-                <input type="submit" value="Search" id="btnSubmit" class="btn btn-outline-dark btn-sm" />
+            <input type="text" name="searchString" class="form-control" />
+            <input type="submit" value="Search" id="btnSubmit" class="btn btn-outline-dark btn-sm" />
         </div>
     </div>
 }
@@ -73,4 +73,19 @@
     </tbody>
 
 </table>
-@Html.BuildNextPreviousLinks(queryOptions, "Index")
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            Cars per page:
+            @Html.BuildPaginationDetails(queryOptions, "Index")
+        </div>
+        <div class="col">
+            Pages:
+            @Html.BuildNextPreviousLinks(queryOptions, "Index")
+        </div>
+    </div>
+</div>
+
+
+
