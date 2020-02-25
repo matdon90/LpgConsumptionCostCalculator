@@ -50,7 +50,7 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
         {
             var urlHelper = new UrlHelper(htmlHelper.ViewContext.RequestContext);
             return new MvcHtmlString(string.Format(
-                "<div class=\"pagination\">" +
+                "<div class=\"navbar\">" +
                 "   <nav aria-label=\"...\">" +
                 "       <ul class=\"pagination pagination-sm\">" +
                 "           <li class=\"page-item {0}\">{1}</li>" +
@@ -102,25 +102,23 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
         {
             var urlHelper = new UrlHelper(htmlHelper.ViewContext.RequestContext);
             return new MvcHtmlString(string.Format(
-                "<div class=\"navbar\">" +
-                "   <span class=\"page-list\">" +
-                "       <span class=\"btn-group\">" +
-                "           <button class=\"btn btn-secondary btn-sm dropdown-toggle\" data-toggle=\"dropdown\">" +
+                "       <div class=\"navbar\">" +
+                "           Show " +
+                "           <button class=\"btn btn-light btn-sm dropdown-toggle\" data-toggle=\"dropdown\">" +
                 "                <span class=\"page-size\">" +
                 "                   {4}" + 
                 "                </span>" +
                 "                <span class=\"caret\">" +
                 "                </span>" +
                 "           </button>" +
+                "           entries" +
                 "           <div class=\"dropdown-menu\">" +
                 "               <a class=\"dropdown-item\" href=\"{0}\">10</a>" +
                 "               <a class=\"dropdown-item\" href=\"{1}\">25</a>" +
                 "               <a class=\"dropdown-item\" href=\"{2}\">50</a>" +
                 "               <a class=\"dropdown-item\" href=\"{3}\">100</a>" +
                 "           </div>" +
-                "       </span>" +
-                "   </span>" +
-                "</div>"
+                "       </div>"
                 ,
                 urlHelper.Action(actionName, new
                 {

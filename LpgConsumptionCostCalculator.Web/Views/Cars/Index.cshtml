@@ -15,7 +15,7 @@
 {
     <div class="form-horizontal">
         <div class="form-row">
-            <input type="text" name="searchString" class="form-control" />
+            <input type="text" name="searchString" class="form-control form-control-sm" />
             <input type="submit" value="Search" id="btnSubmit" class="btn btn-outline-dark btn-sm" />
         </div>
     </div>
@@ -75,13 +75,11 @@
 </table>
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col">
-            Cars per page:
+    <div class="row justify-content-md-end">
+        <div class="col-md-auto">
             @Html.BuildPaginationDetails(queryOptions, "Index")
         </div>
-        <div class="col">
-            Pages:
+        <div class="col-md-auto">
             @Html.BuildNextPreviousLinks(queryOptions, "Index")
         </div>
     </div>
