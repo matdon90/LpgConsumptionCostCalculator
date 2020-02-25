@@ -24,6 +24,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         public async Task<ActionResult> Index(int? id, [Form] QueryOptions queryOptions, string searchString)
         {
             ViewBag.QueryOptions = queryOptions;
+            var start = (queryOptions.CurrentPage - 1) * queryOptions.PageSize;
             ViewBag.CarId = id;
             if (id!=null)
             {
@@ -40,16 +41,17 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
                     FuelPrice = vm.FuelPrice,
                     FuelType = vm.FuelType,
                     PetrolStationName = vm.PetrolStationName
-                }).AsQueryable<FuelReceiptViewModel>().OrderBy(queryOptions.Sort).ToList();
+                }).AsQueryable<FuelReceiptViewModel>();
 
                 if (!String.IsNullOrEmpty(searchString))
                 {
                     searchString = searchString.ToUpper();
                     receiptViewModels = receiptViewModels.Where(r => r.RefuelingDate.ToString().Contains(searchString) || r.PetrolStationName.ToUpper().Contains(searchString)
                     || r.FuelPrice.ToString().Contains(searchString) || r.FuelAmount.ToString().Contains(searchString)
-                    || r.FuelConsumption.ToString().Contains(searchString) || r.PriceFor100km.ToString().Contains(searchString)).ToList();
+                    || r.FuelConsumption.ToString().Contains(searchString) || r.PriceFor100km.ToString().Contains(searchString));
                 }
-                return View(receiptViewModels);
+                queryOptions.TotalPages = (int)Math.Ceiling((double)receiptViewModels.Count() / queryOptions.PageSize);
+                return View(receiptViewModels.OrderBy(queryOptions.Sort).Skip(start).Take(queryOptions.PageSize).ToList());
             }
             return RedirectToAction("Index", "Cars");
         }
