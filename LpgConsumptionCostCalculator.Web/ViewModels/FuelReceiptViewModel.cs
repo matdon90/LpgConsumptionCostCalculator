@@ -9,7 +9,7 @@ namespace LpgConsumptionCostCalculator.Web.ViewModels
 {
     public class FuelReceiptViewModel
     {
-        public int FuelReceiptId { get; set; }
+        public int Id { get; set; }
         [Required]
         [Display(Name = "Fuelled car")]
         public int FueledCarId { get; set; }
@@ -38,7 +38,7 @@ namespace LpgConsumptionCostCalculator.Web.ViewModels
         {
             get { return (FuelAmount / DistanceFromLastRefueling * 100); }
         }
-        [Display(Name = "Price/100 km")]
+        [Display(Name = "Total price/100 km")]
         public decimal PriceFor100km
         {
             get { return FuelPrice * (FuelAmount / DistanceFromLastRefueling * 100); }

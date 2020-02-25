@@ -22,14 +22,14 @@ namespace LpgConsumptionCostCalculator.Data.Services
         public async Task Add(Car car)
         {
             IEnumerable<Car> cars = await GetAll();
-            car.CarId = cars.Count() != 0 ? cars.Max(c => c.CarId) + 1 : 1;
+            car.Id = cars.Count() != 0 ? cars.Max(c => c.Id) + 1 : 1;
             await firebase.Child(node).PostAsync<Car>(car);
         }
 
         public async Task Delete(int id)
         {
             var results = await firebase.Child(node).OnceAsync<Car>();
-            var car = results.FirstOrDefault(o => o.Object.CarId == id);
+            var car = results.FirstOrDefault(o => o.Object.Id == id);
             if (car != null)
             {
                 await firebase.Child(node).Child(car.Key).DeleteAsync();
@@ -41,13 +41,13 @@ namespace LpgConsumptionCostCalculator.Data.Services
             var results = await firebase.Child(node).OnceAsync<Car>();
             return results.Select(o => new Car
             {
-                CarId = o.Object.CarId,
+                Id = o.Object.Id,
                 CarModel = o.Object.CarModel,
                 CarProducer = o.Object.CarProducer,
                 CarProductionYear = o.Object.CarProductionYear,
                 LpgInstallationModel = o.Object.LpgInstallationModel,
                 LpgInstallationProducer = o.Object.LpgInstallationProducer
-            }).FirstOrDefault(c => c.CarId == id);
+            }).FirstOrDefault(c => c.Id == id);
         }
 
         public async Task<IEnumerable<Car>> GetAll()
@@ -55,7 +55,7 @@ namespace LpgConsumptionCostCalculator.Data.Services
             var results = await firebase.Child(node).OnceAsync<Car>();
             var cars = results.Select(o => new Car
             {
-                CarId = o.Object.CarId,
+                Id = o.Object.Id,
                 CarModel = o.Object.CarModel,
                 CarProducer = o.Object.CarProducer,
                 CarProductionYear = o.Object.CarProductionYear,
@@ -68,7 +68,7 @@ namespace LpgConsumptionCostCalculator.Data.Services
         public async Task Update(Car car)
         {
             var results = await firebase.Child(node).OnceAsync<Car>();
-            var carDb = results.FirstOrDefault(o => o.Object.CarId == car.CarId);
+            var carDb = results.FirstOrDefault(o => o.Object.Id == car.Id);
             await firebase.Child(node).Child(carDb.Key).PutAsync<Car>(car);
         }
     }

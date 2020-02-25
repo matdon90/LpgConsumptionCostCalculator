@@ -31,7 +31,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             var results = db.GetAll().Result;
             IEnumerable <MenuViewModel> menuViewModels = results.Select(vm => new MenuViewModel
             {
-                CarId = vm.CarId,
+                CarId = vm.Id,
                 CarModel = vm.CarModel,
                 CarProducer = vm.CarProducer
             }).ToList();

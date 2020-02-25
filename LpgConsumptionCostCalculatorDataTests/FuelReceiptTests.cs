@@ -27,7 +27,7 @@ namespace LpgConsumptionCostCalculatorDataTests
             };
 
             //Assert
-            Assert.AreEqual(1, receipt.FuelReceiptId);
+            Assert.AreEqual(1, receipt.Id);
             Assert.AreEqual(1, receipt.FueledCarId);
             Assert.AreEqual(new DateTime(DateTime.Now.Year, 2, 1), receipt.RefuelingDate);
             Assert.AreEqual("Shell", receipt.PetrolStationName);
