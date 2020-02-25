@@ -4,8 +4,10 @@ using LpgConsumptionCostCalculator.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.ModelBinding;
 using System.Web.Mvc;
 
 namespace LpgConsumptionCostCalculator.Web.Controllers
@@ -19,15 +21,18 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             this.db = db;
         }
         // GET: FuelReceipts
-        public async Task<ActionResult> Index(int? id)
+        public async Task<ActionResult> Index(int? id, [Form] QueryOptions queryOptions, string searchString)
         {
+            ViewBag.QueryOptions = queryOptions;
+            var start = (queryOptions.CurrentPage - 1) * queryOptions.PageSize;
             ViewBag.CarId = id;
             if (id!=null)
             {
                 var results = await db.GetAll();
-                IEnumerable<FuelReceiptViewModel> receiptViewModels = results.Where(vm => vm.FueledCarId == id).Select(vm => new FuelReceiptViewModel
+
+                var receiptViewModels = results.Where(vm => vm.FueledCarId == id).Select(vm => new FuelReceiptViewModel
                 {
-                    FuelReceiptId = vm.FuelReceiptId,
+                    Id = vm.Id,
                     FueledCarId = vm.FueledCarId,
                     DistanceFromLastRefueling = vm.DistanceFromLastRefueling,
                     Comment = vm.Comment,
@@ -36,8 +41,17 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
                     FuelPrice = vm.FuelPrice,
                     FuelType = vm.FuelType,
                     PetrolStationName = vm.PetrolStationName
-                }).ToList();
-                return View(receiptViewModels);
+                }).AsQueryable<FuelReceiptViewModel>();
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    searchString = searchString.ToUpper();
+                    receiptViewModels = receiptViewModels.Where(r => r.RefuelingDate.ToString().Contains(searchString) || r.PetrolStationName.ToUpper().Contains(searchString)
+                    || r.FuelPrice.ToString().Contains(searchString) || r.FuelAmount.ToString().Contains(searchString)
+                    || r.FuelConsumption.ToString().Contains(searchString) || r.PriceFor100km.ToString().Contains(searchString));
+                }
+                queryOptions.TotalPages = (int)Math.Ceiling((double)receiptViewModels.Count() / queryOptions.PageSize);
+                return View(receiptViewModels.OrderBy(queryOptions.Sort).Skip(start).Take(queryOptions.PageSize).ToList());
             }
             return RedirectToAction("Index", "Cars");
         }
@@ -54,7 +68,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             {
                 var viewModel = new FuelReceiptViewModel
                 {
-                    FuelReceiptId = model.FuelReceiptId,
+                    Id = model.Id,
                     FueledCarId = model.FueledCarId,
                     DistanceFromLastRefueling = model.DistanceFromLastRefueling,
                     Comment = model.Comment,
@@ -83,7 +97,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             if (ModelState.IsValid)
             {
                 await db.Add(fuelReceipt);
-                return RedirectToAction("Details", new { id = fuelReceipt.FuelReceiptId });
+                return RedirectToAction("Details", new { id = fuelReceipt.Id });
             }
             return View();
         }
@@ -100,7 +114,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             {
                 var viewModel = new FuelReceiptViewModel()
                 {
-                    FuelReceiptId = model.FuelReceiptId,
+                    Id = model.Id,
                     FueledCarId = model.FueledCarId,
                     DistanceFromLastRefueling = model.DistanceFromLastRefueling,
                     Comment = model.Comment,
@@ -123,7 +137,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             {
                 var fuelReceipt = new FuelReceipt()
                 {
-                    FuelReceiptId = fuelReceiptViewModel.FuelReceiptId,
+                    Id = fuelReceiptViewModel.Id,
                     FueledCarId = fuelReceiptViewModel.FueledCarId,
                     DistanceFromLastRefueling = fuelReceiptViewModel.DistanceFromLastRefueling,
                     Comment = fuelReceiptViewModel.Comment,
@@ -135,7 +149,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
                 };
                 await db.Update(fuelReceipt);
                 TempData["Message"] = "You have saved the fuel receipt!";
-                return RedirectToAction("Details", "FuelReceipts", new { id = fuelReceiptViewModel.FuelReceiptId });
+                return RedirectToAction("Details", "FuelReceipts", new { id = fuelReceiptViewModel.Id });
             }
             return View(fuelReceiptViewModel);
         }
@@ -153,7 +167,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             {
                 var viewModel = new FuelReceiptViewModel
                 {
-                    FuelReceiptId = model.FuelReceiptId,
+                    Id = model.Id,
                     FueledCarId = model.FueledCarId,
                     DistanceFromLastRefueling = model.DistanceFromLastRefueling,
                     Comment = model.Comment,
@@ -173,7 +187,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         {
             var model = await db.Get(id);
             await db.Delete(id);
-            return RedirectToAction("Index", "FuelReceipts", new { id = model.FuelReceiptId });
+            return RedirectToAction("Index", "FuelReceipts", new { id = model.Id });
         }
     }
 }

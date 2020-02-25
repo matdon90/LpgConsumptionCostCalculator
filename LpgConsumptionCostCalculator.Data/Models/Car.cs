@@ -13,9 +13,9 @@ namespace LpgConsumptionCostCalculator.Data.Models
         {
 
         }
-        public int CarId { get; set; }
+        public int Id { get; set; }
         [Required]
-        [Display(Name = "Producer")]
+        [Display(Name = "Manufacturer")]
         public string CarProducer { get; set; }
         [Required]
         [Display(Name = "Model")]
@@ -24,7 +24,7 @@ namespace LpgConsumptionCostCalculator.Data.Models
         [Display(Name = "Production year")]
         public int CarProductionYear { get; set; }
         [Required]
-        [Display(Name = "LPG installation producer")]
+        [Display(Name = "LPG installation manufacturer")]
         public string LpgInstallationProducer { get; set; }
         [Required]
         [Display(Name = "LPG installation model")]

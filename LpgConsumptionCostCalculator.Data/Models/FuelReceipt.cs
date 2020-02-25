@@ -15,9 +15,9 @@ namespace LpgConsumptionCostCalculator.Data.Models
         }
         public FuelReceipt(int id)
         {
-            FuelReceiptId = id;
+            Id = id;
         }
-        public int FuelReceiptId { get; set; }
+        public int Id { get; set; }
         public int FueledCarId { get; set; }
         public DateTime RefuelingDate { get; set; }
         public string PetrolStationName { get; set; }

@@ -8,7 +8,7 @@
         <h3>Fuel receipt edition</h3>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.FuelReceiptId)
+        @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
             @Html.LabelFor(model => model.RefuelingDate, htmlAttributes: new { @class = "control-label col-md-2" })

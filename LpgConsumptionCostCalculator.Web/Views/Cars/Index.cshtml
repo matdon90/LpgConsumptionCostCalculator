@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<LpgConsumptionCostCalculator.Data.Models.Car>
-
+@using LpgConsumptionCostCalculator.Data.Models
 @{
     ViewBag.Title = "List of cars";
+    var queryOptions = (QueryOptions)ViewBag.QueryOptions;
 }
 
 
@@ -10,23 +11,33 @@
 @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-outline-dark" })
 <p></p>
 
+@using (Html.BeginForm("Index", "Cars", FormMethod.Get))
+{
+    <div class="form-horizontal">
+        <div class="form-row">
+            <input type="text" name="searchString" class="form-control form-control-sm" />
+            <input type="submit" value="Search" id="btnSubmit" class="btn btn-outline-dark btn-sm" />
+        </div>
+    </div>
+}
+
 <table class="table table-striped table-bordered table-hover">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CarProducer)
+                @Html.BuildSortableLink("Manufacturer", "Index", "CarProducer", queryOptions)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarModel)
+                @Html.BuildSortableLink("Model", "Index", "CarModel", queryOptions)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarProductionYear)
+                @Html.BuildSortableLink("Production year", "Index", "CarProductionYear", queryOptions)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LpgInstallationProducer)
+                @Html.BuildSortableLink("LPG installation manufacturer", "Index", "LpgInstallationProducer", queryOptions)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LpgInstallationModel)
+                @Html.BuildSortableLink("LPG installation model", "Index", "LpgInstallationModel", queryOptions)
             </th>
             <th>
                 Actions
@@ -53,12 +64,26 @@
                     @Html.DisplayFor(modelItem => item.LpgInstallationModel)
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.CarId }, new { @class = "btn btn-outline-dark btn-sm" })
-                    @Html.ActionLink("Edit", "Edit", new { id = item.CarId }, new { @class = "btn btn-outline-dark btn-sm" })
-                    @Html.ActionLink("Delete", "Delete", new { id = item.CarId }, new { @class = "btn btn-outline-dark btn-sm" })
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm" })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm" })
                 </td>
             </tr>
         }
     </tbody>
 
 </table>
+
+<div class="container-fluid">
+    <div class="row justify-content-md-end">
+        <div class="col-md-auto">
+            @Html.BuildPaginationDetails(queryOptions, "Index")
+        </div>
+        <div class="col-md-auto">
+            @Html.BuildNextPreviousLinks(queryOptions, "Index")
+        </div>
+    </div>
+</div>
+
+
+
