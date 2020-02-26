@@ -1,6 +1,7 @@
 ﻿using Firebase.Database;
 using Firebase.Database.Query;
 using LpgConsumptionCostCalculator.Data.Models;
+using LpgConsumptionCostCalculator.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

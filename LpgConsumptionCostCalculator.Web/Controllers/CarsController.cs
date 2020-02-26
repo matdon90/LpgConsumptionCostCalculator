@@ -95,13 +95,21 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> Delete(int id)
         {
-            var model = await db.Get(id);
-
-            if (model == null)
+            if (Request.IsAjaxRequest())
             {
-                return View("NotFound");
+                var model = await db.Get(id);
+                if (model == null)
+                {
+                    Response.StatusCode = 403;
+                    return View("NotFound");
+                }
+                return PartialView(model);
             }
-            return View(model);
+            else
+            {
+                Response.StatusCode = 500;
+                return View("NotFound");
+            }      
         }
 
         [HttpPost]

@@ -73,7 +73,7 @@
                     <td>
                         @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm" })
                         @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm" })
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm" })
+                        <input class="btn btn-outline-dark btn-sm" type="button" value="Delete" id="@item.Id" onclick="DeleteFuelReceipts(this.id)">
                     </td>
                 </tr>
             }
@@ -89,4 +89,29 @@
             </div>
         </div>
     </div>
+}
+
+<!-- Modal -->
+<div id="deleteModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+    function DeleteFuelReceipts(id) {
+        $.get("@Url.Action("Delete","FuelReceipts")/" + id,
+            function (data) { $('.modal-body').html(data); })
+        $('#deleteModal').modal('show');
+    }
+
+    $('#deleteModal').on('hidden.bs.modal', function (e) {
+        $('.modal-body').html("")
+    })
+    </script>
 }
