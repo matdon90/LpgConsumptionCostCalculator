@@ -48,6 +48,31 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-outline-dark btn-sm" })
-    @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "btn btn-outline-dark btn-sm" })
+    <input class="btn btn-outline-dark btn-sm" type="button" value="Delete" id="@Model.Id" onclick="DeleteCars(this.id)">
     @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-outline-dark btn-sm" })
 </p>
+
+<!-- Modal -->
+<div id="deleteModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+    function DeleteCars(id) {
+        $.get("@Url.Action("Delete","Cars")/" + id,
+            function (data) { $('.modal-body').html(data); })
+        $('#deleteModal').modal('show');
+    }
+
+    $('#deleteModal').on('hidden.bs.modal', function (e) {
+        $('.modal-body').html("")
+    })
+    </script>
+}

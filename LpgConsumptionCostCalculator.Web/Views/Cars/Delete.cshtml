@@ -1,7 +1,7 @@
 ﻿@model LpgConsumptionCostCalculator.Data.Models.Car
 
 
-<h3>Are you sure you want to delete @Html.DisplayFor(model => model.CarProducer) @Html.DisplayFor(model => model.CarModel)?</h3>
+<h5>Are you sure you want to delete @Html.DisplayFor(model => model.CarProducer) @Html.DisplayFor(model => model.CarModel)?</h5>
 <div>
     <hr />
     <dl class="dl-horizontal">
@@ -51,9 +51,9 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-outline-dark btn-sm" />
-            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-outline-dark btn-sm" })
-        </div>
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-outline-dark btn-sm" />
+        <button type="button" class="btn btn-outline-dark btn-sm" data-dismiss="modal">Back to List</button>
+    </div>
     }
 </div>

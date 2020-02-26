@@ -157,27 +157,36 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         // GET: FuelReceipts/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
-            var model = await db.Get(id);
+            if (Request.IsAjaxRequest()) 
+            { 
+                var model = await db.Get(id);
 
-            if (model == null)
-            {
-                return View("NotFound");
+                if (model == null)
+                {
+                    Response.StatusCode = 403;
+                    return View("NotFound");
+                }
+                else
+                {
+                    var viewModel = new FuelReceiptViewModel
+                    {
+                        Id = model.Id,
+                        FueledCarId = model.FueledCarId,
+                        DistanceFromLastRefueling = model.DistanceFromLastRefueling,
+                        Comment = model.Comment,
+                        FuelAmount = model.FuelAmount,
+                        RefuelingDate = model.RefuelingDate,
+                        FuelPrice = model.FuelPrice,
+                        FuelType = model.FuelType,
+                        PetrolStationName = model.PetrolStationName
+                    };
+                    return PartialView(viewModel);
+                }
             }
             else
             {
-                var viewModel = new FuelReceiptViewModel
-                {
-                    Id = model.Id,
-                    FueledCarId = model.FueledCarId,
-                    DistanceFromLastRefueling = model.DistanceFromLastRefueling,
-                    Comment = model.Comment,
-                    FuelAmount = model.FuelAmount,
-                    RefuelingDate = model.RefuelingDate,
-                    FuelPrice = model.FuelPrice,
-                    FuelType = model.FuelType,
-                    PetrolStationName = model.PetrolStationName
-                };
-                return View(viewModel);
+                Response.StatusCode = 500;
+                return View("NotFound");
             }
         }
 
@@ -187,7 +196,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         {
             var model = await db.Get(id);
             await db.Delete(id);
-            return RedirectToAction("Index", "FuelReceipts", new { id = model.Id });
+            return RedirectToAction("Index", new { id = model.FueledCarId });
         }
     }
 }
