@@ -59,27 +59,37 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         // GET: FuelReceipts/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            var model = await db.Get(id);
-            if (model == null)
+            if (Request.IsAjaxRequest())
             {
-                return View("NotFound");
+                var model = await db.Get(id);
+                if (model == null)
+                {
+                    Response.StatusCode = 403;
+                    return View("NotFound");
+                }
+                else
+                {
+                    var viewModel = new FuelReceiptViewModel
+                    {
+                        Id = model.Id,
+                        FueledCarId = model.FueledCarId,
+                        DistanceFromLastRefueling = model.DistanceFromLastRefueling,
+                        Comment = model.Comment,
+                        FuelAmount = model.FuelAmount,
+                        RefuelingDate = model.RefuelingDate,
+                        FuelPrice = model.FuelPrice,
+                        FuelType = model.FuelType,
+                        PetrolStationName = model.PetrolStationName
+                    };
+                    return PartialView(viewModel);
+                }
             }
             else
             {
-                var viewModel = new FuelReceiptViewModel
-                {
-                    Id = model.Id,
-                    FueledCarId = model.FueledCarId,
-                    DistanceFromLastRefueling = model.DistanceFromLastRefueling,
-                    Comment = model.Comment,
-                    FuelAmount = model.FuelAmount,
-                    RefuelingDate = model.RefuelingDate,
-                    FuelPrice = model.FuelPrice,
-                    FuelType = model.FuelType,
-                    PetrolStationName = model.PetrolStationName
-                };
-                return View(viewModel);
+                Response.StatusCode = 500;
+                return View("NotFound");
             }
+            
         }
 
         // GET: FuelReceipts/Create
@@ -97,7 +107,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             if (ModelState.IsValid)
             {
                 await db.Add(fuelReceipt);
-                return RedirectToAction("Details", new { id = fuelReceipt.Id });
+                return RedirectToAction("Index", new { id = fuelReceipt.FueledCarId });
             }
             return View();
         }
@@ -149,7 +159,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
                 };
                 await db.Update(fuelReceipt);
                 TempData["Message"] = "You have saved the fuel receipt!";
-                return RedirectToAction("Details", "FuelReceipts", new { id = fuelReceiptViewModel.Id });
+                return RedirectToAction("Index", new { id = fuelReceipt.FueledCarId });
             }
             return View(fuelReceiptViewModel);
         }

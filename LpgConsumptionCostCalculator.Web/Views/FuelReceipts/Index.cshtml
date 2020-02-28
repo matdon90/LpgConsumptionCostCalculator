@@ -71,9 +71,9 @@
                         @Html.DisplayFor(modelItem => item.PriceFor100km)
                     </td>
                     <td>
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm" })
+                        <input class="btn btn-outline-dark btn-sm" type="button" value="Details" id="@item.Id" onclick="FuelReceiptDetailsAsModal(this.id)">
                         @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm" })
-                        <input class="btn btn-outline-dark btn-sm" type="button" value="Delete" id="@item.Id" onclick="DeleteFuelReceipts(this.id)">
+                        <input class="btn btn-outline-dark btn-sm" type="button" value="Delete" id="@item.Id" onclick="FuelReceiptDeleteAsModal(this.id)">
                     </td>
                 </tr>
             }
@@ -92,7 +92,7 @@
 }
 
 <!-- Modal -->
-<div id="deleteModal" class="modal fade" tabindex="-1" role="dialog">
+<div id="Modal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
@@ -103,15 +103,21 @@
 </div>
 
 @section scripts{
-    <script>
-    function DeleteFuelReceipts(id) {
+<script>
+    function FuelReceiptDeleteAsModal(id) {
         $.get("@Url.Action("Delete","FuelReceipts")/" + id,
             function (data) { $('.modal-body').html(data); })
-        $('#deleteModal').modal('show');
+        $('#Modal').modal('show');
     }
 
-    $('#deleteModal').on('hidden.bs.modal', function (e) {
+    function FuelReceiptDetailsAsModal(id) {
+        $.get("@Url.Action("Details","FuelReceipts")/" + id,
+            function (data) { $('.modal-body').html(data); })
+        $('#Modal').modal('show');
+    }
+
+    $('#Modal').on('hidden.bs.modal', function (e) {
         $('.modal-body').html("")
     })
-    </script>
+</script>
 }
