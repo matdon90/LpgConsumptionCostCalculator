@@ -1,7 +1,7 @@
 ﻿@model LpgConsumptionCostCalculator.Data.Models.Car
 
 <div>
-    <h3>@Html.DisplayFor(model => model.CarProducer) @Html.DisplayFor(model => model.CarModel) details</h3>
+    <h5>@Html.DisplayFor(model => model.CarProducer) @Html.DisplayFor(model => model.CarModel) details</h5>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -48,12 +48,12 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-outline-dark btn-sm" })
-    <input class="btn btn-outline-dark btn-sm" type="button" value="Delete" id="@Model.Id" onclick="DeleteCars(this.id)">
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-outline-dark btn-sm" })
+    <input class="btn btn-outline-dark btn-sm" type="button" value="Delete" id="@Model.Id" onclick="CarDeleteAsModal(this.id)">
+    <button type="button" class="btn btn-outline-dark btn-sm" data-dismiss="modal">Back to List</button>
 </p>
 
 <!-- Modal -->
-<div id="deleteModal" class="modal fade" tabindex="-1" role="dialog">
+<div id="Modal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
@@ -64,15 +64,15 @@
 </div>
 
 @section scripts{
-    <script>
-    function DeleteCars(id) {
+<script>
+    function CarDeleteAsModal(id) {
         $.get("@Url.Action("Delete","Cars")/" + id,
             function (data) { $('.modal-body').html(data); })
-        $('#deleteModal').modal('show');
+        $('#Modal').modal('show');
     }
 
-    $('#deleteModal').on('hidden.bs.modal', function (e) {
+    $('#Modal').on('hidden.bs.modal', function (e) {
         $('.modal-body').html("")
     })
-    </script>
+</script>
 }
