@@ -1,7 +1,7 @@
 ﻿@model LpgConsumptionCostCalculator.Web.ViewModels.FuelReceiptViewModel
 
 <div>
-    <h3>Receipt (@Html.DisplayFor(model => model.PetrolStationName) - @Html.ValueFor(model => model.RefuelingDate, "{0:yyyy/MM/dd}")) details</h3>
+    <h5>Receipt (@Html.DisplayFor(model => model.PetrolStationName) - @Html.ValueFor(model => model.RefuelingDate, "{0:yyyy/MM/dd}")) details</h5>
     <hr />
     <dl class="dl-horizontal">
 
@@ -73,12 +73,12 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-outline-dark btn-sm" })
-    <input class="btn btn-outline-dark btn-sm" type="button" value="Delete" id="@Model.Id" onclick="DeleteFuelReceipts(this.id)">
-    @Html.ActionLink("Back to List", "Index", new { id = Model.FueledCarId }, new { @class = "btn btn-outline-dark btn-sm" })
+    <input class="btn btn-outline-dark btn-sm" type="button" value="Delete" id="@Model.Id" onclick="FuelReceiptDeleteAsModal(this.id)">
+    <button type="button" class="btn btn-outline-dark btn-sm" data-dismiss="modal">Back to List</button>
 </p>
 
 <!-- Modal -->
-<div id="deleteModal" class="modal fade" tabindex="-1" role="dialog">
+<div id="Modal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
@@ -90,13 +90,13 @@
 
 @section scripts{
     <script>
-    function DeleteFuelReceipts(id) {
+    function FuelReceiptDeleteAsModal(id) {
         $.get("@Url.Action("Delete","FuelReceipts")/" + id,
             function (data) { $('.modal-body').html(data); })
-        $('#deleteModal').modal('show');
+        $('#Modal').modal('show');
     }
 
-    $('#deleteModal').on('hidden.bs.modal', function (e) {
+    $('#Modal').on('hidden.bs.modal', function (e) {
         $('.modal-body').html("")
     })
     </script>

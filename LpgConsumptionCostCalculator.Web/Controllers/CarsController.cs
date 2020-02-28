@@ -41,12 +41,21 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> Details(int id)
         {
-            var model = await db.Get(id);
-            if (model == null)
+            if (Request.IsAjaxRequest())
             {
+                var model = await db.Get(id);
+                if (model == null)
+                {
+                    Response.StatusCode = 403;
+                    return View("NotFound");
+                }
+                return PartialView(model);
+            }
+            else
+            {
+                Response.StatusCode = 500;
                 return View("NotFound");
             }
-            return View(model);
         }
 
         [HttpGet]
@@ -62,7 +71,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             {
                 car.Id = 10;
                 await db.Add(car);
-                return RedirectToAction("Details", new { id = car.Id });
+                return RedirectToAction("Index");
             }
             return View();
         }
@@ -71,7 +80,6 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         public async Task<ActionResult> Edit(int id)
         {
             var model = await db.Get(id);
-
             if (model == null)
             {
                 return View("NotFound");
@@ -87,7 +95,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             {
                 await db.Update(car);
                 TempData["Message"] = "You have saved the car!";
-                return RedirectToAction("Details", new { id = car.Id });
+                return RedirectToAction("Index");
             }
             return View(car);
         }
