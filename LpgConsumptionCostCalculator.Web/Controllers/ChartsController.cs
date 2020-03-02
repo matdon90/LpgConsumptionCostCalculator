@@ -34,8 +34,8 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
                 FuelType = vm.FuelType,
                 PetrolStationName = vm.PetrolStationName
             });
-            ViewBag.consumptionList = receiptViewModels.Select(r => r.FuelConsumption).ToList();
-            ViewBag.dateList = receiptViewModels.Select(r =>  r.RefuelingDate).ToList();
+            ViewBag.consumptionArray = receiptViewModels.Select(r => decimal.Round(r.FuelConsumption, 2, MidpointRounding.AwayFromZero)).Take(7).ToArray();
+            ViewBag.dateArray = receiptViewModels.Select(r =>  r.RefuelingDate.ToString("dd/MM/yyyy")).Take(7).ToArray();
             return View();
         }
     }
