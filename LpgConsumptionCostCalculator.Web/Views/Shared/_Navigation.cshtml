@@ -24,14 +24,16 @@
                     <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu dropdown">
                         @if (Model != null)
                         {
                             foreach (var item in Model)
                             {
-                                <a class="dropdown-item" href="/FuelReceipts/Index/@Html.DisplayFor(modelItem => item.CarId)">@Html.DisplayFor(modelItem => item.CarProducer) @Html.DisplayFor(modelItem => item.CarModel) - receipts</a>
+                                <a class="dropdown-item disabled"><strong>@Html.DisplayFor(modelItem => item.CarProducer) @Html.DisplayFor(modelItem => item.CarModel)</strong></a>
+                                <a class="dropdown-item" href="/FuelReceipts/Index/@Html.DisplayFor(modelItem => item.CarId)">Fuel receipts</a>
+                                <a class="dropdown-item" href="/Charts/Chart/@Html.DisplayFor(modelItem => item.CarId)">Graphs</a>
+                                <div class="dropdown-divider"></div>
                             }
-                            <div class="dropdown-divider"></div>
                         }
                         <a class="dropdown-item" href="/Cars/Create">Create New</a>
                     </div>
