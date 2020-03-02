@@ -1,0 +1,87 @@
+﻿<div style="width:100%; height:90%">
+    <canvas id="canvas"></canvas>
+</div>
+
+<script>
+    var dateLabels = @Html.Raw(Json.Encode(ViewBag.dateArray));
+    var consumptionData = @Html.Raw(Json.Encode(ViewBag.consumptionArray));
+    var priceData = @Html.Raw(Json.Encode(ViewBag.priceArray));
+
+    var lineChartData = {
+        labels: dateLabels,
+        datasets: [
+            {
+                label: "Fuel consumption for 100 km",
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgb(255, 99, 132)',
+                fill: false,
+                data: consumptionData,
+                yAxisID: "y-axis-1",
+            },
+            {
+                label: "Price for 100 km",
+                borderColor: 'rgb(54, 162, 235)',
+                backgroundColor: 'rgb(54, 162, 235)',
+                fill: false,
+                data: priceData,
+                yAxisID: "y-axis-2"
+            }
+        ]
+    };
+
+    window.onload = function() {
+        var ctx = document.getElementById("canvas").getContext("2d");
+        window.myLine = Chart.Line(ctx, {
+            data: lineChartData,
+            options: {
+                responsive: true,
+                hoverMode: 'index',
+                stacked: false,
+                title: {
+                display: true,
+                text: 'Fuel receipts chart with consumption and price'
+                },
+                scales: {
+                    xAxes: [{
+						scaleLabel: {
+							display: true,
+							labelString: 'Refuelling date'
+						}
+					}],
+                    yAxes: [{
+                        type: "linear",
+                        display: true,
+                        position: "left",
+                        id: "y-axis-1",
+                        ticks: {
+                            //suggestedMax: 50,
+                            //suggestedMin: 0,
+                        },
+                        scaleLabel:
+                        {
+                            display: true,
+                            labelString: "litres"
+                        }
+                    }, {
+                        type: "linear",
+                        display: true,
+                        position: "right",
+                        id: "y-axis-2",
+                        ticks: {
+                        //suggestedMax: 50,
+                        //suggestedMin: 0,
+                        },
+                        scaleLabel:
+                        {
+                            display: true,
+                            labelString: "PLN"
+                        },
+                        gridLines: {
+                        drawOnChartArea: false,
+                        },
+                    }],
+                }
+            }
+        });
+    };
+</script>
