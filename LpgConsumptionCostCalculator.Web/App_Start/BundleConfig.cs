@@ -33,6 +33,15 @@ namespace LpgConsumptionCostCalculator.Web
             //css  
             bundles.Add(new StyleBundle("~/Content/cssjqryUi").Include(
                    "~/Content/jquery-ui.css"));
+
+            //Create bundle for Chart.js
+
+            //js
+            bundles.Add(new ScriptBundle("~/bundles/chartjs").Include(
+                        "~/Scripts/Chart.min.js"));
+            //css
+            bundles.Add(new StyleBundle("~/Content/csschartjs").Include(
+                        "~/Content/Chart.min.css"));
         }
     }
 }
