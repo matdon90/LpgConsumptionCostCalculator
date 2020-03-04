@@ -25,7 +25,7 @@
         <!--Nav item - Cars list-->
         <li class="nav-item">
             <a class="nav-link" href="/Cars/Index">
-                <i class="fa fa-car fa-fw"></i>
+                <i class="fa fa-list"></i>
                 <span>List</span>
             </a>
         </li>
@@ -47,6 +47,7 @@
             {
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCar_@Html.DisplayFor(modelItem => item.CarId)" aria-expanded="false" aria-controls="collapseCar_@Html.DisplayFor(modelItem => item.CarId)">
+                        <i class="fa fa-automobile"></i>
                         <span>@Html.DisplayFor(modelItem => item.CarProducer) @Html.DisplayFor(modelItem => item.CarModel)</span>
                     </a>
                     <div id="collapseCar_@Html.DisplayFor(modelItem => item.CarId)" class="collapse" aria-labelledby="headingCar" data-parent="#accordionSidebar" style="">

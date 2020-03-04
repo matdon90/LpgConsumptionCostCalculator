@@ -103,7 +103,6 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
             var urlHelper = new UrlHelper(htmlHelper.ViewContext.RequestContext);
             return new MvcHtmlString(string.Format(
                 "       <div class=\"navbar\">" +
-                "           Show " +
                 "           <button class=\"btn btn-light btn-sm dropdown-toggle\" data-toggle=\"dropdown\">" +
                 "                <span class=\"page-size\">" +
                 "                   {4}" + 
@@ -111,7 +110,6 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
                 "                <span class=\"caret\">" +
                 "                </span>" +
                 "           </button>" +
-                "           entries" +
                 "           <div class=\"dropdown-menu\">" +
                 "               <a class=\"dropdown-item\" href=\"{0}\">10</a>" +
                 "               <a class=\"dropdown-item\" href=\"{1}\">25</a>" +
