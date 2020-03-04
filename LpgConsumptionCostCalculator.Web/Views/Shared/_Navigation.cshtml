@@ -1,47 +1,81 @@
 ﻿@using LpgConsumptionCostCalculator.Web.ViewModels
 @model IEnumerable<MenuViewModel>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
-        <a href="/Home/Index" class="navbar-brand d-flex align-items-center">
-            <i class="fa fa-calculator fa-lg"></i>
-            <strong style="margin-left:10px">LPG CCC</strong>
+    <ul id="accordionSidebar" class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion">
+        <!--Sidebar logo-->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/Home/Index">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fa fa-calculator fa-lg"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">LPG CCC</div>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsLPG" aria-controls="navbarsLPG" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarsLPG">
-            <ul class="navbar-nav mr-auto">
+        <!--Divider-->
+        <hr class="sidebar-divider my-0">
+        <!--Nav item - About-->
+        <li class="nav-item active">
+            <a class="nav-link" href="/Home/Index">
+                <i class="fa fa-building-o fa-fw"></i>
+                <span>About</span>
+            </a>
+        </li>
+        <!--Divider-->
+        <hr class="sidebar-divider">
+        <!--Heading-->
+        <div class="sidebar-heading">Cars</div>
+        <!--Nav item - Cars list-->
+        <li class="nav-item">
+            <a class="nav-link" href="/Cars/Index">
+                <i class="fa fa-car fa-fw"></i>
+                <span>List</span>
+            </a>
+        </li>
+        <!--Nav item - Add car-->
+        <li class="nav-item">
+            <a class="nav-link" href="/Cars/Create">
+                <i class="fa fa-plus-circle"></i>
+                <span>Add car</span>
+            </a>
+        </li>
+        <!--Divider-->
+        <hr class="sidebar-divider">
+        <!--Heading-->
+        <div class="sidebar-heading">Fuel details</div>
+        <!--Nav items with cars from car list - Collapse menu-->
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
                 <li class="nav-item">
-                    <a class="nav-link btn btn-dark" href="/Home/Index"><i class="fa fa-building-o fa-fw" style="color:#d6d8db"></i>About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-dark" href="/Home/Contact"><i class="fa fa-envelope-o" style="color:#d6d8db; margin-right:5px"></i>Contact</a>
-                </li>
-                <li class="btn-group">
-                    <a class="nav-link btn btn-dark" href="/Cars/Index"><i class="fa fa-car fa-fw" style="color:#d6d8db; margin-right:5px"></i>CARS</a>
-                    <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <div class="dropdown-menu dropdown">
-                        @if (Model != null)
-                        {
-                            foreach (var item in Model)
-                            {
-                                <a class="dropdown-item disabled"><strong>@Html.DisplayFor(modelItem => item.CarProducer) @Html.DisplayFor(modelItem => item.CarModel)</strong></a>
-                                <a class="dropdown-item" href="/FuelReceipts/Index/@Html.DisplayFor(modelItem => item.CarId)">Fuel receipts</a>
-                                <a class="dropdown-item" href="/Charts/Chart/@Html.DisplayFor(modelItem => item.CarId)">Graphs</a>
-                                <div class="dropdown-divider"></div>
-                            }
-                        }
-                        <a class="dropdown-item" href="/Cars/Create">Create New</a>
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCar_@Html.DisplayFor(modelItem => item.CarId)" aria-expanded="false" aria-controls="collapseCar_@Html.DisplayFor(modelItem => item.CarId)">
+                        <span>@Html.DisplayFor(modelItem => item.CarProducer) @Html.DisplayFor(modelItem => item.CarModel)</span>
+                    </a>
+                    <div id="collapseCar_@Html.DisplayFor(modelItem => item.CarId)" class="collapse" aria-labelledby="headingCar" data-parent="#accordionSidebar" style="">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">@Html.DisplayFor(modelItem => item.CarProducer) @Html.DisplayFor(modelItem => item.CarModel):</h6>
+                            <a class="collapse-item" href="/FuelReceipts/Index/@Html.DisplayFor(modelItem => item.CarId)">Fuel receipts</a>
+                            <a class="collapse-item" href="/Charts/Chart/@Html.DisplayFor(modelItem => item.CarId)">Graphs</a>
+                        </div>
                     </div>
                 </li>
-            </ul>
-            <form class="form-inline mt-2 mt-md-0">
-                <a class="btn btn-secondary my-2 my-sm-0" href="#">Sign in</a>
-            </form>
+            }
+        }
+        <!--Divider-->
+        <hr class="sidebar-divider">
+        <!--Heading-->
+        <div class="sidebar-heading">Extras</div>
+        <!--Nav item - Contact-->
+        <li class="nav-item">
+            <a class="nav-link" href="/Home/Contact">
+                <i class="fa fa-envelope"></i>
+                <span>Contact</span>
+            </a>
+        </li>
+        <!--Divider-->
+        <hr class="sidebar-divider d-none d-md-block">
+        <!--Sidebar toggler (sidebar)-->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle">
+            </button>
         </div>
-    </nav>
+    </ul>
 

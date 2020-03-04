@@ -69,8 +69,6 @@
     <Compile Include="Services\FirebaseDatabaseFuelReceiptData.cs" />
     <Compile Include="Services\ICarData.cs" />
     <Compile Include="Services\IFuelReceiptData.cs" />
-    <Compile Include="Services\InMemoryCarData.cs" />
-    <Compile Include="Services\InMemoryFuelReceiptData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
