@@ -51,6 +51,12 @@ namespace LpgConsumptionCostCalculator.Web
             //css
             bundles.Add(new StyleBundle("~/Content/csssbadmin2").Include(
                         "~/Content/sb-admin-2.min.css"));
+
+            //Create bundle for jQuery easing
+
+            //js
+            bundles.Add(new ScriptBundle("~/bundles/jqueryeasing").Include(
+                        "~/Scripts/jquery.easing.js"));
         }
     }
 }
