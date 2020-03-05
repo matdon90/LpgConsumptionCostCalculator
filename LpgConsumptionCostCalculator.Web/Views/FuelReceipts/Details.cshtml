@@ -1,10 +1,10 @@
 ﻿@model LpgConsumptionCostCalculator.Web.ViewModels.FuelReceiptViewModel
 
-<div>
-    <h5>Receipt (@Html.DisplayFor(model => model.PetrolStationName) - @Html.ValueFor(model => model.RefuelingDate, "{0:yyyy/MM/dd}")) details</h5>
+
+<h1 class="h4 mb-2 text-gray-800 text-center">Receipt (@Html.DisplayFor(model => model.PetrolStationName) - @Html.ValueFor(model => model.RefuelingDate, "{0:yyyy/MM/dd}")) details</h1>
+<div class="text-center">
     <hr />
     <dl class="dl-horizontal">
-
         <dt>
             @Html.DisplayNameFor(model => model.RefuelingDate)
         </dt>
@@ -68,13 +68,12 @@
         <dd>
             @Html.DisplayFor(model => model.Comment)
         </dd>
-
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-outline-dark btn-sm" })
-    <input class="btn btn-outline-dark btn-sm" type="button" value="Delete" id="@Model.Id" onclick="FuelReceiptDeleteAsModal(this.id)">
-    <button type="button" class="btn btn-outline-dark btn-sm" data-dismiss="modal">Back to List</button>
+<p class="text-center">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-outline-dark btn-sm", @style = "width: 60px" })
+    <input class="btn btn-outline-danger btn-sm" style="width : 60px" type="button" value="Delete" id="@Model.Id" onclick="FuelReceiptDeleteAsModal(this.id)">
+    <button type="button" class="btn btn-outline-dark btn-sm" style="width : 60px" data-dismiss="modal">Close</button>
 </p>
 
 <!-- Modal -->
