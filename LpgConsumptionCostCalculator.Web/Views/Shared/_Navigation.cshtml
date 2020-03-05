@@ -53,8 +53,8 @@
                     <div id="collapseCar_@Html.DisplayFor(modelItem => item.CarId)" class="collapse" aria-labelledby="headingCar" data-parent="#accordionSidebar" style="">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">@Html.DisplayFor(modelItem => item.CarProducer) @Html.DisplayFor(modelItem => item.CarModel):</h6>
-                            <a class="collapse-item" href="/FuelReceipts/Index/@Html.DisplayFor(modelItem => item.CarId)">Fuel receipts</a>
-                            <a class="collapse-item" href="/Charts/Chart/@Html.DisplayFor(modelItem => item.CarId)">Graphs</a>
+                            <a class="collapse-item" href="/FuelReceipts/Index/@Html.DisplayFor(modelItem => item.CarId)"><i class="fa fa-table"></i> Fuel receipts</a>
+                            <a class="collapse-item" href="/Charts/Chart/@Html.DisplayFor(modelItem => item.CarId)"><i class="fa fa-line-chart"></i> Graphs</a>
                         </div>
                     </div>
                 </li>
