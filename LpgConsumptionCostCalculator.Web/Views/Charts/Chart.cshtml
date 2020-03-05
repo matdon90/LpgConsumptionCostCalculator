@@ -1,5 +1,52 @@
-﻿<div style="width:100%; height:90%">
-    <canvas id="canvas"></canvas>
+﻿<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Fuel graphs</h1>
+<!-- Area Chart - Price -->
+<div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-gray-800">Fuel consumption and price graph</h6>
+        <div class="dropdown no-arrow">
+            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                <div class="dropdown-header">Select time range:</div>
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </div>
+    </div>
+    <!-- Card Body -->
+    <div class="card-body">
+        <div class="chart-area">
+            <canvas id="canvas_fuelcons"></canvas>
+        </div>
+    </div>
+</div>
+<!-- Area Chart - Fuel Consumption-->
+<div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-gray-800">Fuel consumption and price graph</h6>
+        <div class="dropdown no-arrow">
+            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                <div class="dropdown-header">Select time range:</div>
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </div>
+    </div>
+    <!-- Card Body -->
+    <div class="card-body">
+        <div class="chart-area">
+            <canvas id="canvas_price"></canvas>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -7,7 +54,7 @@
     var consumptionData = @Html.Raw(Json.Encode(ViewBag.consumptionArray));
     var priceData = @Html.Raw(Json.Encode(ViewBag.priceArray));
 
-    var lineChartData = {
+    var lineChartConsumtionData = {
         labels: dateLabels,
         datasets: [
             {
@@ -17,29 +64,36 @@
                 fill: false,
                 data: consumptionData,
                 yAxisID: "y-axis-1",
-            },
+            }
+        ]
+    };
+    var lineChartPriceData = {
+        labels: dateLabels,
+        datasets: [
             {
                 label: "Price for 100 km",
                 borderColor: 'rgb(54, 162, 235)',
                 backgroundColor: 'rgb(54, 162, 235)',
                 fill: false,
                 data: priceData,
-                yAxisID: "y-axis-2"
+                yAxisID: "y-axis-1"
             }
         ]
     };
 
     window.onload = function() {
-        var ctx = document.getElementById("canvas").getContext("2d");
-        window.myLine = Chart.Line(ctx, {
-            data: lineChartData,
+        var ctx1 = document.getElementById("canvas_fuelcons").getContext("2d");
+        var ctx2 = document.getElementById("canvas_price").getContext("2d");
+        window.myLine1 = Chart.Line(ctx1, {
+            data: lineChartConsumtionData,
             options: {
+                maintainAspectRatio: false,
                 responsive: true,
                 hoverMode: 'index',
                 stacked: false,
                 title: {
                 display: true,
-                text: 'Fuel receipts chart with consumption and price'
+                text: 'Fuel receipts graph with consumption for 100 km'
                 },
                 scales: {
                     xAxes: [{
@@ -62,23 +116,42 @@
                             display: true,
                             labelString: "litres"
                         }
-                    }, {
+                    }],
+                }
+            }
+        });
+        window.myLine2 = Chart.Line(ctx2, {
+            data: lineChartPriceData,
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                hoverMode: 'index',
+                stacked: false,
+                title: {
+                display: true,
+                text: 'Fuel receipts graph with price for 100 km'
+                },
+                scales: {
+                    xAxes: [{
+						scaleLabel: {
+							display: true,
+							labelString: 'Refuelling date'
+						}
+					}],
+                    yAxes: [{
                         type: "linear",
                         display: true,
-                        position: "right",
-                        id: "y-axis-2",
+                        position: "left",
+                        id: "y-axis-1",
                         ticks: {
-                        //suggestedMax: 50,
-                        //suggestedMin: 0,
+                            //suggestedMax: 50,
+                            //suggestedMin: 0,
                         },
                         scaleLabel:
                         {
                             display: true,
                             labelString: "PLN"
-                        },
-                        gridLines: {
-                        drawOnChartArea: false,
-                        },
+                        }
                     }],
                 }
             }
