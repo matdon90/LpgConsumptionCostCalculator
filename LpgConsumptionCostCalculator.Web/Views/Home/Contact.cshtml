@@ -1,15 +1,21 @@
 ﻿@{
     ViewBag.Title = "Contact";
-    ViewBag.Message = "Site creator contact.";
+    ViewBag.Message = "Contact to site author and owners.";
 }
-<h1 class="display-4">@ViewBag.Title</h1>
-<p class="lead">@ViewBag.Message</p>
 
-<address>
-    Author's:<br />
-</address>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">@ViewBag.Title</h1>
+<p class="mb-4">@ViewBag.Message</p>
 
-<address>
-    <strong>Github:</strong>   <a href="https://github.com/matdon90">github.com/matdon90</a><br />
-    <strong>Email:</strong>   <a href="mailto:matdon90@example.com">matdon90@example.com</a><br />
-</address>
+<!--Page Content-->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-gray-800">Application author</h6>
+    </div>
+    <div class="card-body">
+            <address>
+                <strong>Github:</strong>   <a href="https://github.com/matdon90">github.com/matdon90</a><br />
+                <strong>Email:</strong>   <a href="mailto:matdon90@example.com">matdon90@example.com</a><br />
+            </address>
+</div>
+</div>

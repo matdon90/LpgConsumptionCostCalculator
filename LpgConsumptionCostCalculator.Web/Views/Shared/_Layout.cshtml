@@ -1,29 +1,71 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - LPG Consumption Costs Calculator</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/fontawesome")
+    @Styles.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/modernizr")
+    <!-- Custom styles for this template-->
+    <link href="~/Content/sb-admin-2.css" rel="stylesheet" />
 </head>
-<body>
-    @Html.Action("Menu", "Navigation")
-
-    <div class="jumbotron jumbotron-fluid p-5">
-        <div class="container-fluid m-1">
-            @RenderBody()
-            <hr />
-            <footer class="border-top footer text-muted">
-                <p>&copy; @DateTime.Now.Year - LPG Consumption Costs Calculator - @Html.ActionLink("Privacy", "Privacy", "Home", null, new { @class = "text-secondary" })</p>
+<body id="page-top">
+    <!--Page wrapper-->
+    <div id="wrapper">
+        <!--Sidebar-->
+        @Html.Action("Menu", "Navigation")
+        <!--End of sidebar-->
+        <!--Content wrapper-->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!--Main content-->
+            <div id="content">
+                <!--Topbar-->
+                <nav class="navbar navbar-expand navbar-dark bg-gradient-secondary topbar mb-4 static-top shadow">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a id="userLogin" class="nav-link" href="#">Log in</a>
+                        </li>
+                    </ul>
+                </nav>
+                <!--End of top bar-->
+                <!--Begin page content-->
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+                <!--End of page content-->
+            </div>
+            <!--End of main content-->
+            <!--Footer-->
+            <footer class="sticky-footer bg-gradient-secondary">
+                <div class="container my-auto">
+                    <div class="copyright text-center text-gray-300 my-auto">
+                        <i class="fa fa-copyright"></i>
+                        <span>@DateTime.Now.Year - LPG Consumption Costs Calculator - @Html.ActionLink("Privacy", "Privacy", "Home", null, new { @class = "text-gray-300" })</span>
+                    </div>
+                </div>
             </footer>
+            <!--End of footer-->
         </div>
+        <!--End of content wrapper-->
     </div>
+    <!--End of page wrapper-->
+    <!--Scroll to top button-->
+    <a class="scroll-to-top rounded" href="#page-top" style="display: none;">
+        <i class="fa fa-angle-up"></i>
+    </a>
 
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Scripts/umd/popper.min.js"></script>
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryeasing")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/bootstrap.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/Scripts/sb-admin-2.min.js"></script>
     @Scripts.Render("~/bundles/chartjs")
     @RenderSection("scripts", required: false)
 </body>

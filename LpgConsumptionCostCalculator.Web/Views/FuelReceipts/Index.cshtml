@@ -5,90 +5,129 @@
     ViewBag.Title = "List of fuel receipts";
     var queryOptions = (QueryOptions)ViewBag.QueryOptions;
 }
-<h1 class="display-4">@ViewBag.Title</h1>
 
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">@ViewBag.Title</h1>
 @if (Model != null)
-{
-    @Html.ActionLink("Create New", "Create", new { id = ViewBag.CarId }, new { @class = "btn btn-outline-dark" })
-    <p></p>
-
-    using (Html.BeginForm("Index", "FuelReceipts", FormMethod.Get))
-    {
-        <div class="form-horizontal">
-            <div class="form-row">
-                <input type="text" name="searchString" class="form-control form-control-sm" />
-                <input type="submit" value="Search" id="btnSubmit" class="btn btn-outline-dark btn-sm" />
+{ 
+<!-- Content row -->
+<div class="row">
+    <!-- Create button -->
+    <div class="col-xl-2 col-lg-2">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-gray-800">Create new fuel receipt</h6>
+            </div>
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        @Html.ActionLink("Create New", "Create", new { id = ViewBag.CarId }, new { @class = "btn btn-outline-dark btn-block" })
+                    </div>
+                </div>
             </div>
         </div>
-    }
-
-    <table class="table table-striped table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>
-                    @Html.BuildSortableLink("Date", "Index", "RefuelingDate", queryOptions)
-                </th>
-                <th>
-                    @Html.BuildSortableLink("Station name", "Index", "PetrolStationName", queryOptions)
-                </th>
-                <th>
-                    @Html.BuildSortableLink("Fuel price", "Index", "FuelPrice", queryOptions)
-                </th>
-                <th>
-                    @Html.BuildSortableLink("Fuel amount", "Index", "FuelAmount", queryOptions)
-                </th>
-                <th>
-                    @Html.BuildSortableLink("Consumption per 100 km", "Index", "FuelConsumption", queryOptions)
-                </th>
-                <th>
-                    @Html.BuildSortableLink("Total price per 100 km", "Index", "PriceFor100km", queryOptions)
-                </th>
-                <th>
-                    Actions
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        <b>@Html.ValueFor(modelItem => item.RefuelingDate, "{0:yyyy/MM/dd}")</b>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PetrolStationName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FuelPrice)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FuelAmount)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FuelConsumption)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PriceFor100km)
-                    </td>
-                    <td>
-                        <input class="btn btn-outline-dark btn-sm" type="button" value="Details" id="@item.Id" onclick="FuelReceiptDetailsAsModal(this.id)">
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm" })
-                        <input class="btn btn-outline-dark btn-sm" type="button" value="Delete" id="@item.Id" onclick="FuelReceiptDeleteAsModal(this.id)">
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    <div class="container-fluid">
-        <div class="row justify-content-md-end">
-            <div class="col-md-auto">
-                @Html.BuildPaginationDetails(queryOptions, "Index")
+    </div>
+    <!-- Search -->
+    <div class="col-xl-10 col-lg-10">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-gray-800">Search fuel receipt</h6>
             </div>
-            <div class="col-md-auto">
+            <div class="card-body">
+                @using (Html.BeginForm("Index", "FuelReceipts", FormMethod.Get))
+                {
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" name="searchString" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-dark" value="Search" id="btnSubmit" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Content row -->
+<div class="row">
+    <!-- Table content -->
+    <div class="col-xl-12 col-lg-12">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-gray-800">Fuel receipts table</h6>
+            </div>
+            <div class="card-body">
+                @Html.BuildPaginationDetails(queryOptions, "Index")
+                <br />
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.BuildSortableLink("Date", "Index", "RefuelingDate", queryOptions)
+                                </th>
+                                <th>
+                                    @Html.BuildSortableLink("Station name", "Index", "PetrolStationName", queryOptions)
+                                </th>
+                                <th>
+                                    @Html.BuildSortableLink("Fuel price", "Index", "FuelPrice", queryOptions)
+                                </th>
+                                <th>
+                                    @Html.BuildSortableLink("Fuel amount", "Index", "FuelAmount", queryOptions)
+                                </th>
+                                <th>
+                                    @Html.BuildSortableLink("Consumption per 100 km", "Index", "FuelConsumption", queryOptions)
+                                </th>
+                                <th>
+                                    @Html.BuildSortableLink("Total price per 100 km", "Index", "PriceFor100km", queryOptions)
+                                </th>
+                                <th>
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <b>@Html.ValueFor(modelItem => item.RefuelingDate, "{0:yyyy/MM/dd}")</b>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PetrolStationName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FuelPrice)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FuelAmount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FuelConsumption)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PriceFor100km)
+                                    </td>
+                                    <td align="center">
+                                        <input class="btn btn-outline-dark btn-sm" style="width: 60px" type="button" value="Details" id="@item.Id" onclick="FuelReceiptDetailsAsModal(this.id)">
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm", @style = "width: 60px" })
+                                        <input class="btn btn-outline-danger btn-sm" style="width: 60px" type="button" value="Delete" id="@item.Id" onclick="FuelReceiptDeleteAsModal(this.id)">
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
                 @Html.BuildNextPreviousLinks(queryOptions, "Index")
             </div>
         </div>
     </div>
+</div>
 }
 
 <!-- Modal -->
@@ -103,7 +142,7 @@
 </div>
 
 @section scripts{
-<script>
+    <script>
     function FuelReceiptDeleteAsModal(id) {
         $.get("@Url.Action("Delete","FuelReceipts")/" + id,
             function (data) { $('.modal-body').html(data); })
@@ -119,5 +158,5 @@
     $('#Modal').on('hidden.bs.modal', function (e) {
         $('.modal-body').html("")
     })
-</script>
+    </script>
 }

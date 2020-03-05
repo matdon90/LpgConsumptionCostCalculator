@@ -1,8 +1,8 @@
 ﻿@model LpgConsumptionCostCalculator.Data.Models.Car
 
 
-<h5>Are you sure you want to delete @Html.DisplayFor(model => model.CarProducer) @Html.DisplayFor(model => model.CarModel)?</h5>
-<div>
+<h1 class="h4 mb-2 text-gray-800 text-center">Are you sure you want to delete @Html.DisplayFor(model => model.CarProducer) @Html.DisplayFor(model => model.CarModel)?</h1>
+<div class="text-center">
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -51,9 +51,9 @@
     {
         @Html.AntiForgeryToken()
 
-    <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn btn-outline-dark btn-sm" />
-        <button type="button" class="btn btn-outline-dark btn-sm" data-dismiss="modal">Back to List</button>
+    <div class="form-actions no-color text-center">
+        <input type="submit" value="Delete" class="btn btn-outline-danger btn-sm" style="width : 60px"/>
+        <button type="button" class="btn btn-outline-dark btn-sm" style="width : 60px" data-dismiss="modal">Close</button>
     </div>
     }
 </div>
