@@ -1,5 +1,77 @@
 ﻿<!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Fuel graphs</h1>
+
+<!-- Row-->
+<div class="row">
+    <!-- Average fuel consumption -->
+    <div class="col-xl-4 col-md-12 mb-4">
+        <div class="card border-left-dark shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Average consumption</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">9,2 l</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Min fuel consumption -->
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-dark shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Minimal consumption</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">7,8 l</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Max fuel consumption -->
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-dark shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Maximal consumption</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">10,4 l</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Row-->
+<div class="row">
+    <!-- Average fuel price -->
+    <div class="col-xl-6 col-md-6 mb-4">
+        <div class="card border-left-dark shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Average price (for 100 km)</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">20 PLN</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Total price -->
+    <div class="col-xl-6 col-md-6 mb-4">
+        <div class="card border-left-dark shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Total price for fuel</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">1800 PLN</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Area Chart - Price -->
 <div class="card shadow mb-4">
     <!-- Card Header - Dropdown -->
@@ -7,13 +79,15 @@
         <h6 class="m-0 font-weight-bold text-gray-800">Fuel consumption and price graph</h6>
         <div class="dropdown no-arrow">
             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                <p class="text-gray-400">Time range selection</p>
             </a>
             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                 <div class="dropdown-header">Select time range:</div>
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="#">Last month</a>
+                <a class="dropdown-item" href="#">Last 3 months</a>
+                <a class="dropdown-item" href="#">Last 6 months</a>
+                <a class="dropdown-item" href="#">Last year</a>
+                <a class="dropdown-item" href="#">All</a>
             </div>
         </div>
     </div>
@@ -21,24 +95,6 @@
     <div class="card-body">
         <div class="chart-area">
             <canvas id="canvas_fuelcons"></canvas>
-        </div>
-    </div>
-</div>
-<!-- Area Chart - Fuel Consumption-->
-<div class="card shadow mb-4">
-    <!-- Card Header - Dropdown -->
-    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-gray-800">Fuel consumption and price graph</h6>
-        <div class="dropdown no-arrow">
-            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                <div class="dropdown-header">Select time range:</div>
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
         </div>
     </div>
     <!-- Card Body -->

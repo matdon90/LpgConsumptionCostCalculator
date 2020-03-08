@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Car.cs" />
+    <Compile Include="Models\ChartQueryOptions.cs" />
     <Compile Include="Models\FuelReceipt.cs" />
     <Compile Include="Models\LoginData.cs" />
     <Compile Include="Models\QueryOptions.cs" />
