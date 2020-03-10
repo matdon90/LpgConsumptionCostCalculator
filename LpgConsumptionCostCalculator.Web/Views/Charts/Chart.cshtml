@@ -1,16 +1,36 @@
-﻿<!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Fuel graphs</h1>
+﻿@model LpgConsumptionCostCalculator.Web.ViewModels.ChartViewModel
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-1">
+    <h1 class="h3 mb-2 text-gray-800">Fuel graphs</h1>
+    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm" style="width: 170px"><i class="fa fa-download fa-sm text-white-50"></i> Generate Report</a>
+</div>
+
+<div class="d-sm-flex align-items-center justify-content-end mb-4">
+    <div class="dropdown">
+        <a class="dropdown-toggle d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm" style="width: 170px" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-clock-o fa-sm text-white-50"></i> Select time range
+        </a>
+        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Last month</a>
+            <a class="dropdown-item" href="#">Last 3 months</a>
+            <a class="dropdown-item" href="#">Last 6 months</a>
+            <a class="dropdown-item" href="#">Last year</a>
+            <a class="dropdown-item" href="#">All</a>
+        </div>
+    </div>
+</div>
 
 <!-- Row-->
 <div class="row">
     <!-- Average fuel consumption -->
     <div class="col-xl-4 col-md-12 mb-4">
-        <div class="card border-left-dark shadow h-100 py-2">
+        <div class="card shadow h-100 py-2">
             <div class="card-body">
-                <div class="row no-gutters align-items-center">
+                <div class="row no-gutters align-items-center text-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Average consumption</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">9,2 l</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.averageFuelCons l</div>
                     </div>
                 </div>
             </div>
@@ -18,12 +38,12 @@
     </div>
     <!-- Min fuel consumption -->
     <div class="col-xl-4 col-md-6 mb-4">
-        <div class="card border-left-dark shadow h-100 py-2">
+        <div class="card shadow h-100 py-2">
             <div class="card-body">
-                <div class="row no-gutters align-items-center">
+                <div class="row no-gutters align-items-center text-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Minimal consumption</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">7,8 l</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.minFuelCons l</div>
                     </div>
                 </div>
             </div>
@@ -31,12 +51,12 @@
     </div>
     <!-- Max fuel consumption -->
     <div class="col-xl-4 col-md-6 mb-4">
-        <div class="card border-left-dark shadow h-100 py-2">
+        <div class="card shadow h-100 py-2">
             <div class="card-body">
-                <div class="row no-gutters align-items-center">
+                <div class="row no-gutters align-items-center text-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Maximal consumption</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">10,4 l</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.maxFuelCons l</div>
                     </div>
                 </div>
             </div>
@@ -46,26 +66,39 @@
 <!-- Row-->
 <div class="row">
     <!-- Average fuel price -->
-    <div class="col-xl-6 col-md-6 mb-4">
-        <div class="card border-left-dark shadow h-100 py-2">
+    <div class="col-xl-4 col-md-12 mb-4">
+        <div class="card shadow h-100 py-2">
             <div class="card-body">
-                <div class="row no-gutters align-items-center">
+                <div class="row no-gutters align-items-center text-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Average price (for 100 km)</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">20 PLN</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.avgPrice PLN</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- Total price -->
-    <div class="col-xl-6 col-md-6 mb-4">
-        <div class="card border-left-dark shadow h-100 py-2">
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card shadow h-100 py-2">
             <div class="card-body">
-                <div class="row no-gutters align-items-center">
+                <div class="row no-gutters align-items-center text-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Total price for fuel</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">1800 PLN</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.totalPrice PLN</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Total distance -->
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center text-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Total distance</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.totalDistance km</div>
                     </div>
                 </div>
             </div>
@@ -77,19 +110,6 @@
     <!-- Card Header - Dropdown -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-gray-800">Fuel consumption and price graph</h6>
-        <div class="dropdown no-arrow">
-            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <p class="text-gray-400">Time range selection</p>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                <div class="dropdown-header">Select time range:</div>
-                <a class="dropdown-item" href="#">Last month</a>
-                <a class="dropdown-item" href="#">Last 3 months</a>
-                <a class="dropdown-item" href="#">Last 6 months</a>
-                <a class="dropdown-item" href="#">Last year</a>
-                <a class="dropdown-item" href="#">All</a>
-            </div>
-        </div>
     </div>
     <!-- Card Body -->
     <div class="card-body">
@@ -106,15 +126,15 @@
 </div>
 
 <script>
-    var dateLabels = @Html.Raw(Json.Encode(ViewBag.dateArray));
-    var consumptionData = @Html.Raw(Json.Encode(ViewBag.consumptionArray));
-    var priceData = @Html.Raw(Json.Encode(ViewBag.priceArray));
+    var dateLabels = @Html.Raw(Json.Encode(Model.dateTimesArray));
+    var consumptionData = @Html.Raw(Json.Encode(Model.consumptionArray));
+    var priceData = @Html.Raw(Json.Encode(Model.priceArray));
 
     var lineChartConsumtionData = {
         labels: dateLabels,
         datasets: [
             {
-                label: "Fuel consumption for 100 km",
+                label: "LPG consumption for 100 km",
                 borderColor: 'rgb(255, 99, 132)',
                 backgroundColor: 'rgb(255, 99, 132)',
                 fill: false,
