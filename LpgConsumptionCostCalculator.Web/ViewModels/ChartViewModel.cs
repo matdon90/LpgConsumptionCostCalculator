@@ -7,7 +7,7 @@ namespace LpgConsumptionCostCalculator.Web.ViewModels
 {
     public class ChartViewModel
     {
-        public DateTime[] dateTimesArray { get; set; }
+        public string[] dateTimesArray { get; set; }
         public decimal[] consumptionArray { get; set; }
         public decimal[] priceArray { get; set; }
         public decimal averageFuelCons { get; set; }
@@ -15,5 +15,6 @@ namespace LpgConsumptionCostCalculator.Web.ViewModels
         public decimal maxFuelCons { get; set; }
         public decimal avgPrice { get; set; }
         public decimal totalPrice { get; set; }
+        public decimal totalDistance { get; set; }
     }
 }

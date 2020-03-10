@@ -24,7 +24,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             if (id!=null)
             {
                 var results = await db.GetAll();
-                var receiptViewModels = results.Where(vm => vm.FueledCarId == id).Select(vm => new FuelReceiptViewModel
+                var receiptViewModels = results.Where(vm => vm.FueledCarId == id).Where(vm => vm.FuelType == TypeOfFuel.LPG).Select(vm => new FuelReceiptViewModel
                 {
                     Id = vm.Id,
                     FueledCarId = vm.FueledCarId,
@@ -36,11 +36,19 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
                     FuelType = vm.FuelType,
                     PetrolStationName = vm.PetrolStationName
                 });
-
-                ViewBag.consumptionArray = receiptViewModels.Select(r => decimal.Round(r.FuelConsumption, 2, MidpointRounding.AwayFromZero)).ToArray();
-                ViewBag.priceArray = receiptViewModels.Select(r => decimal.Round(r.PriceFor100km, 2, MidpointRounding.AwayFromZero)).ToArray();
-                ViewBag.dateArray = receiptViewModels.Select(r => r.RefuelingDate.ToString("dd/MM/yyyy")).ToArray();
-                return View();
+                var chartViewModel = new ChartViewModel()
+                {
+                    consumptionArray = receiptViewModels.Select(r => decimal.Round(r.FuelConsumption, 2, MidpointRounding.AwayFromZero)).ToArray(),
+                    priceArray = receiptViewModels.Select(r => decimal.Round(r.PriceFor100km, 2, MidpointRounding.AwayFromZero)).ToArray(),
+                    dateTimesArray = receiptViewModels.Select(r => r.RefuelingDate.ToString("dd/MM/yyyy")).ToArray(),
+                    averageFuelCons = decimal.Round(receiptViewModels.Average(r => r.FuelConsumption), 2, MidpointRounding.AwayFromZero),
+                    maxFuelCons = decimal.Round(receiptViewModels.Max(r => r.FuelConsumption), 2, MidpointRounding.AwayFromZero),
+                    minFuelCons = decimal.Round(receiptViewModels.Min(r => r.FuelConsumption), 2, MidpointRounding.AwayFromZero),
+                    avgPrice = decimal.Round(receiptViewModels.Average(r => r.PriceFor100km), 2, MidpointRounding.AwayFromZero),
+                    totalDistance = decimal.Round(receiptViewModels.Sum(r => r.DistanceFromLastRefueling), 2, MidpointRounding.AwayFromZero),
+                    totalPrice = decimal.Round(receiptViewModels.Average(r => r.DistanceFromLastRefueling * r.FuelPrice), 2, MidpointRounding.AwayFromZero)
+                };
+                return View(chartViewModel);
             }
             return RedirectToAction("Index", "Cars");
 
