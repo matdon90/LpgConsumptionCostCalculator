@@ -1,24 +1,19 @@
 ﻿@model LpgConsumptionCostCalculator.Web.ViewModels.ChartViewModel
-
+@using LpgConsumptionCostCalculator.Data.Models
+@{
+    var chartQueryOptions = (ChartQueryOptions)ViewBag.chartQueryOptions;
+    string startDate = chartQueryOptions.startingTimeRange!= DateTime.MinValue ? "Starting date for data - " + chartQueryOptions.startingTimeRange.ToString("dd/MM/yyyy") : "All data";
+}
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-1">
     <h1 class="h3 mb-2 text-gray-800">Fuel graphs</h1>
     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm" style="width: 170px"><i class="fa fa-download fa-sm text-white-50"></i> Generate Report</a>
 </div>
 
-<div class="d-sm-flex align-items-center justify-content-end mb-4">
-    <div class="dropdown">
-        <a class="dropdown-toggle d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm" style="width: 170px" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-clock-o fa-sm text-white-50"></i> Select time range
-        </a>
-        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="#">Last month</a>
-            <a class="dropdown-item" href="#">Last 3 months</a>
-            <a class="dropdown-item" href="#">Last 6 months</a>
-            <a class="dropdown-item" href="#">Last year</a>
-            <a class="dropdown-item" href="#">All</a>
-        </div>
-    </div>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h5 mb-2 text-gray-800">
+    @startDate</h1>
+    @Html.BuildChartTimeSelection(chartQueryOptions, "Chart")
 </div>
 
 <!-- Row-->
@@ -29,7 +24,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center text-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Average consumption</div>
+                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Average LPG consumption</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.averageFuelCons l</div>
                     </div>
                 </div>
@@ -42,7 +37,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center text-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Minimal consumption</div>
+                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Minimal LPG consumption</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.minFuelCons l</div>
                     </div>
                 </div>
@@ -55,7 +50,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center text-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Maximal consumption</div>
+                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Maximal LPG consumption</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.maxFuelCons l</div>
                     </div>
                 </div>
@@ -84,7 +79,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center text-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Total price for fuel</div>
+                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Total price for LPG</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.totalPrice PLN</div>
                     </div>
                 </div>
@@ -97,7 +92,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center text-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Total distance</div>
+                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Total distance on LPG</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.totalDistance km</div>
                     </div>
                 </div>
@@ -107,61 +102,90 @@
 </div>
 <!-- Area Chart - Price -->
 <div class="card shadow mb-4">
-    <!-- Card Header - Dropdown -->
+    <!-- Card Header -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-gray-800">Fuel consumption and price graph</h6>
     </div>
     <!-- Card Body -->
     <div class="card-body">
         <div class="chart-area">
-            <canvas id="canvas_fuelcons"></canvas>
+            <canvas id="canvas_1"></canvas>
         </div>
     </div>
     <!-- Card Body -->
     <div class="card-body">
         <div class="chart-area">
-            <canvas id="canvas_price"></canvas>
+            <canvas id="canvas_2"></canvas>
         </div>
     </div>
 </div>
 
 <script>
-    var dateLabels = @Html.Raw(Json.Encode(Model.dateTimesArray));
-    var consumptionData = @Html.Raw(Json.Encode(Model.consumptionArray));
-    var priceData = @Html.Raw(Json.Encode(Model.priceArray));
+    //scripts for dynamically change of charts data based on type of fuel
+    var lpgDateLabels = @Html.Raw(Json.Encode(Model.lpgDateTimesArray));
+    var lpgConsumptionData = @Html.Raw(Json.Encode(Model.lpgConsumptionArray));
+    var lpgPriceData = @Html.Raw(Json.Encode(Model.lpgPriceArray));
 
-    var lineChartConsumtionData = {
-        labels: dateLabels,
-        datasets: [
-            {
-                label: "LPG consumption for 100 km",
-                borderColor: 'rgb(255, 99, 132)',
-                backgroundColor: 'rgb(255, 99, 132)',
-                fill: false,
-                data: consumptionData,
-                yAxisID: "y-axis-1",
-            }
-        ]
-    };
-    var lineChartPriceData = {
-        labels: dateLabels,
-        datasets: [
-            {
-                label: "Price for 100 km",
-                borderColor: 'rgb(54, 162, 235)',
-                backgroundColor: 'rgb(54, 162, 235)',
-                fill: false,
-                data: priceData,
-                yAxisID: "y-axis-1"
-            }
-        ]
-    };
+    var petrolDateLabels = @Html.Raw(Json.Encode(Model.petrolDateTimesArray));
+    var petrolConsumptionData = @Html.Raw(Json.Encode(Model.petrolConsumptionArray));
+    var petrolPriceData = @Html.Raw(Json.Encode(Model.petrolPriceArray));
 
-    window.onload = function() {
-        var ctx1 = document.getElementById("canvas_fuelcons").getContext("2d");
-        var ctx2 = document.getElementById("canvas_price").getContext("2d");
-        window.myLine1 = Chart.Line(ctx1, {
-            data: lineChartConsumtionData,
+    var dieselDateLabels = @Html.Raw(Json.Encode(Model.dieselDateTimesArray));
+    var dieselConsumptionData = @Html.Raw(Json.Encode(Model.dieselConsumptionArray));
+    var dieselPriceData = @Html.Raw(Json.Encode(Model.dieselPriceArray));
+
+    var lineChartData1;
+    var lineChartData2;
+    var ctx1 = document.getElementById("canvas_1").getContext("2d");
+    var ctx2 = document.getElementById("canvas_2").getContext("2d");
+
+    if ((petrolConsumptionData != 0) || (dieselConsumptionData != 0)) {
+        if (petrolConsumptionData != 0) {
+        lineChartData1 = {
+                        labels: lpgDateLabels,
+                        datasets: [
+                            {
+                                label: "Consumption",
+                                borderColor: 'rgb(255, 99, 132)',
+                                backgroundColor: 'rgb(255, 99, 132)',
+                                fill: false,
+                                data: lpgConsumptionData,
+                                yAxisID: "y-axis-1",
+                            },
+                            {
+                                label: "Price",
+                                borderColor: 'rgb(54, 162, 235)',
+                                backgroundColor: 'rgb(54, 162, 235)',
+                                fill: false,
+                                data: lpgPriceData,
+                                yAxisID: "y-axis-2",
+                            }
+                        ]
+                        };
+        lineChartData2 = {
+                    labels: petrolDateLabels,
+                    datasets: [
+                        {
+                            label: "Consumption",
+                            borderColor: 'rgb(255, 99, 132)',
+                            backgroundColor: 'rgb(255, 99, 132)',
+                            fill: false,
+                            data: petrolConsumptionData,
+                            yAxisID: "y-axis-1"
+                        },
+                        {
+                            label: "Price",
+                            borderColor: 'rgb(54, 162, 235)',
+                            backgroundColor: 'rgb(54, 162, 235)',
+                            fill: false,
+                            data: petrolPriceData,
+                            yAxisID: "y-axis-2"
+                        }
+                    ]
+                    };
+        window.onload = function () {
+            window.myLine1 = Chart.Line(ctx1, {
+            data: lineChartData1,
             options: {
                 maintainAspectRatio: false,
                 responsive: true,
@@ -169,7 +193,7 @@
                 stacked: false,
                 title: {
                 display: true,
-                text: 'Fuel receipts graph with consumption for 100 km'
+                text: 'LPG consumption and average price for 100 km'
                 },
                 scales: {
                     xAxes: [{
@@ -192,12 +216,28 @@
                             display: true,
                             labelString: "litres"
                         }
-                    }],
+                    },
+                    {
+                        type: "linear",
+                        display: true,
+                        position: "right",
+                        id: "y-axis-2",
+                        ticks: {
+                            //suggestedMax: 50,
+                            //suggestedMin: 0,
+                        },
+                        scaleLabel:
+                        {
+                            display: true,
+                            labelString: "PLN"
+                        }
+                    }
+                    ],
                 }
             }
         });
-        window.myLine2 = Chart.Line(ctx2, {
-            data: lineChartPriceData,
+            window.myLine2 = Chart.Line(ctx2, {
+            data: lineChartData2,
             options: {
                 maintainAspectRatio: false,
                 responsive: true,
@@ -205,7 +245,7 @@
                 stacked: false,
                 title: {
                 display: true,
-                text: 'Fuel receipts graph with price for 100 km'
+                text: 'Petrol consumption and average price for 100 km'
                 },
                 scales: {
                     xAxes: [{
@@ -226,11 +266,285 @@
                         scaleLabel:
                         {
                             display: true,
+                            labelString: "litres"
+                        }
+                    },
+{
+                        type: "linear",
+                        display: true,
+                        position: "right",
+                        id: "y-axis-2",
+                        ticks: {
+                            //suggestedMax: 50,
+                            //suggestedMin: 0,
+                        },
+                        scaleLabel:
+                        {
+                            display: true,
                             labelString: "PLN"
                         }
-                    }],
+                    }
+                    ],
                 }
             }
         });
+        };
+        }
+        else {
+        lineChartData1 = {
+                        labels: lpgDateLabels,
+                        datasets: [
+                            {
+                                label: "Consumption",
+                                borderColor: 'rgb(255, 99, 132)',
+                                backgroundColor: 'rgb(255, 99, 132)',
+                                fill: false,
+                                data: lpgConsumptionData,
+                                yAxisID: "y-axis-1",
+                            },
+                            {
+                                label: "Price",
+                                borderColor: 'rgb(54, 162, 235)',
+                                backgroundColor: 'rgb(54, 162, 235)',
+                                fill: false,
+                                data: lpgPriceData,
+                                yAxisID: "y-axis-2",
+                            }
+                        ]
+                        };
+        lineChartData2 = {
+                    labels: dieselDateLabels,
+                    datasets: [
+                        {
+                            label: "Consumption",
+                            borderColor: 'rgb(255, 99, 132)',
+                            backgroundColor: 'rgb(255, 99, 132)',
+                            fill: false,
+                            data: dieselConsumptionData,
+                            yAxisID: "y-axis-1"
+                        },
+                        {
+                            label: "Price",
+                            borderColor: 'rgb(54, 162, 235)',
+                            backgroundColor: 'rgb(54, 162, 235)',
+                            fill: false,
+                            data: dieselPriceData,
+                            yAxisID: "y-axis-2"
+                        }
+                    ]
+                    };
+        window.onload = function () {
+            window.myLine1 = Chart.Line(ctx1, {
+            data: lineChartData1,
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                hoverMode: 'index',
+                stacked: false,
+                title: {
+                display: true,
+                text: 'LPG consumption and average price for 100 km'
+                },
+                scales: {
+                    xAxes: [{
+						scaleLabel: {
+							display: true,
+							labelString: 'Refuelling date'
+						}
+					}],
+                    yAxes: [{
+                        type: "linear",
+                        display: true,
+                        position: "left",
+                        id: "y-axis-1",
+                        ticks: {
+                            //suggestedMax: 50,
+                            //suggestedMin: 0,
+                        },
+                        scaleLabel:
+                        {
+                            display: true,
+                            labelString: "litres"
+                        }
+                    },
+                    {
+                        type: "linear",
+                        display: true,
+                        position: "right",
+                        id: "y-axis-2",
+                        ticks: {
+                            //suggestedMax: 50,
+                            //suggestedMin: 0,
+                        },
+                        scaleLabel:
+                        {
+                            display: true,
+                            labelString: "PLN"
+                        }
+                    }
+                    ],
+                }
+            }
+        });
+            window.myLine2 = Chart.Line(ctx2, {
+            data: lineChartData2,
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                hoverMode: 'index',
+                stacked: false,
+                title: {
+                display: true,
+                text: 'Petrol consumption and average price for 100 km'
+                },
+                scales: {
+                    xAxes: [{
+						scaleLabel: {
+							display: true,
+							labelString: 'Refuelling date'
+						}
+					}],
+                    yAxes: [{
+                        type: "linear",
+                        display: true,
+                        position: "left",
+                        id: "y-axis-1",
+                        ticks: {
+                            //suggestedMax: 50,
+                            //suggestedMin: 0,
+                        },
+                        scaleLabel:
+                        {
+                            display: true,
+                            labelString: "litres"
+                        }
+                    },
+{
+                        type: "linear",
+                        display: true,
+                        position: "right",
+                        id: "y-axis-2",
+                        ticks: {
+                            //suggestedMax: 50,
+                            //suggestedMin: 0,
+                        },
+                        scaleLabel:
+                        {
+                            display: true,
+                            labelString: "PLN"
+                        }
+                    }
+                    ],
+                }
+            }
+        });
+        };
+        }
+    }
+    else {
+    lineChartData1 = {
+                    labels: lpgDateLabels,
+                    datasets: [
+                        {
+                            label: "Consumption",
+                            borderColor: 'rgb(255, 99, 132)',
+                            backgroundColor: 'rgb(255, 99, 132)',
+                            fill: false,
+                            data: lpgConsumptionData,
+                            yAxisID: "y-axis-1",
+                        }
+                    ]
+                    };
+    lineChartData2 = {
+                labels: lpgDateLabels,
+                datasets: [
+                    {
+                        label: "Price",
+                        borderColor: 'rgb(54, 162, 235)',
+                        backgroundColor: 'rgb(54, 162, 235)',
+                        fill: false,
+                        data: lpgPriceData,
+                        yAxisID: "y-axis-1"
+                    }
+                ]
+                };
+    window.onload = function () {
+        window.myLine1 = Chart.Line(ctx1, {
+        data: lineChartData1,
+        options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            hoverMode: 'index',
+            stacked: false,
+            title: {
+            display: true,
+            text: 'LPG consumption for 100 km'
+            },
+            scales: {
+                xAxes: [{
+					scaleLabel: {
+						display: true,
+						labelString: 'Refuelling date'
+					}
+				}],
+                yAxes: [{
+                    type: "linear",
+                    display: true,
+                    position: "left",
+                    id: "y-axis-1",
+                    ticks: {
+                        //suggestedMax: 50,
+                        //suggestedMin: 0,
+                    },
+                    scaleLabel:
+                    {
+                        display: true,
+                        labelString: "litres"
+                    }
+                }
+                ],
+            }
+        }
+    });
+        window.myLine2 = Chart.Line(ctx2, {
+        data: lineChartData2,
+        options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            hoverMode: 'index',
+            stacked: false,
+            title: {
+            display: true,
+            text: 'LPG average price for 100 km'
+            },
+            scales: {
+                xAxes: [{
+					scaleLabel: {
+						display: true,
+						labelString: 'Refuelling date'
+					}
+				}],
+                yAxes: [
+                {
+                    type: "linear",
+                    display: true,
+                    position: "left",
+                    id: "y-axis-1",
+                    ticks: {
+                        //suggestedMax: 50,
+                        //suggestedMin: 0,
+                    },
+                    scaleLabel:
+                    {
+                        display: true,
+                        labelString: "PLN"
+                    }
+                }
+                ],
+            }
+        }
+    });
     };
+    }
+    ///
 </script>
