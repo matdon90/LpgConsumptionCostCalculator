@@ -22,14 +22,14 @@
                                     @Html.ValidationMessageFor(model => model.RefuelingDate, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-12 col-xl-6 col-lg-6 mb-3 mb-sm-0">
+                            <div class="col-sm-12 col-md-12 col-xl-5 col-lg-5 mb-3 mb-sm-0">
                                 @Html.LabelFor(model => model.PetrolStationName, htmlAttributes: new { @class = "control-label" })
                                 <div class="col-md-12">
                                     @Html.EditorFor(model => model.PetrolStationName, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.PetrolStationName, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-12 col-xl-2 col-lg-2 mb-3 mb-sm-0">
+                            <div class="col-sm-12 col-md-12 col-xl-3 col-lg-3 mb-3 mb-sm-0">
                                 @Html.LabelFor(model => model.FuelType, htmlAttributes: new { @class = "control-label" })
                                 <div class="col-md-12">
                                     @Html.EnumDropDownListFor(model => model.FuelType, new { @class = "form-control" })

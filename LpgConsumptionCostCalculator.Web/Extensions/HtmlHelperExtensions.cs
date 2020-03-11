@@ -149,6 +149,45 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
                 queryOptions.PageSize
             ));
         }
+        public static MvcHtmlString BuildChartTimeSelection(this HtmlHelper htmlHelper, ChartQueryOptions chartQueryOptions, string actionName)
+        {
+            var urlHelper = new UrlHelper(htmlHelper.ViewContext.RequestContext);
+            return new MvcHtmlString(string.Format(
+                "<div class=\"dropdown\">" +
+                "   <a class=\"dropdown-toggle d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm\" " +
+                "   style=\"width: 170px\" href=\"#\" role=\"button\" id=\"dropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">" +
+                "       <i class=\"fa fa-clock-o fa-sm text-white-50\"></i> Select time range" +
+                "   </a>" + 
+                "   <div class=\"dropdown-menu dropdown-menu-right shadow animated--fade-in\" aria-labelledby=\"dropdownMenuLink\">" +
+                "       <a class=\"dropdown-item\" href=\"{0}\">Last month</a>" +
+                "       <a class=\"dropdown-item\" href=\"{1}\">Last 3 months</a>" +
+                "       <a class=\"dropdown-item\" href=\"{2}\">Last 6 months</a>" +
+                "       <a class=\"dropdown-item\" href=\"{3}\">Last year</a>" +
+                "       <a class=\"dropdown-item\" href=\"{4}\">All</a>" +
+                "   </div>" +
+                "</div>",
+                urlHelper.Action(actionName, new
+                {
+                    startingTimeRange = DateTime.Now.AddMonths(-1)
+                }),
+                urlHelper.Action(actionName, new
+                {
+                    startingTimeRange = DateTime.Now.AddMonths(-3)
+                }),
+                urlHelper.Action(actionName, new
+                {
+                    startingTimeRange = DateTime.Now.AddMonths(-6)
+                }),
+                urlHelper.Action(actionName, new
+                {
+                    startingTimeRange = DateTime.Now.AddMonths(-12)
+                }),
+                urlHelper.Action(actionName, new
+                {
+                    startingTimeRange = DateTime.MinValue
+                })
+            ));
+        }
 
     }
 }

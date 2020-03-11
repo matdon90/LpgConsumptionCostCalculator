@@ -11,7 +11,7 @@ namespace LpgConsumptionCostCalculator.Web.ViewModels
     {
         public int Id { get; set; }
         [Required]
-        [Display(Name = "Fuelled car ID")]
+        [Display(Name = "Car ID")]
         public int FueledCarId { get; set; }
         [Required]
         [Display(Name = "Refueling date")]
