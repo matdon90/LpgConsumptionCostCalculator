@@ -33,6 +33,16 @@ namespace LpgConsumptionCostCalculator.Data.Services
             if (car != null)
             {
                 await firebase.Child(node).Child(car.Key).DeleteAsync();
+
+                //logic for deleting receipts binded to deleted car
+                var resultsWithReceipts = await firebase.Child("receipts/").OnceAsync<FuelReceipt>();
+                foreach (var receiptObject in resultsWithReceipts)
+                {
+                    if (receiptObject.Object.FueledCarId == id)
+                    {
+                        await firebase.Child("receipts/").Child(receiptObject.Key).DeleteAsync();
+                    }
+                }
             }
         }
 
