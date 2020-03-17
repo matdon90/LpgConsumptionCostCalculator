@@ -19,6 +19,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         {
             this.db = db;
         }
+        [Authorize]
         // GET: Charts
         public async Task<ActionResult> Chart(int? id, [Form] ChartQueryOptions chartQueryOptions)
         {
