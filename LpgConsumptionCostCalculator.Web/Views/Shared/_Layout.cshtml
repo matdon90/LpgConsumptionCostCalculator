@@ -24,11 +24,41 @@
             <div id="content">
                 <!--Topbar-->
                 <nav class="navbar navbar-expand navbar-dark bg-gradient-secondary topbar mb-4 static-top shadow">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a id="userLogin" class="nav-link" href="#">Log in</a>
-                        </li>
-                    </ul>
+                    @if (Context.User.Identity.IsAuthenticated)
+                    {
+                        <ul class="navbar-nav ml-auto">
+                            <!-- Nav Item - User Information -->
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-user fa-fw mr-2 text-gray-200"></i>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-200 small">Hello, <b>@Context.User.Identity.Name</b></span>
+                                </a>
+                                <!-- Dropdown - User Information -->
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                    <a class="dropdown-item text-gray-800" onclick="document.getElementById('logout_form').submit();" data-toggle="modal" data-target="#logoutModal">
+                                        <i class="fa fa-sign-out fa-sm fa-fw"></i>
+                                        Log out
+                                    </a>
+                                    <a class="dropdown-item text-gray-800" href="/Account/Logs">
+                                        <i class="fa fa-book fa-sm fa-fw"></i>
+                                        Activity logs
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                        <form action="/Account/Logout" method="post" id="logout_form"></form>
+                    }
+                    else
+                    {
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link text-gray-200" href="/Account/Login">
+                                    <i class="fa fa-sign-in fa-fw mr-2 "></i>
+                                    <span>Log in</span>
+                                </a>
+                            </li>
+                        </ul>
+                    }
                 </nav>
                 <!--End of top bar-->
                 <!--Begin page content-->

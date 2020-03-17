@@ -8,6 +8,7 @@ namespace LpgConsumptionCostCalculator.Data.Models
 {
     public class LoginData
     {
-        public string TimeStampUtc { get; set; }
+        public string userId { get; set; }
+        public string timeStampUtc { get; set; }
     }
 }
