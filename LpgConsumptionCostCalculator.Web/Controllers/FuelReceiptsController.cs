@@ -20,6 +20,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         {
             this.db = db;
         }
+        [Authorize]
         // GET: FuelReceipts
         public async Task<ActionResult> Index(int? id, [Form] QueryOptions queryOptions, string searchString)
         {
@@ -56,6 +57,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             return RedirectToAction("Index", "Cars");
         }
 
+        [Authorize]
         // GET: FuelReceipts/Details/5
         public async Task<ActionResult> Details(int id)
         {
@@ -92,6 +94,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             
         }
 
+        [Authorize]
         // GET: FuelReceipts/Create
         public ActionResult Create(int id)
         {
@@ -99,6 +102,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             return View();
         }
 
+        [Authorize]
         // POST: FuelReceipts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -112,6 +116,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             return View();
         }
 
+        [Authorize]
         // GET: FuelReceipts/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
@@ -138,6 +143,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             }
         }
 
+        [Authorize]
         // POST: FuelReceipts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -164,6 +170,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             return View(fuelReceiptViewModel);
         }
 
+        [Authorize]
         // GET: FuelReceipts/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
@@ -200,6 +207,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             }
         }
 
+        [Authorize]
         // POST: FuelReceipts/Delete/5
         [HttpPost]
         public async Task<ActionResult> Delete(int id, FormCollection collection)

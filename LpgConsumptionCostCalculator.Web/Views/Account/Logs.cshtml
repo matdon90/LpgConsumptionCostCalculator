@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "User logs";
+}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">@ViewBag.Title</h1>
+<p class="mb-4">User logs.</p>
+
+<!--Page Content-->
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-gray-800">Logins for user: @ViewBag.CurrentUser</h6>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            @foreach (var timestamp in ViewBag.Logins)
+            {
+                <tr>
+                    <td>@timestamp</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
