@@ -18,19 +18,19 @@
                 <span>About</span>
             </a>
         </li>
+        <!--Divider-->
+        <hr class="sidebar-divider">
+        <!--Heading-->
+        <div class="sidebar-heading">Cars</div>
+        <!--Nav item - Cars list-->
+        <li class="nav-item">
+            <a class="nav-link" href="/Cars/Index">
+                <i class="fa fa-list"></i>
+                <span>List</span>
+            </a>
+        </li>
         @if (Context.User.Identity.IsAuthenticated)
         {
-            <!--Divider-->
-            <hr class="sidebar-divider">
-            <!--Heading-->
-            <div class="sidebar-heading">Cars</div>
-            <!--Nav item - Cars list-->
-            <li class="nav-item">
-                <a class="nav-link" href="/Cars/Index">
-                    <i class="fa fa-list"></i>
-                    <span>List</span>
-                </a>
-            </li>
             <!--Nav item - Add car-->
             <li class="nav-item">
                 <a class="nav-link" href="/Cars/Create">
@@ -38,35 +38,35 @@
                     <span>Add car</span>
                 </a>
             </li>
-            <!--Divider-->
-            <hr class="sidebar-divider">
-            <!--Heading-->
-            <div class="sidebar-heading">Fuel details</div>
-            <!--Nav items with cars from car list - Collapse menu-->
-            if (Model != null)
-            {
-                foreach (var item in Model)
-                {
-                    <li class="nav-item">
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCar_@Html.DisplayFor(modelItem => item.CarId)" aria-expanded="false" aria-controls="collapseCar_@Html.DisplayFor(modelItem => item.CarId)">
-                            <i class="fa fa-automobile"></i>
-                            <span>@Html.DisplayFor(modelItem => item.CarProducer) @Html.DisplayFor(modelItem => item.CarModel)</span>
-                        </a>
-                        <div id="collapseCar_@Html.DisplayFor(modelItem => item.CarId)" class="collapse" aria-labelledby="headingCar" data-parent="#accordionSidebar" style="">
-                            <div class="bg-white py-2 collapse-inner rounded">
-                                <h6 class="collapse-header">@Html.DisplayFor(modelItem => item.CarProducer) @Html.DisplayFor(modelItem => item.CarModel):</h6>
-                                <a class="collapse-item" href="/FuelReceipts/Index/@Html.DisplayFor(modelItem => item.CarId)"><i class="fa fa-table"></i> Fuel receipts</a>
-                                <a class="collapse-item" href="/Charts/Chart/@Html.DisplayFor(modelItem => item.CarId)"><i class="fa fa-line-chart"></i> Graphs</a>
-                            </div>
-                        </div>
-                    </li>
-                }
-            }
-            <!--Divider-->
-            <hr class="sidebar-divider">
-            <!--Heading-->
-            <div class="sidebar-heading">Extras</div>
         }
+        <!--Divider-->
+        <hr class="sidebar-divider">
+        <!--Heading-->
+        <div class="sidebar-heading">Fuel details</div>
+        <!--Nav items with cars from car list - Collapse menu-->
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCar_@Html.DisplayFor(modelItem => item.CarId)" aria-expanded="false" aria-controls="collapseCar_@Html.DisplayFor(modelItem => item.CarId)">
+                        <i class="fa fa-automobile"></i>
+                        <span>@Html.DisplayFor(modelItem => item.CarProducer) @Html.DisplayFor(modelItem => item.CarModel)</span>
+                    </a>
+                    <div id="collapseCar_@Html.DisplayFor(modelItem => item.CarId)" class="collapse" aria-labelledby="headingCar" data-parent="#accordionSidebar" style="">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">@Html.DisplayFor(modelItem => item.CarProducer) @Html.DisplayFor(modelItem => item.CarModel):</h6>
+                            <a class="collapse-item" href="/FuelReceipts/Index/@Html.DisplayFor(modelItem => item.CarId)"><i class="fa fa-table"></i> Fuel receipts</a>
+                            <a class="collapse-item" href="/Charts/Chart/@Html.DisplayFor(modelItem => item.CarId)"><i class="fa fa-line-chart"></i> Graphs</a>
+                        </div>
+                    </div>
+                </li>
+            }
+        }
+        <!--Divider-->
+        <hr class="sidebar-divider">
+        <!--Heading-->
+        <div class="sidebar-heading">Extras</div>
         <!--Nav item - Contact-->
         <li class="nav-item">
             <a class="nav-link" href="/Home/Contact">

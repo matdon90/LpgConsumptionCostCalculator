@@ -33,7 +33,6 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [Authorize]
         [HttpPost]
         public ActionResult Logout()
         {

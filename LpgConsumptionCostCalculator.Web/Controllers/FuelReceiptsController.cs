@@ -20,7 +20,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         {
             this.db = db;
         }
-        [Authorize]
+
         // GET: FuelReceipts
         public async Task<ActionResult> Index(int? id, [Form] QueryOptions queryOptions, string searchString)
         {
@@ -57,7 +57,6 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             return RedirectToAction("Index", "Cars");
         }
 
-        [Authorize]
         // GET: FuelReceipts/Details/5
         public async Task<ActionResult> Details(int id)
         {
