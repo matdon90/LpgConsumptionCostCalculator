@@ -20,7 +20,6 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             this.db = db;
         }
 
-        [Authorize]
         [HttpGet]
         public async Task<ActionResult> Index([Form] QueryOptions queryOptions, string searchString)
         {
@@ -39,7 +38,6 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             return View(model.OrderBy(queryOptions.Sort).Skip(start).Take(queryOptions.PageSize).ToList());
         }
 
-        [Authorize]
         [HttpGet]
         public async Task<ActionResult> Details(int id)
         {
@@ -66,6 +64,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         {
             return View();
         }
+
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
