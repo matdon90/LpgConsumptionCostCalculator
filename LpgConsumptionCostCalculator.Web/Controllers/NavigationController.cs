@@ -18,7 +18,6 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             this.db = db;
         }
 
-        [HttpGet]
         public ActionResult Menu()
         {
             //PREVENTING DEADLOCK
