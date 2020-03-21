@@ -1,12 +1,11 @@
 ﻿using LpgConsumptionCostCalculator.Data.Models;
 using LpgConsumptionCostCalculator.Data.Services;
 using LpgConsumptionCostCalculator.Web.ViewModels;
+using LpgConsumptionCostCalculator.Web.Behaviors;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.ModelBinding;
 using System.Web.Mvc;
 
@@ -25,7 +24,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         public async Task<ActionResult> Index(int? id, [Form] QueryOptions queryOptions, string searchString)
         {
             ViewBag.QueryOptions = queryOptions;
-            var start = (queryOptions.CurrentPage - 1) * queryOptions.PageSize;
+            var start = QueryOptionsCalculator.CalculateStartPage(queryOptions);
             ViewBag.CarId = id;
             if (id!=null)
             {
@@ -51,7 +50,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
                     || r.FuelPrice.ToString().Contains(searchString) || r.FuelAmount.ToString().Contains(searchString)
                     || r.FuelConsumption.ToString().Contains(searchString) || r.PriceFor100km.ToString().Contains(searchString));
                 }
-                queryOptions.TotalPages = (int)Math.Ceiling((double)receiptViewModels.Count() / queryOptions.PageSize);
+                queryOptions.TotalPages = QueryOptionsCalculator.CalculateTotalPages(receiptViewModels.Count(),queryOptions.PageSize);
                 return View(receiptViewModels.OrderBy(queryOptions.Sort).Skip(start).Take(queryOptions.PageSize).ToList());
             }
             return RedirectToAction("Index", "Cars");
