@@ -1,5 +1,6 @@
 ﻿using LpgConsumptionCostCalculator.Data.Services;
 using LpgConsumptionCostCalculator.Web.ViewModels;
+using LpgConsumptionCostCalculator.Web.Infrastructure;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -25,12 +26,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
 
             //  this is the async call, wait for the result (!)
             var results = db.GetAll().Result;
-            IEnumerable <MenuViewModel> menuViewModels = results.Select(vm => new MenuViewModel
-            {
-                CarId = vm.Id,
-                CarModel = vm.CarModel,
-                CarProducer = vm.CarProducer
-            }).ToList();
+            IEnumerable <MenuViewModel> menuViewModels = results.Select(vm=>vm.ToMenuViewModel()).ToList();
 
             // restore the context
             SynchronizationContext.SetSynchronizationContext(syncContext);

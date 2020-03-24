@@ -1,3 +1,5 @@
+using LpgConsumptionCostCalculator.Web.App_Start;
+using LpgConsumptionCostCalculator.Web.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +23,7 @@ namespace LpgConsumptionCostCalculator.Web
             ContainerConfig.RegisterContainer(GlobalConfiguration.Configuration);
 
             AntiForgeryConfig.UniqueClaimTypeIdentifier = "name";
+            AutoMapperConfig.AutoMapperRegister();
         }
     }
 }
