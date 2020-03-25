@@ -54,6 +54,7 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
                 "   <nav aria-label=\"...\">" +
                 "       <ul class=\"pagination pagination-sm\">" +
                 "           <li class=\"page-item {0}\">{1}</li>" +
+                "               {4}" +
                 "           <li class=\"page-item {2}\">{3}</li>" +
                 "       </ul>" +
                 "   </nav>" +
@@ -62,7 +63,8 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
                 IsPreviousDisabled(queryOptions),
                 BuildPreviousLink(urlHelper, queryOptions, actionName),
                 IsNextDisabled(queryOptions),
-                BuildNextLink(urlHelper, queryOptions, actionName)
+                BuildNextLink(urlHelper, queryOptions, actionName),
+                BuildPageNumbers(urlHelper, queryOptions, actionName)
                 ));
         }
         private static string IsPreviousDisabled(QueryOptions queryOptions)
@@ -76,7 +78,7 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
         private static string BuildPreviousLink(UrlHelper urlHelper, QueryOptions queryOptions, string actionName)
         {
             return string.Format(
-                "<a class=\"text-dark page-link\" href=\"{0}\">Prev</a>",
+                "<a class=\"page-link\" href=\"{0}\">Previous</a>",
                 urlHelper.Action(actionName, new
                 {
                     SortOrder = queryOptions.SortOrder,
@@ -88,7 +90,7 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
         private static string BuildNextLink(UrlHelper urlHelper, QueryOptions queryOptions, string actionName)
         {
             return string.Format(
-                "<a class=\"text-dark page-link\" href=\"{0}\">Next</a>",
+                "<a class=\"page-link\" href=\"{0}\">Next</a>",
                 urlHelper.Action(actionName, new
                 {
                     SortOrder = queryOptions.SortOrder,
@@ -96,6 +98,29 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
                     CurrentPage = queryOptions.CurrentPage + 1,
                     PageSize = queryOptions.PageSize
                 }));
+        }
+
+        private static string BuildPageNumbers(UrlHelper urlHelper, QueryOptions queryOptions, string actionName)
+        {
+            string paginationPagesButtons = string.Empty;
+            for (int i = 1; i <= queryOptions.TotalPages; i++)
+            {
+                paginationPagesButtons = paginationPagesButtons 
+                    + string.Format(
+                "<li class=\"page-item {2}\">" +
+                "   <a class=\"page-link\" href=\"{0}\">{1}</a>" +
+                "</li>",
+                urlHelper.Action(actionName, new
+                {
+                    SortOrder = queryOptions.SortOrder,
+                    SortField = queryOptions.SortField,
+                    CurrentPage = i,
+                    PageSize = queryOptions.PageSize
+                }),
+                i,
+                (i == queryOptions.CurrentPage) ? "active" : string.Empty);
+            }
+            return paginationPagesButtons;                
         }
 
         public static MvcHtmlString BuildPaginationDetails(this HtmlHelper htmlHelper, QueryOptions queryOptions, string actionName)

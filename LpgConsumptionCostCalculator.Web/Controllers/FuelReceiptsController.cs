@@ -30,9 +30,9 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             if (id!=null)
             {
                 var results = await db.GetAll();
-
+                ViewBag.NumberOfEntries = results.Count();
                 var receiptViewModels = results.Where(m => m.FueledCarId == id).Select(vm => vm.ToViewModel()).AsQueryable<FuelReceiptViewModel>();
-
+                ViewBag.NumberOfEntries = receiptViewModels.Count();
                 if (!String.IsNullOrEmpty(searchString))
                 {
                     searchString = searchString.ToUpper();

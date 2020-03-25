@@ -4590,14 +4590,14 @@ input[type="button"].btn-block {
 }
 
 .page-link {
-  position: relative;
-  display: block;
-  padding: 0.5rem 0.75rem;
-  margin-left: -1px;
-  line-height: 1.25;
-  color: #4e73df;
-  background-color: #fff;
-  border: 1px solid #dddfeb;
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #5a5c69 !important;
+    background-color: #fff;
+    border: 1px solid #dddfeb;
 }
 
 .page-link:hover {
@@ -4626,18 +4626,22 @@ input[type="button"].btn-block {
 }
 
 .page-item.active .page-link {
-  z-index: 1;
-  color: #fff;
-  background-color: #4e73df;
-  border-color: #4e73df;
+    z-index: 1;
+    color: #eaecf4 !important;
+    background-color: #858796;
+    background-image: linear-gradient(180deg, #858796 10%, #60616f 100%);
+    background-size: cover;
+    border-color: #858796;
 }
 
 .page-item.disabled .page-link {
-  color: #858796;
-  pointer-events: none;
-  cursor: auto;
-  background-color: #fff;
-  border-color: #dddfeb;
+    color: #eaecf4 !important;
+    pointer-events: none;
+    cursor: auto;
+    background-color: #858796;
+    background-image: linear-gradient(180deg, #858796 10%, #60616f 100%);
+    background-size: cover;
+    border-color: #858796;
 }
 
 .pagination-lg .page-link {

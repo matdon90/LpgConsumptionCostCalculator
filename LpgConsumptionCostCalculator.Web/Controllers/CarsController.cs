@@ -24,6 +24,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             ViewBag.QueryOptions = queryOptions;
             var start = QueryOptionsCalculator.CalculateStartPage(queryOptions);
             var model = await db.GetAll();
+            ViewBag.NumberOfEntries = model.Count();
             if (!String.IsNullOrEmpty(searchString))
             {
                 searchString = searchString.ToUpper();
