@@ -123,7 +123,11 @@
                         </tbody>
                     </table>
                 </div>
-                @Html.BuildNextPreviousLinks(queryOptions, "Index")
+                @if (queryOptions.TotalPages > 1)
+                {
+                    @Html.BuildNextPreviousLinks(queryOptions, "Index")
+                    <span>Showing @((queryOptions.CurrentPage - 1) * queryOptions.PageSize + 1) to @((queryOptions.CurrentPage * queryOptions.PageSize) > ViewBag.NumberOfEntries ? ViewBag.NumberOfEntries : queryOptions.CurrentPage * queryOptions.PageSize) of @ViewBag.NumberOfEntries entries</span>
+                }
             </div>
         </div>
     </div>

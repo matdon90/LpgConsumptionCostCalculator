@@ -1,20 +1,18 @@
-﻿using LpgConsumptionCostCalculator.Data.Services;
-using LpgConsumptionCostCalculator.Data.Models;
+﻿using LpgConsumptionCostCalculator.Data.Models;
+using LpgConsumptionCostCalculator.Data.Services;
+using LpgConsumptionCostCalculator.Web.Behaviors;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic;
-using System.Web;
-using System.Web.Mvc;
 using System.Threading.Tasks;
 using System.Web.ModelBinding;
+using System.Web.Mvc;
 
 namespace LpgConsumptionCostCalculator.Web.Controllers
 {
     public class CarsController : Controller
     {
         private readonly ICarData db;
-
         public CarsController(ICarData db)
         {
             this.db = db;
@@ -24,9 +22,9 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         public async Task<ActionResult> Index([Form] QueryOptions queryOptions, string searchString)
         {
             ViewBag.QueryOptions = queryOptions;
-            var start = (queryOptions.CurrentPage - 1 ) * queryOptions.PageSize;
-
+            var start = QueryOptionsCalculator.CalculateStartPage(queryOptions);
             var model = await db.GetAll();
+            ViewBag.NumberOfEntries = model.Count();
             if (!String.IsNullOrEmpty(searchString))
             {
                 searchString = searchString.ToUpper();
@@ -34,7 +32,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
                 || c.CarProductionYear.ToString().Contains(searchString) || c.LpgInstallationModel.ToUpper().Contains(searchString)
                 || c.LpgInstallationProducer.ToUpper().Contains(searchString));
             }
-            queryOptions.TotalPages = (int)Math.Ceiling((double)model.Count() / queryOptions.PageSize);
+            queryOptions.TotalPages = QueryOptionsCalculator.CalculateTotalPages(model.Count(), queryOptions.PageSize);
             return View(model.OrderBy(queryOptions.Sort).Skip(start).Take(queryOptions.PageSize).ToList());
         }
 
@@ -72,7 +70,6 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                car.Id = 10;
                 await db.Add(car);
                 return RedirectToAction("Index");
             }
