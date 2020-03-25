@@ -1,11 +1,10 @@
 ﻿using LpgConsumptionCostCalculator.Data.Models;
 using LpgConsumptionCostCalculator.Data.Services;
 using LpgConsumptionCostCalculator.Web.ViewModels;
+using LpgConsumptionCostCalculator.Web.Infrastructure;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.ModelBinding;
 using System.Web.Mvc;
 
@@ -28,20 +27,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             if (id!=null)
             {
                 var results = await db.GetAll();
-                var receiptViewModels = results.Where(vm => vm.FueledCarId == id)
-                                        .Where(vm => vm.RefuelingDate >= startDate)
-                                        .Select(vm => new FuelReceiptViewModel
-                {
-                    Id = vm.Id,
-                    FueledCarId = vm.FueledCarId,
-                    DistanceFromLastRefueling = vm.DistanceFromLastRefueling,
-                    Comment = vm.Comment,
-                    FuelAmount = vm.FuelAmount,
-                    RefuelingDate = vm.RefuelingDate,
-                    FuelPrice = vm.FuelPrice,
-                    FuelType = vm.FuelType,
-                    PetrolStationName = vm.PetrolStationName
-                });
+                var receiptViewModels = results.Where(vm => vm.FueledCarId == id).Where(vm => vm.RefuelingDate >= startDate).Select(vm => vm.ToViewModel());
                 var chartViewModel = new ChartViewModel()
                 {
                     lpgConsumptionArray = receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.LPG).Select(r => decimal.Round(r.FuelConsumption, 2, MidpointRounding.AwayFromZero)).ToArray(),
