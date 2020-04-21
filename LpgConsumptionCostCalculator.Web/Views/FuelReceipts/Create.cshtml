@@ -14,21 +14,21 @@
                     <div class="card-body">
                         <div class="form-group row align-items-center">
                             <div class="col-sm-12 col-md-12 col-xl-4 col-lg-4 mb-3 mb-sm-0">
-                                @Html.LabelFor(model => model.RefuelingDate, htmlAttributes: new { @class = "control-label" })
+                                @Html.LabelFor(model => model.RefuelingDate, htmlAttributes: new { @class = "control-label, text-gray-800" })
                                 <div class="col-md-12">
                                     @Html.EditorFor(model => model.RefuelingDate, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
                                     @Html.ValidationMessageFor(model => model.RefuelingDate, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-12 col-xl-5 col-lg-5 mb-3 mb-sm-0">
-                                @Html.LabelFor(model => model.PetrolStationName, htmlAttributes: new { @class = "control-label" })
+                                @Html.LabelFor(model => model.PetrolStationName, htmlAttributes: new { @class = "control-label, text-gray-800" })
                                 <div class="col-md-12">
-                                    @Html.EditorFor(model => model.PetrolStationName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.PetrolStationName, new { htmlAttributes = new { placeholder = "eg. Shell",  @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.PetrolStationName, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-12 col-xl-3 col-lg-3 mb-3 mb-sm-0">
-                                @Html.LabelFor(model => model.FuelType, htmlAttributes: new { @class = "control-label" })
+                                @Html.LabelFor(model => model.FuelType, htmlAttributes: new { @class = "control-label, text-gray-800" })
                                 <div class="col-md-12">
                                     @Html.EnumDropDownListFor(model => model.FuelType, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.FuelType, "", new { @class = "text-danger" })
@@ -46,23 +46,23 @@
                     <div class="card-body">
                         <div class="form-group row align-items-center">
                             <div class="col-sm-12 col-md-12 col-xl-4 col-lg-4 mb-3 mb-sm-0">
-                                @Html.LabelFor(model => model.FuelPrice, htmlAttributes: new { @class = "control-label" })
+                                @Html.LabelFor(model => model.FuelPrice, htmlAttributes: new { @class = "control-label, text-gray-800" })
                                 <div class="col-md-12">
-                                    @Html.EditorFor(model => model.FuelPrice, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.FuelPrice, new { htmlAttributes = new { placeholder = "eg. 2,99",  @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.FuelPrice, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-12 col-xl-4 col-lg-4 mb-3 mb-sm-0">
-                                @Html.LabelFor(model => model.FuelAmount, htmlAttributes: new { @class = "control-label" })
+                                @Html.LabelFor(model => model.FuelAmount, htmlAttributes: new { @class = "control-label, text-gray-800" })
                                 <div class="col-md-12">
-                                    @Html.EditorFor(model => model.FuelAmount, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.FuelAmount, new { htmlAttributes = new { placeholder = "eg. 23,56",  @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.FuelAmount, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-12 col-xl-4 col-lg-4 mb-3 mb-sm-0">
-                                @Html.LabelFor(model => model.DistanceFromLastRefueling, htmlAttributes: new { @class = "control-label" })
+                                @Html.LabelFor(model => model.DistanceFromLastRefueling, htmlAttributes: new { @class = "control-label, text-gray-800" })
                                 <div class="col-md-12">
-                                    @Html.EditorFor(model => model.DistanceFromLastRefueling, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.DistanceFromLastRefueling, new { htmlAttributes = new { placeholder = "eg. 456,23", @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.DistanceFromLastRefueling, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -78,14 +78,14 @@
                     <div class="card-body">
                         <div class="form-group row align-items-center">
                             <div class="col-sm-12 col-md-12 col-xl-10 col-lg-10 mb-3 mb-sm-0">
-                                @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label" })
+                                @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label, text-gray-800" })
                                 <div class="col-md-12">
-                                    @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "form-control", placeholder = "optional" } })
+                                    @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { placeholder = "Optional comment",  @class = "form-control"} })
                                     @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-12 col-xl-2 col-lg-2 mb-3 mb-sm-0">
-                                @Html.LabelFor(model => model.FueledCarId, htmlAttributes: new { @class = "control-label" })
+                                @Html.LabelFor(model => model.FueledCarId, htmlAttributes: new { @class = "control-label, text-gray-800" })
                                 <div class="col-md-12">
                                     @Html.EditorFor(model => model.FueledCarId, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.CarID, @readonly = "true" } })
                                     @Html.ValidationMessageFor(model => model.FueledCarId, "", new { @class = "text-danger" })

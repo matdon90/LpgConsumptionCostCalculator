@@ -127,7 +127,7 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
         {
             var urlHelper = new UrlHelper(htmlHelper.ViewContext.RequestContext);
             return new MvcHtmlString(string.Format(
-                "       <div class=\"navbar\">" +
+                "       <div>Show " +
                 "           <button class=\"btn btn-light btn-sm dropdown-toggle\" data-toggle=\"dropdown\">" +
                 "                <span class=\"page-size\">" +
                 "                   {4}" + 
@@ -140,7 +140,7 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
                 "               <a class=\"dropdown-item\" href=\"{1}\">25</a>" +
                 "               <a class=\"dropdown-item\" href=\"{2}\">50</a>" +
                 "               <a class=\"dropdown-item\" href=\"{3}\">100</a>" +
-                "           </div>" +
+                "           </div> entries" +
                 "       </div>"
                 ,
                 urlHelper.Action(actionName, new
@@ -179,7 +179,7 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
             var urlHelper = new UrlHelper(htmlHelper.ViewContext.RequestContext);
             return new MvcHtmlString(string.Format(
                 "<div class=\"dropdown\">" +
-                "   <a class=\"dropdown-toggle d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm\" " +
+                "   <a class=\"dropdown-toggle d-sm-inline-block btn btn-sm btn-secondary shadow-sm\" " +
                 "   style=\"width: 170px\" href=\"#\" role=\"button\" id=\"dropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">" +
                 "       <i class=\"fa fa-clock-o fa-sm text-white-50\"></i> Select time range" +
                 "   </a>" + 

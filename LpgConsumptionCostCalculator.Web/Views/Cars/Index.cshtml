@@ -10,44 +10,72 @@
 
 <!-- Content row -->
 <div class="row">
-    <!-- Create button -->
-    <div class="col-md-5 col-sm-6 col-xl-3 col-lg-5">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-gray-800">Create new</h6>
-            </div>
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        @Html.ActionLink("Create", "Create", null, new { @class = "btn btn-outline-dark btn-block" })
+    @if (Context.User.Identity.IsAuthenticated)
+    {
+        <!-- Create button -->
+        <div class="col-md-5 col-sm-6 col-xl-3 col-lg-5">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-gray-800">Create new</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            @Html.ActionLink("Create", "Create", null, new { @class = "btn btn-outline-dark btn-block" })
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Search -->
-    <div class="col-md-7 col-sm-6 col-xl-9 col-lg-7">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-gray-800">Search car</h6>
-            </div>
-            <div class="card-body">
-                @using (Html.BeginForm("Index", "Cars", FormMethod.Get))
-                {
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" name="searchString" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-dark" value="Search" id="btnSubmit" type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
+        <!-- Search -->
+        <div class="col-md-7 col-sm-6 col-xl-9 col-lg-7">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-gray-800">Search car</h6>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Index", "Cars", FormMethod.Get))
+                    {
+                        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            <div class="input-group">
+                                <input type="text" name="searchString" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-dark" value="Search" id="btnSubmit" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                }
+                        </form>
+                    }
+                </div>
             </div>
         </div>
-    </div>
+    }
+    else
+    {
+        <div class="col-md-12 col-sm-12 col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-gray-800">Search car</h6>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Index", "Cars", FormMethod.Get))
+                    {
+                        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            <div class="input-group">
+                                <input type="text" name="searchString" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-dark" value="Search" id="btnSubmit" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    }
 </div>
 
 <!-- Content row -->
@@ -106,8 +134,11 @@
                                     </td>
                                     <td align="center">
                                         <input class="btn btn-outline-dark btn-sm" style="width: 60px" type="button" value="Details" id="@item.Id" onclick="CarDetailsAsModal(this.id)">
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm", @style = "width: 60px" })
-                                        <input class="btn btn-outline-danger btn-sm" style="width: 60px" type="button" value="Delete" id="@item.Id" onclick="CarDeleteAsModal(this.id)">
+                                        @if (Context.User.Identity.IsAuthenticated)
+                                        {
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm", @style = "width: 60px" })
+                                            <input class="btn btn-outline-danger btn-sm" style="width: 60px" type="button" value="Delete" id="@item.Id" onclick="CarDeleteAsModal(this.id)">
+                                        }
                                     </td>
                                 </tr>
                             }
