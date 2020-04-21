@@ -4,88 +4,127 @@
 <h1 class="h4 mb-2 text-gray-800 text-center">Receipt (@Html.DisplayFor(model => model.PetrolStationName) - @Html.ValueFor(model => model.RefuelingDate, "{0:yyyy/MM/dd}")) details</h1>
 <div class="text-center">
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.RefuelingDate)
-        </dt>
 
-        <dd>
-            @Html.ValueFor(model => model.RefuelingDate, "{0:yyyy/MM/dd}")
-        </dd>
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-xl-6 col-lg-6">
+            <div class="card shadow mb-4">
+                <div class="card-header font-weight-bold py-0">
+                    @Html.DisplayNameFor(model => model.RefuelingDate)
+                </div>
+                <div class="card-body">
+                    @Html.ValueFor(model => model.RefuelingDate, "{0:yyyy/MM/dd}")
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-xl-6 col-lg-6">
+            <div class="card shadow mb-4">
+                <div class="card-header font-weight-bold py-0">
+                    @Html.DisplayNameFor(model => model.PetrolStationName)
+                </div>
+                <div class="card-body">
+                    @Html.DisplayFor(model => model.PetrolStationName)
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PetrolStationName)
-        </dt>
+    <div class="row">
+        <div class="col-sm-12 col-md-4 col-xl-4 col-lg-4">
+            <div class="card shadow mb-4">
+                <div class="card-header font-weight-bold py-0">
+                    @Html.DisplayNameFor(model => model.FuelType)
+                </div>
+                <div class="card-body">
+                    @Html.DisplayFor(model => model.FuelType)
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4 col-xl-4 col-lg-4">
+            <div class="card shadow mb-4">
+                <div class="card-header font-weight-bold py-0">
+                    @Html.DisplayNameFor(model => model.FuelPrice)
+                </div>
+                <div class="card-body">
+                    @Html.DisplayFor(model => model.FuelPrice)
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4 col-xl-4 col-lg-4">
+            <div class="card shadow mb-4">
+                <div class="card-header font-weight-bold py-0">
+                    @Html.DisplayNameFor(model => model.FuelAmount)
+                </div>
+                <div class="card-body">
+                    @Html.DisplayFor(model => model.FuelAmount)
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.PetrolStationName)
-        </dd>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header font-weight-bold py-0">
+                    @Html.DisplayNameFor(model => model.DistanceFromLastRefueling)
+                </div>
+                <div class="card-body">
+                    @Html.DisplayFor(model => model.DistanceFromLastRefueling)
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FuelType)
-        </dt>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header font-weight-bold py-0">
+                    @Html.DisplayNameFor(model => model.FuelConsumption)
+                </div>
+                <div class="card-body">
+                    @Html.DisplayFor(model => model.FuelConsumption)
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.FuelType)
-        </dd>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header font-weight-bold py-0">
+                    @Html.DisplayNameFor(model => model.PriceFor100km)
+                </div>
+                <div class="card-body">
+                    @Html.DisplayFor(model => model.PriceFor100km)
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FuelPrice)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FuelPrice)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FuelAmount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FuelAmount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DistanceFromLastRefueling)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DistanceFromLastRefueling)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FuelConsumption)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FuelConsumption)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PriceFor100km)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PriceFor100km)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Comment)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Comment)
-        </dd>
-    </dl>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header font-weight-bold py-0">
+                    @Html.DisplayNameFor(model => model.Comment)
+                </div>
+                <div class="card-body">
+                    @Html.DisplayFor(model => model.Comment)
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 <p class="text-center">
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-outline-dark btn-sm", @style = "width: 60px" })
-    <input class="btn btn-outline-danger btn-sm" style="width : 60px" type="button" value="Delete" id="@Model.Id" onclick="FuelReceiptDeleteAsModal(this.id)">
+    @if (Context.User.Identity.IsAuthenticated)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-outline-dark btn-sm", @style = "width: 60px" })
+        <input class="btn btn-outline-danger btn-sm" style="width : 60px" type="button" value="Delete" id="@Model.Id" onclick="FuelReceiptDeleteAsModal(this.id)">
+    }
     <button type="button" class="btn btn-outline-dark btn-sm" style="width : 60px" data-dismiss="modal">Close</button>
 </p>
 
 <!-- Modal -->
-<div id="Modal" class="modal fade" tabindex="-1" role="dialog">
+<div id="Modal" class="modal modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">

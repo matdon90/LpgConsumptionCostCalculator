@@ -20,19 +20,19 @@ namespace LpgConsumptionCostCalculator.Web
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap.min.css",
                       "~/Content/site.css"));
 
             //Create bundel for jQueryUI  
             //js  
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
-                      "~/Scripts/jquery-ui-1.12.1.js"));
+                      "~/Scripts/jquery-ui-1.12.1.min.js"));
             //css  
             bundles.Add(new StyleBundle("~/Content/cssjqryUi").Include(
-                   "~/Content/jquery-ui.css"));
+                   "~/Content/jquery-ui.min.css"));
 
             //Create bundle for Chart.js
 
@@ -56,7 +56,7 @@ namespace LpgConsumptionCostCalculator.Web
 
             //js
             bundles.Add(new ScriptBundle("~/bundles/jqueryeasing").Include(
-                        "~/Scripts/jquery.easing.js"));
+                        "~/Scripts/jquery.easing.min.js"));
         }
     }
 }

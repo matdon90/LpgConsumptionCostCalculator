@@ -4,56 +4,58 @@
 <h1 class="h4 mb-2 text-gray-800 text-center">Are you sure you want to delete @Html.DisplayFor(model => model.CarProducer) @Html.DisplayFor(model => model.CarModel)?</h1>
 <div class="text-center">
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
+    <div class="card shadow mb-4">
+        <div class="card-header font-weight-bold py-0">
             @Html.DisplayNameFor(model => model.CarProducer)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="card-body">
             @Html.DisplayFor(model => model.CarProducer)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
+    <div class="card shadow mb-4">
+        <div class="card-header font-weight-bold py-0">
             @Html.DisplayNameFor(model => model.CarModel)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="card-body">
             @Html.DisplayFor(model => model.CarModel)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
+    <div class="card shadow mb-4">
+        <div class="card-header font-weight-bold py-0">
             @Html.DisplayNameFor(model => model.CarProductionYear)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="card-body">
             @Html.DisplayFor(model => model.CarProductionYear)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
+    <div class="card shadow mb-4">
+        <div class="card-header font-weight-bold py-0">
             @Html.DisplayNameFor(model => model.LpgInstallationProducer)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="card-body">
             @Html.DisplayFor(model => model.LpgInstallationProducer)
-        </dd>
+        </div>
+    </div>
 
-        <dt>
+    <div class="card shadow mb-4">
+        <div class="card-header font-weight-bold py-0">
             @Html.DisplayNameFor(model => model.LpgInstallationModel)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="card-body">
             @Html.DisplayFor(model => model.LpgInstallationModel)
-        </dd>
-
-    </dl>
+        </div>
+    </div>
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-    <div class="form-actions no-color text-center">
-        <input type="submit" value="Delete" class="btn btn-outline-danger btn-sm" style="width : 60px"/>
-        <button type="button" class="btn btn-outline-dark btn-sm" style="width : 60px" data-dismiss="modal">Close</button>
-    </div>
+        <div class="form-actions no-color text-center">
+            <input type="submit" value="Delete" class="btn btn-outline-danger btn-sm" style="width : 60px" />
+            <button type="button" class="btn btn-outline-dark btn-sm" style="width : 60px" data-dismiss="modal">Close</button>
+        </div>
     }
 </div>
