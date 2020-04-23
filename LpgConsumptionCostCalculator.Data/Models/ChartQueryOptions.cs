@@ -10,7 +10,7 @@ namespace LpgConsumptionCostCalculator.Data.Models
     {
         public ChartQueryOptions()
         {
-            startingTimeRange = DateTime.Now.AddMonths(-1);
+            startingTimeRange = DateTime.Now.AddMonths(-3);
         }
         public DateTime startingTimeRange { get; set; }
     }

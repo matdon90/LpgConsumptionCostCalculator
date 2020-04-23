@@ -2,12 +2,15 @@
 @using LpgConsumptionCostCalculator.Data.Models
 @{
     var chartQueryOptions = (ChartQueryOptions)ViewBag.chartQueryOptions;
-    string startDate = chartQueryOptions.startingTimeRange!= DateTime.MinValue ? "Starting date for data - " + chartQueryOptions.startingTimeRange.ToString("dd/MM/yyyy") : "All data";
+    string startDate = chartQueryOptions.startingTimeRange != DateTime.MinValue ? "Starting date for data - " + @ViewBag.startingdate.ToString("dd/MM/yyyy") : "All data";
 }
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-1">
-    <h1 class="h3 mb-2 text-gray-800">Fuel graphs</h1>
-    <a href="#" class="d-sm-inline-block btn btn-sm btn-secondary shadow-sm" style="width: 170px"><i class="fa fa-download fa-sm text-white-50"></i> Generate Report</a>
+    <h1 class="h3 mb-2 text-gray-800">Fuel graphs for @Model.carData</h1>
+    <span class="d-sm-inline-block btn btn-sm btn-secondary shadow-sm" style="width: 170px" type="button" value="Configure" id="@Model.carId" onclick="ReportConfiguratorAsModal(this.id)">
+        <i class="fa fa-download fa-sm text-white-50"></i> Generate raport
+    </span>
+    
 </div>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -119,7 +122,29 @@
     </div>
 </div>
 
-<script>
+<!-- Modal -->
+<div id="Modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+    //script for showing raportConfigurator as a modal
+    function ReportConfiguratorAsModal(id) {
+        $.get("@Url.Action("Configure","Report")/" + id,
+            function (data) { $('.modal-body').html(data); })
+        $('#Modal').modal('show');
+    }
+    $('#Modal').on('hidden.bs.modal', function (e) {
+        $('.modal-body').html("")
+    })
+
     //scripts for dynamically change of charts data based on type of fuel
     var lpgDateLabels = @Html.Raw(Json.Encode(Model.lpgDateTimesArray));
     var lpgConsumptionData = @Html.Raw(Json.Encode(Model.lpgConsumptionArray));
@@ -547,4 +572,5 @@
     };
     }
     ///
-</script>
+    </script>
+}

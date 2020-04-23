@@ -13,23 +13,30 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
     public class ChartsController : Controller
     {
         private readonly IFuelReceiptData db;
+        private readonly ICarData dbCar;
 
-        public ChartsController(IFuelReceiptData db)
+        public ChartsController(IFuelReceiptData db,ICarData dbCar)
         {
             this.db = db;
+            this.dbCar = dbCar;
         }
         // GET: Charts
         public async Task<ActionResult> Chart(int? id, [Form] ChartQueryOptions chartQueryOptions)
         {
             ViewBag.chartQueryOptions = chartQueryOptions;
-            var startDate = chartQueryOptions.startingTimeRange;
-
+            
             if (id!=null)
             {
                 var results = await db.GetAll();
+                var carResults = await dbCar.Get(id.GetValueOrDefault());
+                var lastFueling = results.Where(r => r.FueledCarId == id).Where(r => r.FuelType == TypeOfFuel.LPG).OrderByDescending(r => r.RefuelingDate).First().RefuelingDate;
+                var startDate = chartQueryOptions.startingTimeRange > lastFueling ? lastFueling : chartQueryOptions.startingTimeRange;
+                ViewBag.startingdate = startDate;
                 var receiptViewModels = results.Where(vm => vm.FueledCarId == id).Where(vm => vm.RefuelingDate >= startDate).Select(vm => vm.ToViewModel());
                 var chartViewModel = new ChartViewModel()
                 {
+                    carId = carResults.Id,
+                    carData = $"{carResults.CarProducer} {carResults.CarModel}",
                     lpgConsumptionArray = receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.LPG).Select(r => decimal.Round(r.FuelConsumption, 2, MidpointRounding.AwayFromZero)).ToArray(),
                     lpgPriceArray = receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.LPG).Select(r => decimal.Round(r.PriceFor100km, 2, MidpointRounding.AwayFromZero)).ToArray(),
                     lpgDateTimesArray = receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.LPG).Select(r => r.RefuelingDate.ToString("dd/MM/yyyy")).ToArray(),
