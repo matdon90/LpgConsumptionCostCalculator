@@ -233,6 +233,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\FontAwesomeBundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Behaviors\CsvGenerator.cs" />
     <Compile Include="Behaviors\QueryOptionsCalculator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CarsController.cs" />
@@ -254,7 +255,7 @@
     <Compile Include="ViewModels\ChartViewModel.cs" />
     <Compile Include="ViewModels\FuelReceiptViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
-    <Compile Include="ViewModels\ReportModelView.cs" />
+    <Compile Include="ViewModels\ReportConfigureViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -473,11 +474,10 @@
     <Content Include="Views\Charts\Chart.cshtml" />
     <Content Include="Views\Account\Logs.cshtml" />
     <Content Include="Views\Report\Configure.cshtml" />
+    <Content Include="Views\Report\ExportPDF.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-    <Folder Include="Views\Navigation\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

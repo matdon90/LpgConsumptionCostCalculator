@@ -1,9 +1,8 @@
 ﻿using LpgConsumptionCostCalculator.Data.Services;
+using LpgConsumptionCostCalculator.Web.Behaviors;
+using LpgConsumptionCostCalculator.Web.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace LpgConsumptionCostCalculator.Web.Controllers
@@ -25,20 +24,45 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         {
             if (Request.IsAjaxRequest())
             {
-                var modelCar = await dbCar.Get(id);
-                var modelReceipt = await dbReceipt.GetAll();
-                if (modelCar == null)
+                var model = await dbCar.Get(id);
+                if (model == null)
                 {
                     Response.StatusCode = 403;
                     return View("NotFound");
                 }
-                return PartialView(modelCar);
+                var viewModel = new ReportConfigureViewModel()
+                {
+                    CarId = model.Id,
+                    CarData = $"{model.CarProducer} {model.CarModel}",
+                    StartDate = DateTime.Now.AddMonths(-3),
+                    EndDate = DateTime.Now
+                };
+                return PartialView(viewModel);
             }
             else
             {
                 Response.StatusCode = 500;
                 return View("NotFound");
             }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ExportPDF(ReportConfigureViewModel viewModel)
+        {
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<FileResult> ExportCSV(ReportConfigureViewModel viewModel)
+        {
+            var receiptsResults = await dbReceipt.GetAll();
+
+            string fileName = ($"Report {viewModel.CarData} {viewModel.StartDate.ToString("yyyyMMdd")} {viewModel.EndDate.ToString("yyyyMMdd")}.csv").Replace(' ', '_');
+            byte[] fileBody = CsvGenerator.CreateCsvBody(viewModel, receiptsResults);
+
+            return File(fileBody, "text/csv", fileName);
         }
     }
 }
