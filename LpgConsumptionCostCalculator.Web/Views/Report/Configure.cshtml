@@ -1,7 +1,80 @@
-﻿@model LpgConsumptionCostCalculator.Data.Models.Car
-@{
-    ViewBag.Title = "Config";
+﻿@model LpgConsumptionCostCalculator.Web.ViewModels.ReportConfigureViewModel
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <form>
+        <!-- Page Heading -->
+        <div class="text-center mb-3">
+            <h1 class="h3 mb-2 text-gray-800">Report for @Html.DisplayFor(model => model.CarData)</h1>
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.CarId)
+        @Html.HiddenFor(model => model.CarData)
+        <!-- Row -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12">
+                <div class="card shadow mb-3">
+                    <div class="card-header text-center">
+                        <h3 class="h5 mb-2 text-gray-800">Select date range for a report</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row align-items-center text-center">
+                            <div class="col-sm-12 col-md-12 col-xl-6 col-lg-6 mb-3 mb-sm-0">
+                                @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label, text-gray-800" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-xl-6 col-lg-6 mb-3 mb-sm-0">
+                                @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label, text-gray-800" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Action buttons -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12">
+                <div class="card shadow mb-0">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <input type="submit" formaction=@Url.Action("ExportCSV") formmethod="post" value="Export to CSV" style="width: 120px" class="btn btn-outline-dark btn-sm" />
+                            <input type="submit" formaction=@Url.Action("ExportPDF") formmethod="post" value="Export to PDF" style="width: 120px" class="btn btn-outline-dark btn-sm" />
+                            <button type="button" class="btn btn-outline-dark btn-sm" style="width : 120px" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 }
 
-<!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Raport configurator for @Model.CarProducer @Model.CarModel</h1>
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('input[type=datetime]').datepicker({
+                showAnim: "slideDown",
+                dateFormat: "yy-mm-dd",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-50:+0"
+            });
+
+        });
+    </script>
+
+}
+
