@@ -1,7 +1,11 @@
-﻿using LpgConsumptionCostCalculator.Data.Services;
+﻿using LpgConsumptionCostCalculator.Data.Models;
+using LpgConsumptionCostCalculator.Data.Services;
 using LpgConsumptionCostCalculator.Web.Behaviors;
+using LpgConsumptionCostCalculator.Web.Infrastructure;
 using LpgConsumptionCostCalculator.Web.ViewModels;
+using Rotativa;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -48,9 +52,45 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ExportPDF(ReportConfigureViewModel viewModel)
+        public async Task<ActionResult> ExportPDF(ReportConfigureViewModel viewModel)
         {
-            return View(viewModel);
+            var receiptsModel = await dbReceipt.GetAll();
+            var receiptsViewModel = receiptsModel.Where(m => m.FueledCarId == viewModel.CarId)
+                        .Where(m => m.RefuelingDate >= viewModel.StartDate)
+                        .Where(m => m.RefuelingDate <= viewModel.EndDate)
+                        .Select(vm => vm.ToViewModel());
+
+            var exportPdfViewModel = receiptsViewModel.Select(vm => new ExportPdfViewModel
+            {
+                ReportAuthor = HttpContext.User.Identity.IsAuthenticated ? HttpContext.User.Identity.Name : "Anonymous",
+                CarData = viewModel.CarData.ToUpper(),
+                RefuelingDate = vm.RefuelingDate.ToString("dd.MM.yyyy"),
+                PetrolStationName = vm.PetrolStationName,
+                FuelType = vm.FuelType.ToString(),
+                FuelPrice = decimal.Round(vm.FuelPrice, 2, MidpointRounding.AwayFromZero).ToString().Replace(',','.'),
+                FuelAmount = decimal.Round(vm.FuelAmount, 2, MidpointRounding.AwayFromZero).ToString().Replace(',', '.'),
+                DistanceFromLastRefueling = decimal.Round(vm.DistanceFromLastRefueling, 2, MidpointRounding.AwayFromZero).ToString().Replace(',','.'),
+                FuelConsumption = decimal.Round(vm.FuelConsumption, 2, MidpointRounding.AwayFromZero).ToString().Replace(',','.'),
+                PriceFor100km = decimal.Round(vm.PriceFor100km, 2, MidpointRounding.AwayFromZero).ToString().Replace(',','.'),
+                AverageFuelCons = decimal.Round(receiptsViewModel.Where(m => m.FuelType == TypeOfFuel.LPG).Average(r => r.FuelConsumption), 2, MidpointRounding.AwayFromZero).ToString().Replace(',', '.'),
+                MaxFuelCons = decimal.Round(receiptsViewModel.Where(m => m.FuelType == TypeOfFuel.LPG).Max(r => r.FuelConsumption), 2, MidpointRounding.AwayFromZero).ToString().Replace(',', '.'),
+                MinFuelCons = decimal.Round(receiptsViewModel.Where(m => m.FuelType == TypeOfFuel.LPG).Min(r => r.FuelConsumption), 2, MidpointRounding.AwayFromZero).ToString().Replace(',', '.'),
+                AvgPrice = decimal.Round(receiptsViewModel.Where(m => m.FuelType == TypeOfFuel.LPG).Average(r => r.PriceFor100km), 2, MidpointRounding.AwayFromZero).ToString().Replace(',', '.'),
+                TotalDistance = decimal.Round(receiptsViewModel.Where(m => m.FuelType == TypeOfFuel.LPG).Sum(r => r.DistanceFromLastRefueling), 2, MidpointRounding.AwayFromZero).ToString().Replace(',', '.'),
+                TotalPrice = decimal.Round(receiptsViewModel.Where(m => m.FuelType == TypeOfFuel.LPG).Sum(r => r.FuelAmount * r.FuelPrice), 2, MidpointRounding.AwayFromZero).ToString().Replace(',', '.')
+            });
+
+            string fileName = ($"Report {viewModel.CarData} {viewModel.StartDate.ToString("yyyyMMdd")} {viewModel.EndDate.ToString("yyyyMMdd")}.pdf").Replace(' ', '_');
+            string footer = "--footer-center \"Report for " + viewModel.CarData + " from " + viewModel.StartDate.ToString("dd.MM.yyyy") + " to " + viewModel.EndDate.ToString("dd.MM.yyyy")
+                + "  Page: [page]/[toPage]\"" + " --footer-line --footer-font-size \"9\" --footer-spacing 6 --footer-font-name \"calibri light\"";
+            return new PartialViewAsPdf("ExportPDF", exportPdfViewModel)
+                        {
+                            PageSize = Rotativa.Options.Size.A4,
+                            PageOrientation = Rotativa.Options.Orientation.Landscape,
+                            FileName = fileName,
+                            CustomSwitches = footer
+                        };
+            //return View(exportPdfViewModel);
         }
 
         [HttpPost]

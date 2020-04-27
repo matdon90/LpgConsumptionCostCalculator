@@ -1,10 +1,128 @@
-﻿@model LpgConsumptionCostCalculator.Web.ViewModels.ReportConfigureViewModel
-<h2>Export to PDF</h2>
-@Html.DisplayFor(model => model.CarId);
-@Html.DisplayFor(model => model.CarData);
-@Html.DisplayFor(model => model.StartDate);
-@Html.DisplayFor(model => model.EndDate);
+﻿@model IEnumerable<LpgConsumptionCostCalculator.Web.ViewModels.ExportPdfViewModel>
 
+@{
 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/fontawesome")
+    @Styles.Render("~/bundles/bootstrap")
+    <!-- Custom styles for this template-->
+    <link href="~/Content/sb-admin-2.css" rel="stylesheet" />
+    <style>
+        tr {
+            page-break-inside: avoid
+        }
+    </style>
+</head>
+<body>
+    <div class="text-center mb-4">
+        <i class="fa fa-calculator fa-4x mb-2"></i>
+        <div class="text-gray-800 mx-2">LPG CCC</div>
+    </div>
+
+    @if (Model != null)
+    {
+
+        <div class="text-center text-gray-800">
+            <h1 class="h3 mb-3 text-gray-800">REPORT FOR @Html.DisplayFor(model => model.First().CarData)</h1>
+            <h4 class="h6 mb-1 text-gray-800">GENERATED: @DateTime.Now.ToString()</h4>
+            <h4 class="h6 mb-5 text-gray-800">AUTHOR: @Html.DisplayFor(model => model.First().ReportAuthor)</h4>
+            <!-- Summary -->
+            <div class="card mb-4">
+                <div class="card-header font-weight-bold">
+                    <h2 class="h4 mb-1">SUMMARY</h2>
+                </div>
+                <div class="card-body mb-2">
+                    <h3 class="h6">AVERAGE LPG CONSUMPTION:     <b>@Html.DisplayFor(model => model.First().AverageFuelCons) l</b></h3>
+                    <h3 class="h6">MINIMAL LPG CONSUMPTION:     <b>@Html.DisplayFor(model => model.First().MinFuelCons) l</b></h3>
+                    <h3 class="h6">MAXIMAL LPG CONSUMPTION:     <b>@Html.DisplayFor(model => model.First().MaxFuelCons) l</b></h3>
+                    <h3 class="h6">AVERAGE PRICE (for 100 km):  <b>@Html.DisplayFor(model => model.First().AvgPrice) PLN</b></h3>
+                    <h3 class="h6">TOTAL PRICE FOR LPG:     <b>@Html.DisplayFor(model => model.First().TotalPrice) PLN</b></h3>
+                    <h3 class="h6">TOTAL DISTANCE ON LPG:   <b>@Html.DisplayFor(model => model.First().TotalDistance) km</b></h3>
+                </div>
+            </div>
+        </div>
+        <!-- Receipts list -->
+        <div class="card mb-4">
+            <div class="card-header font-weight-bold">
+                <h2 class="h4 mb-1 text-gray-800 text-center">FUEL RECEIPTS LIST</h2>
+            </div>
+            <div class="card-body mb-1">
+                <div class="table text-gray-800">
+                    <table class="table table-sm">
+                        <thead style="display: table-row-group">
+                            <tr>
+                                <th>
+                                    DATE
+                                </th>
+                                <th>
+                                    PETROL STATION NAME
+                                </th>
+                                <th>
+                                    FUEL TYPE
+                                </th>
+                                <th>
+                                    FUEL PRICE
+                                </th>
+                                <th>
+                                    FUEL AMOUNT
+                                </th>
+                                <th>
+                                    DISTANCE
+                                </th>
+                                <th>
+                                    CONSUMPTION FOR 100KM
+                                </th>
+                                <th>
+                                    PRICE FOR 100KM
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RefuelingDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PetrolStationName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FuelType)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FuelPrice)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FuelAmount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DistanceFromLastRefueling)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FuelConsumption)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PriceFor100km)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+</body>
+</html>
 
 
