@@ -7,6 +7,8 @@ namespace LpgConsumptionCostCalculator.Web.ViewModels
 {
     public class ChartViewModel
     {
+        public int carId { get; set; }
+        public string carData { get; set; }
         public string[] lpgDateTimesArray { get; set; }
         public decimal[] lpgConsumptionArray { get; set; }
         public decimal[] lpgPriceArray { get; set; }
