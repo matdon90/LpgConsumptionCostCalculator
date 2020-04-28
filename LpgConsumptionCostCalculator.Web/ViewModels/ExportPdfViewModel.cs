@@ -24,5 +24,7 @@ namespace LpgConsumptionCostCalculator.Web.ViewModels
         public string AvgPrice { get; set; }
         public string TotalPrice { get; set; }
         public string TotalDistance { get; set; }
+        public string[] LpgDateTimesArray { get; set; }
+        public decimal[] LpgConsumptionArray { get; set; }
     }
 }

@@ -17,8 +17,12 @@
     <!-- Custom styles for this template-->
     <link href="~/Content/sb-admin-2.css" rel="stylesheet" />
     <style>
-        tr {
+        .reportCard, tr {
             page-break-inside: avoid
+        }
+        .reportGraph {width:1400px; text-align:center; margin:auto}
+        canvas {
+           display: inline;
         }
     </style>
 </head>
@@ -41,12 +45,12 @@
                     <h2 class="h4 mb-1">SUMMARY</h2>
                 </div>
                 <div class="card-body mb-2">
-                    <h3 class="h6">AVERAGE LPG CONSUMPTION:     <b>@Html.DisplayFor(model => model.First().AverageFuelCons) l</b></h3>
-                    <h3 class="h6">MINIMAL LPG CONSUMPTION:     <b>@Html.DisplayFor(model => model.First().MinFuelCons) l</b></h3>
-                    <h3 class="h6">MAXIMAL LPG CONSUMPTION:     <b>@Html.DisplayFor(model => model.First().MaxFuelCons) l</b></h3>
-                    <h3 class="h6">AVERAGE PRICE (for 100 km):  <b>@Html.DisplayFor(model => model.First().AvgPrice) PLN</b></h3>
-                    <h3 class="h6">TOTAL PRICE FOR LPG:     <b>@Html.DisplayFor(model => model.First().TotalPrice) PLN</b></h3>
-                    <h3 class="h6">TOTAL DISTANCE ON LPG:   <b>@Html.DisplayFor(model => model.First().TotalDistance) km</b></h3>
+                    <h3 class="h6">AVERAGE LPG CONSUMPTION: <b>@Html.DisplayFor(model => model.First().AverageFuelCons) l</b></h3>
+                    <h3 class="h6">MINIMAL LPG CONSUMPTION: <b>@Html.DisplayFor(model => model.First().MinFuelCons) l</b></h3>
+                    <h3 class="h6">MAXIMAL LPG CONSUMPTION: <b>@Html.DisplayFor(model => model.First().MaxFuelCons) l</b></h3>
+                    <h3 class="h6">AVERAGE PRICE (for 100 km): <b>@Html.DisplayFor(model => model.First().AvgPrice) PLN</b></h3>
+                    <h3 class="h6">TOTAL PRICE FOR LPG: <b>@Html.DisplayFor(model => model.First().TotalPrice) PLN</b></h3>
+                    <h3 class="h6">TOTAL DISTANCE ON LPG: <b>@Html.DisplayFor(model => model.First().TotalDistance) km</b></h3>
                 </div>
             </div>
         </div>
@@ -121,7 +125,49 @@
                 </div>
             </div>
         </div>
+        <div class="reportCard card mb-4">
+            <div class="card-header font-weight-bold">
+                <h2 class="h4 mb-1 text-gray-800 text-center">FUEL CHART</h2>
+            </div>
+            <div class="card-body text-center">
+                <div class="reportGraph align-content-center"><canvas id="canvas"></canvas></div>
+            </div>
+        </div>
     }
+    @Scripts.Render("~/bundles/chartjs")
+    <script type="text/javascript">
+        var lpgDateLabels = @Html.Raw(Json.Encode(Model.First().LpgDateTimesArray));
+        var lpgConsumptionData = @Html.Raw(Json.Encode(Model.First().LpgConsumptionArray));
+
+        (function(setLineDash) {
+            CanvasRenderingContext2D.prototype.setLineDash = function() {
+                if(!arguments[0].length){
+                    arguments[0] = [1,0];
+                }
+                return setLineDash.apply(this, arguments);
+            };
+        })(CanvasRenderingContext2D.prototype.setLineDash);
+        Function.prototype.bind = Function.prototype.bind || function (thisp) {
+            var fn = this;
+            return function () {
+                return fn.apply(thisp, arguments);
+            };
+        };
+
+        function drawGraphs() {
+            new Chart(
+                document.getElementById("canvas"), {
+                    "responsive": false,
+                    "type":"line",
+                    "data":{"labels":lpgDateLabels,"datasets":[{"label":"LPG consumption for 100 km","data":lpgConsumptionData,"fill":false,"borderColor":"rgb(75, 192, 192)","lineTension":0.1}]},
+                    "options":{}
+                }
+            );
+        }
+        window.onload = function() {
+            drawGraphs();
+        };
+    </script>
 </body>
 </html>
 

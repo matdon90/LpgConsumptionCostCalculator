@@ -46,8 +46,12 @@
                 <div class="card shadow mb-0">
                     <div class="card-body">
                         <div class="text-center">
-                            <input type="submit" formaction=@Url.Action("ExportCSV") formmethod="post" value="Export to CSV" style="width: 120px" class="btn btn-outline-dark btn-sm" />
-                            <input type="submit" formaction=@Url.Action("ExportPDF") formmethod="post" value="Export to PDF" style="width: 120px" class="btn btn-outline-dark btn-sm" />
+                            <button type="submit" formaction=@Url.Action("ExportCSV") formmethod="post" style="width: 120px" class="btn btn-outline-dark btn-sm">
+                                <i class="fa fa-file-excel-o fa-sm"></i> Export to CSV
+                            </button>
+                            <button type="submit" formaction=@Url.Action("ExportPDF") formmethod="post" style="width: 120px" class="btn btn-outline-dark btn-sm">
+                                <i class="fa fa-file-pdf-o fa-sm"></i> Export to PDF
+                            </button>
                             <button type="button" class="btn btn-outline-dark btn-sm" style="width : 120px" data-dismiss="modal">Close</button>
                         </div>
                     </div>
