@@ -14,11 +14,13 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
 {
     public class FuelReceiptsController : Controller
     {
-        private readonly IFuelReceiptData db;
+        private readonly IFuelReceiptData dbReceipt;
+        private readonly ICarData dbCar;
 
-        public FuelReceiptsController(IFuelReceiptData db)
+        public FuelReceiptsController(IFuelReceiptData dbReceipt, ICarData dbCar)
         {
-            this.db = db;
+            this.dbReceipt = dbReceipt;
+            this.dbCar = dbCar;
         }
 
         // GET: FuelReceipts
@@ -27,9 +29,12 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             ViewBag.QueryOptions = queryOptions;
             var start = QueryOptionsCalculator.CalculateStartPage(queryOptions);
             ViewBag.CarId = id;
+
             if (id!=null)
             {
-                var results = await db.GetAll();
+                var results = await dbReceipt.GetAll();
+                var resultsCar = await dbCar.Get(id.GetValueOrDefault());
+                ViewBag.CarName = $"{resultsCar.CarProducer} {resultsCar.CarModel}";
                 ViewBag.NumberOfEntries = results.Count();
                 var receiptViewModels = results.Where(m => m.FueledCarId == id).Select(vm => vm.ToViewModel()).AsQueryable<FuelReceiptViewModel>();
                 ViewBag.NumberOfEntries = receiptViewModels.Count();
@@ -51,7 +56,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         {
             if (Request.IsAjaxRequest())
             {
-                var model = await db.Get(id);
+                var model = await dbReceipt.Get(id);
                 if (model == null)
                 {
                     Response.StatusCode = 403;
@@ -73,9 +78,11 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
 
         [Authorize]
         // GET: FuelReceipts/Create
-        public ActionResult Create(int id)
+        public async Task<ActionResult> Create(int id)
         {
             ViewBag.CarID = id;
+            var resultsCar = await dbCar.Get(id);
+            ViewBag.CarName = $"{resultsCar.CarProducer} {resultsCar.CarModel}";
             return View();
         }
 
@@ -87,7 +94,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                await db.Add(fuelReceipt);
+                await dbReceipt.Add(fuelReceipt);
                 return RedirectToAction("Index", new { id = fuelReceipt.FueledCarId });
             }
             return View();
@@ -97,7 +104,9 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         // GET: FuelReceipts/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            var model = await db.Get(id);
+            var model = await dbReceipt.Get(id);
+            var resultsCar = await dbCar.Get(model.FueledCarId);
+            ViewBag.CarName = $"{resultsCar.CarProducer} {resultsCar.CarModel}";
             if (model == null)
             {
                 return View("NotFound");
@@ -118,7 +127,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             if (ModelState.IsValid)
             {
                 var fuelReceipt = fuelReceiptViewModel.ToEntityModel();
-                await db.Update(fuelReceipt);
+                await dbReceipt.Update(fuelReceipt);
                 TempData["Message"] = "You have saved the fuel receipt!";
                 return RedirectToAction("Index", new { id = fuelReceipt.FueledCarId });
             }
@@ -131,7 +140,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         {
             if (Request.IsAjaxRequest()) 
             { 
-                var model = await db.Get(id);
+                var model = await dbReceipt.Get(id);
 
                 if (model == null)
                 {
@@ -156,8 +165,8 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         [HttpPost]
         public async Task<ActionResult> Delete(int id, FormCollection collection)
         {
-            var model = await db.Get(id);
-            await db.Delete(id);
+            var model = await dbReceipt.Get(id);
+            await dbReceipt.Delete(id);
             return RedirectToAction("Index", new { id = model.FueledCarId });
         }
     }
