@@ -24,7 +24,8 @@ namespace LpgConsumptionCostCalculator.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/sb-admin-2.css"));
 
             //Create bundel for jQueryUI  
             //js  
@@ -48,15 +49,17 @@ namespace LpgConsumptionCostCalculator.Web
             //js
             bundles.Add(new ScriptBundle("~/bundles/sbadmin2").Include(
                         "~/Scripts/sb-admin-2.min.js"));
-            //css
-            bundles.Add(new StyleBundle("~/Content/csssbadmin2").Include(
-                        "~/Content/sb-admin-2.min.css"));
 
             //Create bundle for jQuery easing
 
             //js
             bundles.Add(new ScriptBundle("~/bundles/jqueryeasing").Include(
                         "~/Scripts/jquery.easing.min.js"));
+
+            //Bundel for jQuery Validation
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+                        "~/Scripts/jquery.validate.js",
+                        "~/Scripts/jquery.validate.unobtrusive.min.js"));
         }
     }
 }

@@ -13,22 +13,22 @@ namespace LpgConsumptionCostCalculator.Web.ViewModels
         [Required]
         [Display(Name = "Car ID")]
         public int FueledCarId { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Please enter date of refueling.")]
         [Display(Name = "Refueling date")]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime RefuelingDate { get; set; }
         [Display(Name = "Petrol station name")]
         public string PetrolStationName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter fuel type.")]
         [Display(Name = "Fuel type")]
         public TypeOfFuel FuelType { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter fuel price.")]
         [Display(Name = "Fuel price")]
         public decimal FuelPrice { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter fuel amount.")]
         [Display(Name = "Fuel amount")]
         public decimal FuelAmount { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter distance from last refueling.")]
         [Display(Name = "Distance on the tank")]
         public decimal DistanceFromLastRefueling { get; set; }
         [MaxLength(255)]

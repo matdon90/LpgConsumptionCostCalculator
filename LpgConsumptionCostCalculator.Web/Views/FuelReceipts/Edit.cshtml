@@ -6,6 +6,7 @@
     <form>
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Edit fuel receipt for @ViewBag.CarName</h1>
+        <h1 class="h6 mb-2 text-gray-800"><span class="text-danger">*</span> Required information</h1>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
         @Html.HiddenFor(model => model.FueledCarId)
@@ -17,6 +18,7 @@
                         <div class="form-group row align-items-center">
                             <div class="col-sm-12 col-md-12 col-xl-4 col-lg-4 mb-3 mb-sm-0">
                                 @Html.LabelFor(model => model.RefuelingDate, htmlAttributes: new { @class = "control-label, text-gray-800" })
+                                <span class="text-danger">*</span>
                                 <div class="col-md-12">
                                     @Html.EditorFor(model => model.RefuelingDate, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
                                     @Html.ValidationMessageFor(model => model.RefuelingDate, "", new { @class = "text-danger" })
@@ -31,6 +33,7 @@
                             </div>
                             <div class="col-sm-12 col-md-12 col-xl-3 col-lg-3 mb-3 mb-sm-0">
                                 @Html.LabelFor(model => model.FuelType, htmlAttributes: new { @class = "control-label, text-gray-800" })
+                                <span class="text-danger">*</span>
                                 <div class="col-md-12">
                                     @Html.EnumDropDownListFor(model => model.FuelType, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.FuelType, "", new { @class = "text-danger" })
@@ -49,6 +52,7 @@
                         <div class="form-group row align-items-center">
                             <div class="col-sm-12 col-md-12 col-xl-4 col-lg-4 mb-3 mb-sm-0">
                                 @Html.LabelFor(model => model.FuelPrice, htmlAttributes: new { @class = "control-label, text-gray-800" })
+                                <span class="text-danger">*</span>
                                 <div class="col-md-12">
                                     @Html.EditorFor(model => model.FuelPrice, new { htmlAttributes = new { placeholder = "eg. 2.99", @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.FuelPrice, "", new { @class = "text-danger" })
@@ -56,6 +60,7 @@
                             </div>
                             <div class="col-sm-12 col-md-12 col-xl-4 col-lg-4 mb-3 mb-sm-0">
                                 @Html.LabelFor(model => model.FuelAmount, htmlAttributes: new { @class = "control-label, text-gray-800" })
+                                <span class="text-danger">*</span>
                                 <div class="col-md-12">
                                     @Html.EditorFor(model => model.FuelAmount, new { htmlAttributes = new { placeholder = "eg. 23.56", @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.FuelAmount, "", new { @class = "text-danger" })
@@ -63,6 +68,7 @@
                             </div>
                             <div class="col-sm-12 col-md-12 col-xl-4 col-lg-4 mb-3 mb-sm-0">
                                 @Html.LabelFor(model => model.DistanceFromLastRefueling, htmlAttributes: new { @class = "control-label, text-gray-800" })
+                                <span class="text-danger">*</span>
                                 <div class="col-md-12">
                                     @Html.EditorFor(model => model.DistanceFromLastRefueling, new { htmlAttributes = new { placeholder = "eg. 456.23", @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.DistanceFromLastRefueling, "", new { @class = "text-danger" })
@@ -108,7 +114,7 @@
 }
 
 @section Scripts {
-
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/jqueryui")
     @Styles.Render("~/Content/cssjqryUi")
 

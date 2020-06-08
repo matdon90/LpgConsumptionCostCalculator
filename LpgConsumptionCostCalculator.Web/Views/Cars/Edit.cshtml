@@ -8,44 +8,48 @@
     <form>
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Create new car</h1>
+        <h1 class="h6 mb-2 text-gray-800"><span class="text-danger">*</span> Required information</h1>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <!-- Form for car data -->
-    <div class="row">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-        <div class="col-xl-12 col-lg-12">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-gray-800">Car</h6>
-                </div>
-                <div class="card-body">
-                    <div class="form-group row align-items-center">
-                        <div class="col-sm-12 col-md-12 col-xl-4 col-lg-4 mb-3 mb-sm-0">
-                            @Html.LabelFor(model => model.CarProducer, htmlAttributes: new { @class = "control-label, text-gray-800" })
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.CarProducer, new { htmlAttributes = new { placeholder = "eg. Skoda", @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.CarProducer, "", new { @class = "text-danger" })
+        <div class="row">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+            <div class="col-xl-12 col-lg-12">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-gray-800">Car</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row align-items-center">
+                            <div class="col-sm-12 col-md-12 col-xl-4 col-lg-4 mb-3 mb-sm-0">
+                                @Html.LabelFor(model => model.CarProducer, htmlAttributes: new { @class = "control-label, text-gray-800" })
+                                <span class="text-danger">*</span>
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.CarProducer, new { htmlAttributes = new { placeholder = "eg. Skoda", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.CarProducer, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-12 col-md-12 col-xl-4 col-lg-4 mb-3 mb-sm-0">
-                            @Html.LabelFor(model => model.CarModel, htmlAttributes: new { @class = "control-label, text-gray-800" })
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.CarModel, new { htmlAttributes = new { placeholder = "eg. Fabia", @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.CarModel, "", new { @class = "text-danger" })
+                            <div class="col-sm-12 col-md-12 col-xl-4 col-lg-4 mb-3 mb-sm-0">
+                                @Html.LabelFor(model => model.CarModel, htmlAttributes: new { @class = "control-label, text-gray-800" })
+                                <span class="text-danger">*</span>
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.CarModel, new { htmlAttributes = new { placeholder = "eg. Fabia", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.CarModel, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-12 col-md-12 col-xl-4 col-lg-4 mb-3 mb-sm-0">
-                            @Html.LabelFor(model => model.CarProductionYear, htmlAttributes: new { @class = "control-label, text-gray-800" })
-                            <div class="col-md-12">
-                                @Html.EditorFor(model => model.CarProductionYear, new { htmlAttributes = new { placeholder = "eg. 2000", @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.CarProductionYear, "", new { @class = "text-danger" })
+                            <div class="col-sm-12 col-md-12 col-xl-4 col-lg-4 mb-3 mb-sm-0">
+                                @Html.LabelFor(model => model.CarProductionYear, htmlAttributes: new { @class = "control-label, text-gray-800" })
+                                <span class="text-danger">*</span>
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.CarProductionYear, new { htmlAttributes = new { placeholder = "eg. 2000", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.CarProductionYear, "", new { @class = "text-danger" })
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
         <!-- Form for lpg installation data -->
         <div class="row">
             <div class="col-xl-12 col-lg-12">
@@ -57,6 +61,7 @@
                         <div class="form-group row align-items-center">
                             <div class="col-sm-12 col-md-12 col-xl-6 col-lg-6 mb-3 mb-sm-0">
                                 <label class="control-label">Producer</label>
+                                <span class="text-danger">*</span>
                                 <div class="col-md-12">
                                     @Html.EditorFor(model => model.LpgInstallationProducer, new { htmlAttributes = new { placeholder = "eg. BRC", @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.LpgInstallationProducer, "", new { @class = "text-danger" })
@@ -64,6 +69,7 @@
                             </div>
                             <div class="col-sm-12 col-md-12 col-xl-6 col-lg-6 mb-3 mb-sm-0">
                                 <label class="control-label text-gray-800">Model</label>
+                                <span class="text-danger">*</span>
                                 <div class="col-md-12">
                                     @Html.EditorFor(model => model.LpgInstallationModel, new { htmlAttributes = new { placeholder = "eg. ODB32", @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.LpgInstallationModel, "", new { @class = "text-danger" })
@@ -89,4 +95,6 @@
         </div>
     </form>
 }
-
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
