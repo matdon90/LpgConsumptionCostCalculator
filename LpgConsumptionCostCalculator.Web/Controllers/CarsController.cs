@@ -56,14 +56,14 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             }
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Car car)
@@ -76,7 +76,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             return View();
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult> Edit(int id)
         {
@@ -88,7 +88,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             return View(model);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Car car)
@@ -102,7 +102,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             return View(car);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult> Delete(int id)
         {
@@ -123,7 +123,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             }      
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(int id, FormCollection form)
