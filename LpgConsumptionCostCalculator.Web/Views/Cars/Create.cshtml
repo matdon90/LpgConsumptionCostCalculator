@@ -7,6 +7,7 @@
     <form>
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Create new car</h1>
+        <h1 class="h6 mb-2 text-gray-800"><span class="text-danger">*</span> Required information</h1>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <!-- Form for car data -->
         <div class="row">
@@ -19,6 +20,7 @@
                         <div class="form-group row align-items-center">
                             <div class="col-sm-12 col-md-12 col-xl-4 col-lg-4 mb-3 mb-sm-0">
                                 @Html.LabelFor(model => model.CarProducer, htmlAttributes: new { @class = "control-label, text-gray-800" })
+                                <span class="text-danger">*</span>
                                 <div class="col-md-12">
                                     @Html.EditorFor(model => model.CarProducer, new { htmlAttributes = new { placeholder = "eg. Skoda", @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.CarProducer, "", new { @class = "text-danger" })
@@ -26,6 +28,7 @@
                             </div>
                             <div class="col-sm-12 col-md-12 col-xl-4 col-lg-4 mb-3 mb-sm-0">
                                 @Html.LabelFor(model => model.CarModel, htmlAttributes: new { @class = "control-label, text-gray-800" })
+                                <span class="text-danger">*</span>
                                 <div class="col-md-12">
                                     @Html.EditorFor(model => model.CarModel, new { htmlAttributes = new { placeholder = "eg. Fabia", @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.CarModel, "", new { @class = "text-danger" })
@@ -33,6 +36,7 @@
                             </div>
                             <div class="col-sm-12 col-md-12 col-xl-4 col-lg-4 mb-3 mb-sm-0">
                                 @Html.LabelFor(model => model.CarProductionYear, htmlAttributes: new { @class = "control-label, text-gray-800" })
+                                <span class="text-danger">*</span>
                                 <div class="col-md-12">
                                     @Html.EditorFor(model => model.CarProductionYear, new { htmlAttributes = new { placeholder = "eg. 2000", @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.CarProductionYear, "", new { @class = "text-danger" })
@@ -54,6 +58,7 @@
                         <div class="form-group row align-items-center">
                             <div class="col-sm-12 col-md-12 col-xl-6 col-lg-6 mb-3 mb-sm-0">
                                 <label class="control-label text-gray-800">Producer</label>
+                                <span class="text-danger">*</span>
                                 <div class="col-md-12">
                                     @Html.EditorFor(model => model.LpgInstallationProducer, new { htmlAttributes = new { placeholder = "eg. BRC", @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.LpgInstallationProducer, "", new { @class = "text-danger" })
@@ -61,8 +66,9 @@
                             </div>
                             <div class="col-sm-12 col-md-12 col-xl-6 col-lg-6 mb-3 mb-sm-0">
                                 <label class="control-label text-gray-800">Model</label>
+                                <span class="text-danger">*</span>
                                 <div class="col-md-12">
-                                    @Html.EditorFor(model => model.LpgInstallationModel, new { htmlAttributes = new { placeholder = "eg. ODB32",  @class = "form-control" } })
+                                    @Html.EditorFor(model => model.LpgInstallationModel, new { htmlAttributes = new { placeholder = "eg. ODB32", @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.LpgInstallationModel, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -85,4 +91,8 @@
             </div>
         </div>
     </form>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }

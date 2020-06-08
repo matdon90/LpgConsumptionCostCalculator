@@ -29,32 +29,44 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             {
                 var results = await db.GetAll();
                 var carResults = await dbCar.Get(id.GetValueOrDefault());
-                var lastFueling = results.Where(r => r.FueledCarId == id).Where(r => r.FuelType == TypeOfFuel.LPG).OrderByDescending(r => r.RefuelingDate).First().RefuelingDate;
-                var startDate = chartQueryOptions.startingTimeRange > lastFueling ? lastFueling : chartQueryOptions.startingTimeRange;
-                ViewBag.startingdate = startDate;
-                var receiptViewModels = results.Where(vm => vm.FueledCarId == id).Where(vm => vm.RefuelingDate >= startDate).Select(vm => vm.ToViewModel());
-                var chartViewModel = new ChartViewModel()
+                if (results != null)
                 {
-                    carId = carResults.Id,
-                    carData = $"{carResults.CarProducer} {carResults.CarModel}",
-                    lpgConsumptionArray = receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.LPG).Select(r => decimal.Round(r.FuelConsumption, 2, MidpointRounding.AwayFromZero)).ToArray(),
-                    lpgPriceArray = receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.LPG).Select(r => decimal.Round(r.PriceFor100km, 2, MidpointRounding.AwayFromZero)).ToArray(),
-                    lpgDateTimesArray = receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.LPG).Select(r => r.RefuelingDate.ToString("dd/MM/yyyy")).ToArray(),
-                    petrolConsumptionArray = receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.Petrol).Select(r => decimal.Round(r.FuelConsumption, 2, MidpointRounding.AwayFromZero)).ToArray(),
-                    petrolPriceArray = receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.Petrol).Select(r => decimal.Round(r.PriceFor100km, 2, MidpointRounding.AwayFromZero)).ToArray(),
-                    petrolDateTimesArray = receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.Petrol).Select(r => r.RefuelingDate.ToString("dd/MM/yyyy")).ToArray(),
-                    dieselConsumptionArray = receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.Diesel).Select(r => decimal.Round(r.FuelConsumption, 2, MidpointRounding.AwayFromZero)).ToArray(),
-                    dieselPriceArray = receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.Diesel).Select(r => decimal.Round(r.PriceFor100km, 2, MidpointRounding.AwayFromZero)).ToArray(),
-                    dieselDateTimesArray = receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.Diesel).Select(r => r.RefuelingDate.ToString("dd/MM/yyyy")).ToArray(),
+                    var lastFuelingReceipt = results.Where(r => r.FueledCarId == id).Where(r => r.FuelType == TypeOfFuel.LPG);
+                    if (lastFuelingReceipt.Count() == 0)
+                    {
+                        return RedirectToAction("Index", "FuelReceipts", new { id });
+                    }
+                    var lastFueling = lastFuelingReceipt.OrderByDescending(r => r.RefuelingDate).First().RefuelingDate;
+                    var startDate = chartQueryOptions.startingTimeRange > lastFueling ? lastFueling : chartQueryOptions.startingTimeRange;
+                    ViewBag.startingdate = startDate;
+                    var receiptViewModels = results.Where(vm => vm.FueledCarId == id).Where(vm => vm.RefuelingDate >= startDate).Select(vm => vm.ToViewModel());
+                    var chartViewModel = new ChartViewModel()
+                    {
+                        carId = carResults.Id,
+                        carData = $"{carResults.CarProducer} {carResults.CarModel}",
+                        lpgConsumptionArray = receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.LPG).Select(r => decimal.Round(r.FuelConsumption, 2, MidpointRounding.AwayFromZero)).ToArray(),
+                        lpgPriceArray = receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.LPG).Select(r => decimal.Round(r.PriceFor100km, 2, MidpointRounding.AwayFromZero)).ToArray(),
+                        lpgDateTimesArray = receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.LPG).Select(r => r.RefuelingDate.ToString("dd/MM/yyyy")).ToArray(),
+                        petrolConsumptionArray = receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.Petrol).Select(r => decimal.Round(r.FuelConsumption, 2, MidpointRounding.AwayFromZero)).ToArray(),
+                        petrolPriceArray = receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.Petrol).Select(r => decimal.Round(r.PriceFor100km, 2, MidpointRounding.AwayFromZero)).ToArray(),
+                        petrolDateTimesArray = receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.Petrol).Select(r => r.RefuelingDate.ToString("dd/MM/yyyy")).ToArray(),
+                        dieselConsumptionArray = receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.Diesel).Select(r => decimal.Round(r.FuelConsumption, 2, MidpointRounding.AwayFromZero)).ToArray(),
+                        dieselPriceArray = receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.Diesel).Select(r => decimal.Round(r.PriceFor100km, 2, MidpointRounding.AwayFromZero)).ToArray(),
+                        dieselDateTimesArray = receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.Diesel).Select(r => r.RefuelingDate.ToString("dd/MM/yyyy")).ToArray(),
 
-                    averageFuelCons = decimal.Round(receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.LPG).Average(r => r.FuelConsumption), 2, MidpointRounding.AwayFromZero),
-                    maxFuelCons = decimal.Round(receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.LPG).Max(r => r.FuelConsumption), 2, MidpointRounding.AwayFromZero),
-                    minFuelCons = decimal.Round(receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.LPG).Min(r => r.FuelConsumption), 2, MidpointRounding.AwayFromZero),
-                    avgPrice = decimal.Round(receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.LPG).Average(r => r.PriceFor100km), 2, MidpointRounding.AwayFromZero),
-                    totalDistance = decimal.Round(receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.LPG).Sum(r => r.DistanceFromLastRefueling), 2, MidpointRounding.AwayFromZero),
-                    totalPrice = decimal.Round(receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.LPG).Sum(r => r.FuelAmount * r.FuelPrice), 2, MidpointRounding.AwayFromZero)
-                };
-                return View(chartViewModel);
+                        averageFuelCons = decimal.Round(receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.LPG).Average(r => r.FuelConsumption), 2, MidpointRounding.AwayFromZero),
+                        maxFuelCons = decimal.Round(receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.LPG).Max(r => r.FuelConsumption), 2, MidpointRounding.AwayFromZero),
+                        minFuelCons = decimal.Round(receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.LPG).Min(r => r.FuelConsumption), 2, MidpointRounding.AwayFromZero),
+                        avgPrice = decimal.Round(receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.LPG).Average(r => r.PriceFor100km), 2, MidpointRounding.AwayFromZero),
+                        totalDistance = decimal.Round(receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.LPG).Sum(r => r.DistanceFromLastRefueling), 2, MidpointRounding.AwayFromZero),
+                        totalPrice = decimal.Round(receiptViewModels.Where(vm => vm.FuelType == TypeOfFuel.LPG).Sum(r => r.FuelAmount * r.FuelPrice), 2, MidpointRounding.AwayFromZero)
+                    };
+                    return View(chartViewModel);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "FuelReceipts", new { id });
+                }
             }
             return RedirectToAction("Index", "Cars");
 

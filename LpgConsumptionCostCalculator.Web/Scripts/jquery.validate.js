@@ -1406,7 +1406,7 @@ $.extend( $.validator, {
 
 		// https://jqueryvalidation.org/number-method/
 		number: function( value, element ) {
-			return this.optional( element ) || /^(?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test( value );
+			return this.optional(element) || /^-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
 		},
 
 		// https://jqueryvalidation.org/digits-method/
@@ -1433,18 +1433,21 @@ $.extend( $.validator, {
 		},
 
 		// https://jqueryvalidation.org/min-method/
-		min: function( value, element, param ) {
-			return this.optional( element ) || value >= param;
+		min: function (value, element, param) {
+			var globalizedValue = value.replace(",", ".");
+			return this.optional(element) || globalizedValue >= param;
 		},
 
 		// https://jqueryvalidation.org/max-method/
-		max: function( value, element, param ) {
-			return this.optional( element ) || value <= param;
+		max: function (value, element, param) {
+			var globalizedValue = value.replace(",", ".");
+			return this.optional(element) || globalizedValue <= param;
 		},
 
 		// https://jqueryvalidation.org/range-method/
-		range: function( value, element, param ) {
-			return this.optional( element ) || ( value >= param[ 0 ] && value <= param[ 1 ] );
+		range: function (value, element, param) {
+			var globalizedValue = value.replace(",", ".");
+			return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[ 1 ] );
 		},
 
 		// https://jqueryvalidation.org/step-method/

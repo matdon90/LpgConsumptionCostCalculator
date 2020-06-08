@@ -4,13 +4,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - LPG Consumption Costs Calculator</title>
+    <title>LPG Consumption Costs Calculator</title>
+    <link rel="shortcut icon" type="image/ico" href="@Url.Content("~/favicon.ico")">
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/fontawesome")
-    @Styles.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/modernizr")
-    <!-- Custom styles for this template-->
-    <link href="~/Content/sb-admin-2.css" rel="stylesheet" />
 </head>
 <body id="page-top">
     <!--Page wrapper-->
@@ -89,10 +87,10 @@
 
     <!-- Bootstrap core JavaScript-->
     <script src="~/Scripts/umd/popper.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryeasing")
     @Scripts.Render("~/bundles/bootstrap")
-    <script src="~/Scripts/bootstrap.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="~/Scripts/sb-admin-2.min.js"></script>
