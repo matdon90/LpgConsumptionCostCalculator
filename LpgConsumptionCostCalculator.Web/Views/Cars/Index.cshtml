@@ -10,7 +10,7 @@
 
 <!-- Content row -->
 <div class="row">
-    @if (Context.User.Identity.IsAuthenticated || true)
+    @if (Context.User.Identity.IsAuthenticated)
     {
         <!-- Create button -->
         <div class="col-md-5 col-sm-6 col-xl-3 col-lg-5">
@@ -134,7 +134,7 @@
                                     </td>
                                     <td align="center">
                                         <input class="btn btn-outline-dark btn-sm" style="width: 60px" type="button" value="Details" id="@item.Id" onclick="CarDetailsAsModal(this.id)">
-                                        @if (Context.User.Identity.IsAuthenticated || true)
+                                        @if (Context.User.Identity.IsAuthenticated)
                                         {
                                             @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm", @style = "width: 60px" })
                                             <input class="btn btn-outline-danger btn-sm" style="width: 60px" type="button" value="Delete" id="@item.Id" onclick="CarDeleteAsModal(this.id)">
