@@ -19,10 +19,13 @@ namespace LpgConsumptionCostCalculator.Web
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.min.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/Content/css")
+                .Include(
                       "~/Content/bootstrap.min.css",
                       "~/Content/site.css",
-                      "~/Content/sb-admin-2.css"));
+                      "~/Content/sb-admin-2.css")
+                .Include(
+                      "~/Content/font-awesome/css/font-awesome.css", new CssRewriteUrlTransform()));
 
             //Create bundel for jQueryUI  
             //js  
