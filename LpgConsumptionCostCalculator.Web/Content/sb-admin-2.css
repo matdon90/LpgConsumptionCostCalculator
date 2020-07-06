@@ -10179,8 +10179,8 @@ a:focus {
 
 .sidebar #sidebarToggle::after {
   font-weight: 900;
-  content: '\f104';
-  font-family: 'FontAwesome';
+  content: '<';
+  /*font-family: FontAwesome;*/
   margin-right: 0.1rem;
 }
 
@@ -10198,8 +10198,8 @@ a:focus {
 }
 
 .sidebar.toggled #sidebarToggle::after {
-  content: '\f105';
-  font-family: 'FontAwesome';
+  content: '>';
+  /*font-family: FontAwesome;*/
   margin-left: 0.25rem;
 }
 
@@ -10280,11 +10280,11 @@ a:focus {
     vertical-align: 0;
     border: 0;
     font-weight: 900;
-    content: '\f107';
-    font-family: 'FontAwesome';
+    /*content: '\f107';
+    font-family: 'FontAwesome';*/
   }
   .sidebar .nav-item .nav-link[data-toggle="collapse"].collapsed::after {
-    content: '\f105';
+    /*content: '\f105';*/
   }
   .sidebar .sidebar-brand .sidebar-brand-icon i {
     font-size: 2rem;
