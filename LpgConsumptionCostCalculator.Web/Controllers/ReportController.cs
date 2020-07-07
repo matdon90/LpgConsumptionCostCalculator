@@ -1,6 +1,7 @@
 ﻿using LpgConsumptionCostCalculator.Data.Models;
 using LpgConsumptionCostCalculator.Data.Services;
 using LpgConsumptionCostCalculator.Web.Behaviors;
+using LpgConsumptionCostCalculator.Web.Filters;
 using LpgConsumptionCostCalculator.Web.Infrastructure;
 using LpgConsumptionCostCalculator.Web.ViewModels;
 using Rotativa;
@@ -50,7 +51,8 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             }
         }
 
-        [HttpPost]
+        [Authorize]
+        [LogUsersActivity]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExportPDF(ReportConfigureViewModel viewModel)
         {
@@ -103,7 +105,8 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             };
         }
 
-        [HttpPost]
+        [Authorize]
+        [LogUsersActivity]
         [ValidateAntiForgeryToken]
         public async Task<FileResult> ExportCSV(ReportConfigureViewModel viewModel)
         {
