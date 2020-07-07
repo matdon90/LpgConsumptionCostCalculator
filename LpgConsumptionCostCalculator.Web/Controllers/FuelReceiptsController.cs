@@ -1,6 +1,7 @@
 ﻿using LpgConsumptionCostCalculator.Data.Models;
 using LpgConsumptionCostCalculator.Data.Services;
 using LpgConsumptionCostCalculator.Web.Behaviors;
+using LpgConsumptionCostCalculator.Web.Filters;
 using LpgConsumptionCostCalculator.Web.Infrastructure;
 using LpgConsumptionCostCalculator.Web.ViewModels;
 using System;
@@ -87,6 +88,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         }
 
         [Authorize]
+        [LogUsersActivity]
         // POST: FuelReceipts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -119,6 +121,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         }
 
         [Authorize]
+        [LogUsersActivity]
         // POST: FuelReceipts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -161,6 +164,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         }
 
         [Authorize]
+        [LogUsersActivity]
         // POST: FuelReceipts/Delete/5
         [HttpPost]
         public async Task<ActionResult> Delete(int id, FormCollection collection)

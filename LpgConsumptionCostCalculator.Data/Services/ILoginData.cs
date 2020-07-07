@@ -6,7 +6,7 @@ namespace LpgConsumptionCostCalculator.Data.Services
 {
     public interface ILoginData
     {
-        Task<IEnumerable<LoginData>> GetUserData(LoginData user);
-        Task AddUserData(LoginData user);
+        Task<IEnumerable<LoginData>> GetUsersData();
+        void AddUserData(LoginData user);
     }
 }

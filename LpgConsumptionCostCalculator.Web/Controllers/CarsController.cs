@@ -1,6 +1,7 @@
 ﻿using LpgConsumptionCostCalculator.Data.Models;
 using LpgConsumptionCostCalculator.Data.Services;
 using LpgConsumptionCostCalculator.Web.Behaviors;
+using LpgConsumptionCostCalculator.Web.Filters;
 using System;
 using System.Linq;
 using System.Linq.Dynamic;
@@ -64,6 +65,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         }
 
         [Authorize]
+        [LogUsersActivity]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Car car)
@@ -89,6 +91,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         }
 
         [Authorize]
+        [LogUsersActivity]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Car car)
@@ -124,6 +127,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         }
 
         [Authorize]
+        [LogUsersActivity]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(int id, FormCollection form)

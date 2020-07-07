@@ -247,6 +247,7 @@
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
+    <Compile Include="Filters\LogUsersActivityAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -491,7 +492,6 @@
     <Content Include="Views\Report\Configure.cshtml" />
     <Content Include="Views\Report\ExportPDF.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Claims.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
