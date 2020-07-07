@@ -43,10 +43,10 @@ namespace LpgConsumptionCostCalculator.Web.Filters
             var message = String.Format("LpgCCC Log - Method: {0} - Controller: {1} - Action: {2}", methodName, controllerName, actionName);
             var log = new LoginData()
             {
-                userName = user,
-                logTime = logTime,
-                requestDuration = requestDuration,
-                logMessage = message
+                UserName = user,
+                LogTime = logTime,
+                RequestDuration = requestDuration,
+                LogMessage = message
             };
 
             _db.AddUserData(log);

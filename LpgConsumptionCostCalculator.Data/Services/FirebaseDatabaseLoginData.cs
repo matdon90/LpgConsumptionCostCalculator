@@ -16,22 +16,23 @@ namespace LpgConsumptionCostCalculator.Data.Services
             this.firebase = new FirebaseConn().firebase;
         }
 
-        public void AddUserData(LoginData user)
+        public void AddUserData(LoginData log)
         {
-            firebase.Child("logs/").PostAsync<LoginData>(user);
+            firebase.Child("logs/").PostAsync<LoginData>(log);
         }
 
         public async Task<IEnumerable<LoginData>> GetUsersData()
         {
             var result = await firebase.Child("logs/").OnceAsync<LoginData>();
 
-            return result.Select(u => new LoginData
+            return result.Select(l => new LoginData
             {
-                userName = u.Object.userName,
-                logTime = u.Object.logTime,
-                requestDuration = u.Object.requestDuration,
-                logMessage = u.Object.logMessage
-            }).ToList().OrderByDescending(l => l.logTime);
+                Id = l.Object.Id,
+                UserName = l.Object.UserName,
+                LogTime = l.Object.LogTime,
+                RequestDuration = l.Object.RequestDuration,
+                LogMessage = l.Object.LogMessage
+            }).ToList().OrderByDescending(l => l.LogTime);
         }
     }
 

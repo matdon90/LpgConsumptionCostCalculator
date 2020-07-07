@@ -1,48 +1,95 @@
 ﻿@model IEnumerable<LpgConsumptionCostCalculator.Data.Models.LoginData>
 @using LpgConsumptionCostCalculator.Data.Models
 @{
-    ViewBag.Title = "Logs";
+    ViewBag.Title = "User activity logs";
+    var queryOptions = (QueryOptions)ViewBag.QueryOptions;
 }
 
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">@ViewBag.Title</h1>
 
-<div class="table-responsive">
-    <table class="table table-striped table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>
-                    Action date
-                </th>
-                <th>
-                    User
-                </th>
-                <th>
-                    Log message
-                </th>
-                <th>
-                    Action duration [ms]
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        <b>@Html.DisplayFor(modelItem => item.logTime)</b>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.userName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.logMessage)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.requestDuration)
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+<!-- Content row -->
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xl-12 col-lg-12">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-gray-800">Search</h6>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("Logs", "Logging", FormMethod.Get))
+                {
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" name="searchString" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-dark" value="Search" id="btnSubmit" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Content row -->
+<div class="row">
+    <!-- Table content -->
+    <div class="col-xl-12 col-lg-12">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-gray-800">Activity logs list</h6>
+            </div>
+            <div class="card-body">
+                @Html.BuildPaginationDetails(queryOptions, "Logs")
+                <br />
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.BuildSortableLink("Action date", "Logs", "LogTime", queryOptions)
+                                </th>
+                                <th>
+                                    @Html.BuildSortableLink("User", "Logs", "UserName", queryOptions)
+                                </th>
+                                <th>
+                                    @Html.BuildSortableLink("Log message", "Logs", "LogMessage", queryOptions)
+                                </th>
+                                <th>
+                                    @Html.BuildSortableLink("Action duration [ms]", "Logs", "RequestDuration", queryOptions)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <b>@Html.DisplayFor(modelItem => item.LogTime)</b>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LogMessage)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RequestDuration)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                @if (queryOptions.TotalPages > 1)
+                {
+                    @Html.BuildNextPreviousLinks(queryOptions, "Index")
+                    <span>Showing @((queryOptions.CurrentPage - 1) * queryOptions.PageSize + 1) to @((queryOptions.CurrentPage * queryOptions.PageSize) > ViewBag.NumberOfEntries ? ViewBag.NumberOfEntries : queryOptions.CurrentPage * queryOptions.PageSize) of @ViewBag.NumberOfEntries entries</span>
+                }
+            </div>
+        </div>
+    </div>
 </div>
