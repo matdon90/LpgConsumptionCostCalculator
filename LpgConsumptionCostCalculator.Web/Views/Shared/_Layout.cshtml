@@ -33,21 +33,19 @@
                                     <i class="fa fa-user fa-fw mr-2 text-gray-200"></i>
                                     <span class="mr-2 d-none d-lg-inline text-gray-200 small">Hello, <b>@Context.User.Identity.Name</b></span>
                                 </a>
+
                                 <!-- Dropdown - User Information -->
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <div class="dropdown-menu dropdown-menu-left shadow animated--grow-in" aria-labelledby="userDropdown">
                                     <a class="dropdown-item text-gray-800" onclick="document.getElementById('logout_form').submit();" data-toggle="modal" data-target="#logoutModal">
                                         <i class="fa fa-sign-out fa-sm fa-fw"></i>
                                         Log out
-                                    </a>
-                                    <a class="dropdown-item text-gray-800" href="/Account/Logs">
-                                        <i class="fa fa-book fa-sm fa-fw"></i>
-                                        Activity logs
                                     </a>
                                 </div>
                             </li>
                         </ul>
                         <form action="/Account/Logout" method="post" id="logout_form"></form>
                     }
+
                     else
                     {
                         <ul class="navbar-nav ml-auto">

@@ -1,33 +1,36 @@
-﻿using Microsoft.Owin.Security.Cookies;
+﻿using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Cookies;
 using Okta.AspNet;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using LpgConsumptionCostCalculator.Data.Models;
-using LpgConsumptionCostCalculator.Data.Services;
-using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace LpgConsumptionCostCalculator.Web.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly ILoginData db;
-        public AccountController(ILoginData db)
-        {
-            this.db = db;
-        }
-        public ActionResult Login()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(FormCollection form)
         {
             if (!HttpContext.User.Identity.IsAuthenticated)
             {
-                HttpContext.GetOwinContext().Authentication.Challenge(
+                var properties = new AuthenticationProperties();
+                properties.Dictionary.Add("sessionToken", form.Get("sessionToken"));
+                properties.RedirectUri = "/Home/Index";
+
+                HttpContext.GetOwinContext().Authentication.Challenge(properties,
                     OktaDefaults.MvcAuthenticationType);
+
                 return new HttpUnauthorizedResult();
             }
+
             return RedirectToAction("Index", "Home");
+
+        }
+
+        public ActionResult Login()
+        {
+            return View();
         }
 
         [HttpPost]
@@ -39,6 +42,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
                     CookieAuthenticationDefaults.AuthenticationType,
                     OktaDefaults.MvcAuthenticationType);
             }
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -46,36 +50,11 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         {
             return RedirectToAction("Index", "Home");
         }
-        [Authorize]
-        public async Task<ActionResult> Logs()
+
+        [Authorize(Users = "Mateusz Donhefner")]
+        public ActionResult Claims()
         {
-            //Get Okta user data
-            var identity = (ClaimsIdentity)User.Identity;
-            IEnumerable<Claim> claims = identity.Claims;
-            var userEmail = claims.Where(x => x.Type == "email").FirstOrDefault().Value;
-            var userOktaId = claims.Where(x => x.Type == "sub").FirstOrDefault().Value;
-            var currentLoginTime = DateTime.UtcNow.ToString("MM/dd/yyyy HH:mm:ss");
-
-            //Save data
-            var currentUserLogin = new LoginData()
-            {
-                userId = userOktaId,
-                timeStampUtc = currentLoginTime
-            };
-            await db.AddUserData(currentUserLogin);
-
-            //Retrieve data
-            var dbLogins = await db.GetUserData(currentUserLogin);
-
-            var timeStampList = new List<string>();
-
-            foreach (var login in dbLogins)
-            {
-                timeStampList.Add(login.timeStampUtc);
-            }
-            ViewBag.CurrentUser = currentUserLogin.userId;
-            ViewBag.Logins = timeStampList.OrderByDescending(d => d);
-            return View();
+            return View(HttpContext.GetOwinContext().Authentication.User.Claims);
         }
     }
 }

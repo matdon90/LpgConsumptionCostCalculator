@@ -243,6 +243,7 @@
     <Compile Include="Controllers\ChartsController.cs" />
     <Compile Include="Controllers\FuelReceiptsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoggingController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
@@ -486,9 +487,11 @@
     <Content Include="Views\FuelReceipts\NotFound.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Charts\Chart.cshtml" />
-    <Content Include="Views\Account\Logs.cshtml" />
+    <Content Include="Views\Logging\Logs.cshtml" />
     <Content Include="Views\Report\Configure.cshtml" />
     <Content Include="Views\Report\ExportPDF.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Claims.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
