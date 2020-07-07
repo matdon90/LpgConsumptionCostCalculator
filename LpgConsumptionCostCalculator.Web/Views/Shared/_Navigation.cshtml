@@ -1,85 +1,101 @@
 ﻿@using LpgConsumptionCostCalculator.Web.ViewModels
 @model IEnumerable<MenuViewModel>
 
-    <ul id="accordionSidebar" class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion">
-        <!--Sidebar logo-->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/Home/Index">
-            <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fa fa-calculator fa-lg"></i>
-            </div>
-            <div class="sidebar-brand-text mx-3">LPG CCC</div>
+<ul id="accordionSidebar" class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion">
+    <!--Sidebar logo-->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/Home/Index">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fa fa-calculator fa-lg"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">LPG CCC</div>
+    </a>
+    <!--Divider-->
+    <hr class="sidebar-divider my-0">
+    <!--Nav item - About-->
+    <li class="nav-item active">
+        <a class="nav-link" href="/Home/Index">
+            <i class="fa fa-home fa-fw"></i>
+            <span>About</span>
         </a>
-        <!--Divider-->
-        <hr class="sidebar-divider my-0">
-        <!--Nav item - About-->
-        <li class="nav-item active">
-            <a class="nav-link" href="/Home/Index">
-                <i class="fa fa-home fa-fw"></i>
-                <span>About</span>
-            </a>
-        </li>
-        <!--Divider-->
-        <hr class="sidebar-divider">
-        <!--Heading-->
-        <div class="sidebar-heading">Cars</div>
-        <!--Nav item - Cars list-->
+    </li>
+    <!--Divider-->
+    <hr class="sidebar-divider">
+    <!--Heading-->
+    <div class="sidebar-heading">Administration</div>
+    <!--Nav item - Cars list-->
+    <li class="nav-item">
+        <a class="nav-link" href="/Account/Claims">
+            <i class="fa fa-cogs"></i>
+            <span>Claims</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/Logging/Logs">
+            <i class="fa fa-address-book"></i>
+            <span>Logs</span>
+        </a>
+    </li>
+    <!--Divider-->
+    <hr class="sidebar-divider">
+    <!--Heading-->
+    <div class="sidebar-heading">Cars</div>
+    <!--Nav item - Cars list-->
+    <li class="nav-item">
+        <a class="nav-link" href="/Cars/Index">
+            <i class="fa fa-list"></i>
+            <span>List</span>
+        </a>
+    </li>
+    @if (Context.User.Identity.IsAuthenticated)
+    {
+        <!--Nav item - Add car-->
         <li class="nav-item">
-            <a class="nav-link" href="/Cars/Index">
-                <i class="fa fa-list"></i>
-                <span>List</span>
+            <a class="nav-link" href="/Cars/Create">
+                <i class="fa fa-plus-circle"></i>
+                <span>Add car</span>
             </a>
         </li>
-        @if (Context.User.Identity.IsAuthenticated)
+    }
+    <!--Divider-->
+    <hr class="sidebar-divider">
+    <!--Heading-->
+    <div class="sidebar-heading">Fuel details</div>
+    <!--Nav items with cars from car list - Collapse menu-->
+    @if (Model != null)
+    {
+        foreach (var item in Model)
         {
-            <!--Nav item - Add car-->
             <li class="nav-item">
-                <a class="nav-link" href="/Cars/Create">
-                    <i class="fa fa-plus-circle"></i>
-                    <span>Add car</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCar_@Html.DisplayFor(modelItem => item.CarId)" aria-expanded="false" aria-controls="collapseCar_@Html.DisplayFor(modelItem => item.CarId)">
+                    <i class="fa fa-automobile"></i>
+                    <span>@Html.DisplayFor(modelItem => item.CarProducer) @Html.DisplayFor(modelItem => item.CarModel)</span>
                 </a>
+                <div id="collapseCar_@Html.DisplayFor(modelItem => item.CarId)" class="collapse" aria-labelledby="headingCar" data-parent="#accordionSidebar" style="">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">@Html.DisplayFor(modelItem => item.CarProducer) @Html.DisplayFor(modelItem => item.CarModel):</h6>
+                        <a class="collapse-item" href="/FuelReceipts/Index/@Html.DisplayFor(modelItem => item.CarId)"><i class="fa fa-table"></i> Fuel receipts</a>
+                        <a class="collapse-item" href="/Charts/Chart/@Html.DisplayFor(modelItem => item.CarId)"><i class="fa fa-line-chart"></i> Graphs</a>
+                    </div>
+                </div>
             </li>
         }
-        <!--Divider-->
-        <hr class="sidebar-divider">
-        <!--Heading-->
-        <div class="sidebar-heading">Fuel details</div>
-        <!--Nav items with cars from car list - Collapse menu-->
-        @if (Model != null)
-        {
-            foreach (var item in Model)
-            {
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCar_@Html.DisplayFor(modelItem => item.CarId)" aria-expanded="false" aria-controls="collapseCar_@Html.DisplayFor(modelItem => item.CarId)">
-                        <i class="fa fa-automobile"></i>
-                        <span>@Html.DisplayFor(modelItem => item.CarProducer) @Html.DisplayFor(modelItem => item.CarModel)</span>
-                    </a>
-                    <div id="collapseCar_@Html.DisplayFor(modelItem => item.CarId)" class="collapse" aria-labelledby="headingCar" data-parent="#accordionSidebar" style="">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">@Html.DisplayFor(modelItem => item.CarProducer) @Html.DisplayFor(modelItem => item.CarModel):</h6>
-                            <a class="collapse-item" href="/FuelReceipts/Index/@Html.DisplayFor(modelItem => item.CarId)"><i class="fa fa-table"></i> Fuel receipts</a>
-                            <a class="collapse-item" href="/Charts/Chart/@Html.DisplayFor(modelItem => item.CarId)"><i class="fa fa-line-chart"></i> Graphs</a>
-                        </div>
-                    </div>
-                </li>
-            }
-        }
-        <!--Divider-->
-        <hr class="sidebar-divider">
-        <!--Heading-->
-        <div class="sidebar-heading">Extras</div>
-        <!--Nav item - Contact-->
-        <li class="nav-item">
-            <a class="nav-link" href="/Home/Contact">
-                <i class="fa fa-envelope"></i>
-                <span>Contact</span>
-            </a>
-        </li>
-        <!--Divider-->
-        <hr class="sidebar-divider d-none d-md-block">
-        <!--Sidebar toggler (sidebar)-->
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle">
-            </button>
-        </div>
-    </ul>
-
+    }
+    <!--Divider-->
+    <hr class="sidebar-divider">
+    <!--Heading-->
+    <div class="sidebar-heading">Extras</div>
+    <!--Nav item - Contact-->
+    <li class="nav-item">
+        <a class="nav-link" href="/Home/Contact">
+            <i class="fa fa-envelope"></i>
+            <span>Contact</span>
+        </a>
+    </li>
+    <!--Divider-->
+    <hr class="sidebar-divider d-none d-md-block">
+    <!--Sidebar toggler (sidebar)-->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle">
+        </button>
+    </div>
+</ul>

@@ -12,12 +12,14 @@ namespace LpgConsumptionCostCalculator.Web
 {
     public class Startup
     {
-        [System.Obsolete]
         public void Configuration(IAppBuilder app)
         {
             app.SetDefaultSignInAsAuthenticationType(CookieAuthenticationDefaults.AuthenticationType);
 
-            app.UseCookieAuthentication(new CookieAuthenticationOptions());
+            app.UseCookieAuthentication(new CookieAuthenticationOptions()
+            {
+                LoginPath = new PathString("/Account/Login"),
+            });
 
             app.UseOktaMvc(new OktaMvcOptions()
             {
@@ -26,8 +28,8 @@ namespace LpgConsumptionCostCalculator.Web
                 ClientSecret = ConfigurationManager.AppSettings["okta:ClientSecret"],
                 RedirectUri = ConfigurationManager.AppSettings["okta:RedirectUri"],
                 PostLogoutRedirectUri = ConfigurationManager.AppSettings["okta:PostLogoutRedirectUri"],
-                GetClaimsFromUserInfoEndpoint = true,
                 Scope = new List<string> { "openid", "profile", "email" },
+                LoginMode = LoginMode.SelfHosted
             });
         }
     }
