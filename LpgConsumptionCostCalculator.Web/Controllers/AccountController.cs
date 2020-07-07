@@ -50,11 +50,5 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         {
             return RedirectToAction("Index", "Home");
         }
-
-        [Authorize(Users = "Mateusz Donhefner")]
-        public ActionResult Claims()
-        {
-            return View(HttpContext.GetOwinContext().Authentication.User.Claims);
-        }
     }
 }

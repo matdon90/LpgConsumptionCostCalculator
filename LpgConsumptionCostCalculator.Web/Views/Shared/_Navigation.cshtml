@@ -18,23 +18,20 @@
             <span>About</span>
         </a>
     </li>
-    <!--Divider-->
-    <hr class="sidebar-divider">
-    <!--Heading-->
-    <div class="sidebar-heading">Administration</div>
-    <!--Nav item - Cars list-->
-    <li class="nav-item">
-        <a class="nav-link" href="/Account/Claims">
-            <i class="fa fa-cogs"></i>
-            <span>Claims</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/Logging/Logs">
-            <i class="fa fa-address-book"></i>
-            <span>Logs</span>
-        </a>
-    </li>
+    @if (Context.User.Identity.Name == "Mateusz Donhefner")
+    {
+        <!--Divider-->
+        <hr class="sidebar-divider">
+        <!--Heading-->
+        <div class="sidebar-heading">Administration</div>
+        <!--Nav item - Logged activity-->
+        <li class="nav-item">
+            <a class="nav-link" href="/Logging/Logs">
+                <i class="fa fa-cogs"></i>
+                <span>Logs</span>
+            </a>
+        </li>
+    }
     <!--Divider-->
     <hr class="sidebar-divider">
     <!--Heading-->

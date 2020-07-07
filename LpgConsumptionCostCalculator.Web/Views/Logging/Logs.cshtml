@@ -1,25 +1,48 @@
-﻿@{
-    ViewBag.Title = "User logs";
+﻿@model IEnumerable<LpgConsumptionCostCalculator.Data.Models.LoginData>
+@using LpgConsumptionCostCalculator.Data.Models
+@{
+    ViewBag.Title = "Logs";
 }
 
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">@ViewBag.Title</h1>
-<p class="mb-4">User logs.</p>
 
-<!--Page Content-->
-
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-gray-800">Logins for user: @ViewBag.CurrentUser</h6>
-    </div>
-    <div class="card-body">
-        <table class="table table-striped">
-            @foreach (var timestamp in ViewBag.Logins)
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Action date
+                </th>
+                <th>
+                    User
+                </th>
+                <th>
+                    Log message
+                </th>
+                <th>
+                    Action duration [ms]
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
             {
                 <tr>
-                    <td>@timestamp</td>
+                    <td>
+                        <b>@Html.DisplayFor(modelItem => item.logTime)</b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.userName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.logMessage)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.requestDuration)
+                    </td>
                 </tr>
             }
-        </table>
-    </div>
+        </tbody>
+    </table>
 </div>
