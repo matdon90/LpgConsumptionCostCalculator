@@ -1,4 +1,6 @@
-﻿namespace LpgConsumptionCostCalculator.Data.Models
+﻿using System.ComponentModel;
+
+namespace LpgConsumptionCostCalculator.Data.Models
 {
     public enum TypeOfFuel
     {

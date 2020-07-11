@@ -1,7 +1,7 @@
 ﻿@model LpgConsumptionCostCalculator.Web.ViewModels.FuelReceiptViewModel
 
 
-<h1 class="h4 mb-2 text-gray-800 text-center">Receipt (@Html.DisplayFor(model => model.PetrolStationName) - @Html.ValueFor(model => model.RefuelingDate, "{0:yyyy/MM/dd}")) details</h1>
+<h1 class="h4 mb-2 text-gray-800 text-center">@RFuelReceipts.DetailsReceipt (@Html.DisplayFor(model => model.PetrolStationName) - @Html.ValueFor(model => model.RefuelingDate, "{0:yyyy/MM/dd}")) @RFuelReceipts.DetailsDetails</h1>
 <div class="text-center">
     <hr />
 
@@ -117,10 +117,10 @@
 <p class="text-center">
     @if (Context.User.Identity.IsAuthenticated)
     {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-outline-dark btn-sm", @style = "width: 60px" })
-        <input class="btn btn-outline-danger btn-sm" style="width : 60px" type="button" value="Delete" id="@Model.Id" onclick="FuelReceiptDeleteAsModal(this.id)">
+        @Html.ActionLink(RFuelReceipts.DetailsEdit, "Edit", new { id = Model.Id }, new { @class = "btn btn-outline-dark btn-sm", @style = "width: 70px" })
+        <input class="btn btn-outline-danger btn-sm" style="width : 70px" type="button" value="@RFuelReceipts.DetailsDelete" id="@Model.Id" onclick="FuelReceiptDeleteAsModal(this.id)">
     }
-    <button type="button" class="btn btn-outline-dark btn-sm" style="width : 60px" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-outline-dark btn-sm" style="width : 70px" data-dismiss="modal">@RFuelReceipts.DetailsClose</button>
 </p>
 
 <!-- Modal -->

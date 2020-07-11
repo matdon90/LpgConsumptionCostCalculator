@@ -10,7 +10,7 @@ using System;
 
 namespace LpgConsumptionCostCalculator.Web.Controllers
 {
-    public class LoggingController : Controller
+    public class LoggingController : BaseController
     {
         private readonly ILoginData _db;
 

@@ -1,10 +1,9 @@
 ﻿using LpgConsumptionCostCalculator.Data.Models;
+using LpgConsumptionCostCalculator.Web.Resources;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Mvc.Html;
 
 namespace LpgConsumptionCostCalculator.Web.Extensions
 {
@@ -78,26 +77,26 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
         private static string BuildPreviousLink(UrlHelper urlHelper, QueryOptions queryOptions, string actionName)
         {
             return string.Format(
-                "<a class=\"page-link\" href=\"{0}\">Previous</a>",
+                "<a class=\"page-link\" href=\"{0}\">{1}</a>",
                 urlHelper.Action(actionName, new
                 {
                     SortOrder = queryOptions.SortOrder,
                     SortField = queryOptions.SortField,
                     CurrentPage = queryOptions.CurrentPage - 1,
                     PageSize = queryOptions.PageSize
-                }));
+                }), RGlobal.Previous);
         }
         private static string BuildNextLink(UrlHelper urlHelper, QueryOptions queryOptions, string actionName)
         {
             return string.Format(
-                "<a class=\"page-link\" href=\"{0}\">Next</a>",
+                "<a class=\"page-link\" href=\"{0}\">{1}</a>",
                 urlHelper.Action(actionName, new
                 {
                     SortOrder = queryOptions.SortOrder,
                     SortField = queryOptions.SortField,
                     CurrentPage = queryOptions.CurrentPage + 1,
                     PageSize = queryOptions.PageSize
-                }));
+                }), RGlobal.Next);
         }
 
         private static string BuildPageNumbers(UrlHelper urlHelper, QueryOptions queryOptions, string actionName)
@@ -127,7 +126,7 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
         {
             var urlHelper = new UrlHelper(htmlHelper.ViewContext.RequestContext);
             return new MvcHtmlString(string.Format(
-                "       <div>Show " +
+                "       <div>{5} " +
                 "           <button class=\"btn btn-light btn-sm dropdown-toggle\" data-toggle=\"dropdown\">" +
                 "                <span class=\"page-size\">" +
                 "                   {4}" + 
@@ -140,7 +139,7 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
                 "               <a class=\"dropdown-item\" href=\"{1}\">25</a>" +
                 "               <a class=\"dropdown-item\" href=\"{2}\">50</a>" +
                 "               <a class=\"dropdown-item\" href=\"{3}\">100</a>" +
-                "           </div> entries" +
+                "           </div> {6}" +
                 "       </div>"
                 ,
                 urlHelper.Action(actionName, new
@@ -171,7 +170,9 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
                     CurrentPage = queryOptions.CurrentPage,
                     PageSize = 100
                 }),
-                queryOptions.PageSize
+                queryOptions.PageSize,
+                RGlobal.Show,
+                RGlobal.Entries
             ));
         }
         public static MvcHtmlString BuildChartTimeSelection(this HtmlHelper htmlHelper, ChartQueryOptions chartQueryOptions, string actionName)
@@ -181,14 +182,14 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
                 "<div class=\"dropdown\">" +
                 "   <a class=\"dropdown-toggle d-sm-inline-block btn btn-sm btn-secondary shadow-sm\" " +
                 "   style=\"width: 170px\" href=\"#\" role=\"button\" id=\"dropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">" +
-                "       <i class=\"fa fa-clock-o fa-sm text-white-50\"></i> Select time range" +
+                "       <i class=\"fa fa-clock-o fa-sm text-white-50\"></i> {10}" +
                 "   </a>" + 
                 "   <div class=\"dropdown-menu dropdown-menu-right shadow animated--fade-in\" aria-labelledby=\"dropdownMenuLink\">" +
-                "       <a class=\"dropdown-item\" href=\"{0}\">Last month</a>" +
-                "       <a class=\"dropdown-item\" href=\"{1}\">Last 3 months</a>" +
-                "       <a class=\"dropdown-item\" href=\"{2}\">Last 6 months</a>" +
-                "       <a class=\"dropdown-item\" href=\"{3}\">Last year</a>" +
-                "       <a class=\"dropdown-item\" href=\"{4}\">All</a>" +
+                "       <a class=\"dropdown-item\" href=\"{0}\">{5}</a>" +
+                "       <a class=\"dropdown-item\" href=\"{1}\">{6}</a>" +
+                "       <a class=\"dropdown-item\" href=\"{2}\">{7}</a>" +
+                "       <a class=\"dropdown-item\" href=\"{3}\">{8}</a>" +
+                "       <a class=\"dropdown-item\" href=\"{4}\">{9}</a>" +
                 "   </div>" +
                 "</div>",
                 urlHelper.Action(actionName, new
@@ -210,7 +211,13 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
                 urlHelper.Action(actionName, new
                 {
                     startingTimeRange = DateTime.MinValue
-                })
+                }),
+                RGlobal.LastMonth,
+                RGlobal.Last3Months,
+                RGlobal.Last6Months,
+                RGlobal.LastYear,
+                RGlobal.All,
+                RGlobal.SelectTimeRange
             ));
         }
 

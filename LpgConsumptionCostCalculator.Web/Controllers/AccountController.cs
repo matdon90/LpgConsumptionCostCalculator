@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace LpgConsumptionCostCalculator.Web.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         [HttpPost]
         [ValidateAntiForgeryToken]

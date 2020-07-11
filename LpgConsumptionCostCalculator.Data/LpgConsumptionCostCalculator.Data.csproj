@@ -140,7 +140,6 @@
     <Compile Include="Services\ICarData.cs" />
     <Compile Include="Services\IFuelReceiptData.cs" />
     <Compile Include="Services\ILoginData.cs" />
-    <Compile Include="Validations\CheckCarProductionDate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

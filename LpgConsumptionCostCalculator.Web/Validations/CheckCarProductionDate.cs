@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using LpgConsumptionCostCalculator.Web.Resources;
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace LpgConsumptionCostCalculator.Data.Validations
+namespace LpgConsumptionCostCalculator.Web.Validations
 {
     public class CheckCarProductionDate : ValidationAttribute
     {
@@ -16,11 +13,11 @@ namespace LpgConsumptionCostCalculator.Data.Validations
         {
             if ((int)date > currentYear)
             {
-                return new ValidationResult($"Production date cannot be from future, bigger than {currentYear}.");
+                return new ValidationResult(RError.CarProductionFuture + $" {currentYear}.");
             }
             if ((int)date < firstCarProductionDate)
             {
-                return new ValidationResult($"Production date cannot be smaller than {firstCarProductionDate}.");
+                return new ValidationResult(RError.CarProductionPast + $" { firstCarProductionDate}.");
             }
             return ValidationResult.Success;
         }
