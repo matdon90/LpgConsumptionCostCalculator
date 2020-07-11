@@ -23,7 +23,8 @@ namespace LpgConsumptionCostCalculator.Web
                 .Include(
                       "~/Content/bootstrap.min.css",
                       "~/Content/site.css",
-                      "~/Content/sb-admin-2.css")
+                      "~/Content/sb-admin-2.css",
+                      "~/Content/site.css")
                 .Include(
                       "~/Content/font-awesome/css/font-awesome.css", new CssRewriteUrlTransform()));
 
@@ -60,6 +61,10 @@ namespace LpgConsumptionCostCalculator.Web
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate.js",
                         "~/Scripts/jquery.validate.unobtrusive.min.js"));
+
+            //Bundle for MultiLanguage
+            bundles.Add(new ScriptBundle("~/bundles/multiLang").Include(
+                "~/Scripts/multiLang.js"));
         }
     }
 }

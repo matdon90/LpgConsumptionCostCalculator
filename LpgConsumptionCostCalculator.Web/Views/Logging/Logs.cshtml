@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<LpgConsumptionCostCalculator.Data.Models.LoginData>
 @using LpgConsumptionCostCalculator.Data.Models
 @{
-    ViewBag.Title = "User activity logs";
+    ViewBag.Title = RLogging.LogsTitle;
     var queryOptions = (QueryOptions)ViewBag.QueryOptions;
 }
 
@@ -13,14 +13,14 @@
     <div class="col-md-12 col-sm-12 col-xl-12 col-lg-12">
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-gray-800">Search</h6>
+                <h6 class="m-0 font-weight-bold text-gray-800">@RLogging.LogsSearch</h6>
             </div>
             <div class="card-body">
                 @using (Html.BeginForm("Logs", "Logging", FormMethod.Get))
                 {
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" name="searchString" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" name="searchString" class="form-control bg-light border-0 small" placeholder="@RLogging.LogsSearchPlaceholder" aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-dark" value="Search" id="btnSubmit" type="submit">
                                     <i class="fa fa-search"></i>
@@ -40,7 +40,7 @@
     <div class="col-xl-12 col-lg-12">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-gray-800">Activity logs list</h6>
+                <h6 class="m-0 font-weight-bold text-gray-800">@RLogging.LogsTableTitle</h6>
             </div>
             <div class="card-body">
                 @Html.BuildPaginationDetails(queryOptions, "Logs")
@@ -50,16 +50,16 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.BuildSortableLink("Action date", "Logs", "LogTime", queryOptions)
+                                    @Html.BuildSortableLink(@RLogging.LogsActionDate, "Logs", "LogTime", queryOptions)
                                 </th>
                                 <th>
-                                    @Html.BuildSortableLink("User", "Logs", "UserName", queryOptions)
+                                    @Html.BuildSortableLink(@RLogging.LogsUser, "Logs", "UserName", queryOptions)
                                 </th>
                                 <th>
-                                    @Html.BuildSortableLink("Log message", "Logs", "LogMessage", queryOptions)
+                                    @Html.BuildSortableLink(@RLogging.LogsMessage, "Logs", "LogMessage", queryOptions)
                                 </th>
                                 <th>
-                                    @Html.BuildSortableLink("Action duration [ms]", "Logs", "RequestDuration", queryOptions)
+                                    @Html.BuildSortableLink(@RLogging.LogsActionDuration, "Logs", "RequestDuration", queryOptions)
                                 </th>
                             </tr>
                         </thead>
@@ -87,7 +87,7 @@
                 @if (queryOptions.TotalPages > 1)
                 {
                     @Html.BuildNextPreviousLinks(queryOptions, "Index")
-                    <span>Showing @((queryOptions.CurrentPage - 1) * queryOptions.PageSize + 1) to @((queryOptions.CurrentPage * queryOptions.PageSize) > ViewBag.NumberOfEntries ? ViewBag.NumberOfEntries : queryOptions.CurrentPage * queryOptions.PageSize) of @ViewBag.NumberOfEntries entries</span>
+            <span>@RLogging.LogsShowing @((queryOptions.CurrentPage - 1) * queryOptions.PageSize + 1) @RLogging.LogsTo @((queryOptions.CurrentPage * queryOptions.PageSize) > ViewBag.NumberOfEntries ? ViewBag.NumberOfEntries : queryOptions.CurrentPage * queryOptions.PageSize) @RLogging.LogsOf @ViewBag.NumberOfEntries @RLogging.LogsEntries</span>
                 }
             </div>
         </div>

@@ -15,7 +15,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="/Home/Index">
             <i class="fa fa-home fa-fw"></i>
-            <span>About</span>
+            <span>@RNavigation.About</span>
         </a>
     </li>
     @if (Context.User.Identity.Name == "Mateusz Donhefner")
@@ -23,24 +23,24 @@
         <!--Divider-->
         <hr class="sidebar-divider">
         <!--Heading-->
-        <div class="sidebar-heading">Administration</div>
+        <div class="sidebar-heading">@RNavigation.Administration</div>
         <!--Nav item - Logged activity-->
         <li class="nav-item">
             <a class="nav-link" href="/Logging/Logs">
                 <i class="fa fa-cogs"></i>
-                <span>Logs</span>
+                <span>@RNavigation.Logs</span>
             </a>
         </li>
     }
     <!--Divider-->
     <hr class="sidebar-divider">
     <!--Heading-->
-    <div class="sidebar-heading">Cars</div>
+    <div class="sidebar-heading">@RNavigation.Cars</div>
     <!--Nav item - Cars list-->
     <li class="nav-item">
         <a class="nav-link" href="/Cars/Index">
             <i class="fa fa-list"></i>
-            <span>List</span>
+            <span>@RNavigation.List</span>
         </a>
     </li>
     @if (Context.User.Identity.IsAuthenticated)
@@ -49,14 +49,14 @@
         <li class="nav-item">
             <a class="nav-link" href="/Cars/Create">
                 <i class="fa fa-plus-circle"></i>
-                <span>Add car</span>
+                <span>@RNavigation.AddCar</span>
             </a>
         </li>
     }
     <!--Divider-->
     <hr class="sidebar-divider">
     <!--Heading-->
-    <div class="sidebar-heading">Fuel details</div>
+    <div class="sidebar-heading">@RNavigation.FuelDetails</div>
     <!--Nav items with cars from car list - Collapse menu-->
     @if (Model != null)
     {
@@ -70,8 +70,8 @@
                 <div id="collapseCar_@Html.DisplayFor(modelItem => item.CarId)" class="collapse" aria-labelledby="headingCar" data-parent="#accordionSidebar" style="">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">@Html.DisplayFor(modelItem => item.CarProducer) @Html.DisplayFor(modelItem => item.CarModel):</h6>
-                        <a class="collapse-item" href="/FuelReceipts/Index/@Html.DisplayFor(modelItem => item.CarId)"><i class="fa fa-table"></i> Fuel receipts</a>
-                        <a class="collapse-item" href="/Charts/Chart/@Html.DisplayFor(modelItem => item.CarId)"><i class="fa fa-line-chart"></i> Graphs</a>
+                        <a class="collapse-item" href="/FuelReceipts/Index/@Html.DisplayFor(modelItem => item.CarId)"><i class="fa fa-table"></i> @RNavigation.FuelReceipts</a>
+                        <a class="collapse-item" href="/Charts/Chart/@Html.DisplayFor(modelItem => item.CarId)"><i class="fa fa-line-chart"></i> @RNavigation.Graphs</a>
                     </div>
                 </div>
             </li>
@@ -80,12 +80,12 @@
     <!--Divider-->
     <hr class="sidebar-divider">
     <!--Heading-->
-    <div class="sidebar-heading">Extras</div>
+    <div class="sidebar-heading">@RNavigation.Extras</div>
     <!--Nav item - Contact-->
     <li class="nav-item">
         <a class="nav-link" href="/Home/Contact">
             <i class="fa fa-envelope"></i>
-            <span>Contact</span>
+            <span>@RNavigation.Contact</span>
         </a>
     </li>
     <!--Divider-->

@@ -36,28 +36,28 @@
     {
 
         <div class="text-center text-gray-800">
-            <h1 class="h3 mb-3 text-gray-800">REPORT FOR @Html.DisplayFor(model => model.First().CarData)</h1>
-            <h4 class="h6 mb-1 text-gray-800">GENERATED: @DateTime.Now.ToString()</h4>
-            <h4 class="h6 mb-5 text-gray-800">AUTHOR: @Html.DisplayFor(model => model.First().ReportAuthor)</h4>
+            <h1 class="h3 mb-3 text-gray-800">@RReport.PdfReport @Html.DisplayFor(model => model.First().CarData)</h1>
+            <h4 class="h6 mb-1 text-gray-800">@RReport.PdfGenerated: @DateTime.Now.ToString()</h4>
+            <h4 class="h6 mb-5 text-gray-800">@RReport.PdfAuthor: @Html.DisplayFor(model => model.First().ReportAuthor)</h4>
             <!-- Summary -->
             <div class="card mb-4">
                 <div class="card-header font-weight-bold">
-                    <h2 class="h4 mb-1">SUMMARY</h2>
+                    <h2 class="h4 mb-1">@RReport.PdfSummary</h2>
                 </div>
                 <div class="card-body mb-2">
-                    <h3 class="h6">AVERAGE LPG CONSUMPTION: <b>@Html.DisplayFor(model => model.First().AverageFuelCons) l</b></h3>
-                    <h3 class="h6">MINIMAL LPG CONSUMPTION: <b>@Html.DisplayFor(model => model.First().MinFuelCons) l</b></h3>
-                    <h3 class="h6">MAXIMAL LPG CONSUMPTION: <b>@Html.DisplayFor(model => model.First().MaxFuelCons) l</b></h3>
-                    <h3 class="h6">AVERAGE PRICE (for 100 km): <b>@Html.DisplayFor(model => model.First().AvgPrice) PLN</b></h3>
-                    <h3 class="h6">TOTAL PRICE FOR LPG: <b>@Html.DisplayFor(model => model.First().TotalPrice) PLN</b></h3>
-                    <h3 class="h6">TOTAL DISTANCE ON LPG: <b>@Html.DisplayFor(model => model.First().TotalDistance) km</b></h3>
+                    <h3 class="h6">@RReport.PdfAvgCons: <b>@Html.DisplayFor(model => model.First().AverageFuelCons) l</b></h3>
+                    <h3 class="h6">@RReport.PdfMinCons: <b>@Html.DisplayFor(model => model.First().MinFuelCons) l</b></h3>
+                    <h3 class="h6">@RReport.PdfMaxCons: <b>@Html.DisplayFor(model => model.First().MaxFuelCons) l</b></h3>
+                    <h3 class="h6">@RReport.PdfAvgPrice: <b>@Html.DisplayFor(model => model.First().AvgPrice) PLN</b></h3>
+                    <h3 class="h6">@RReport.PdfTotPrice: <b>@Html.DisplayFor(model => model.First().TotalPrice) PLN</b></h3>
+                    <h3 class="h6">@RReport.PdfTotDist: <b>@Html.DisplayFor(model => model.First().TotalDistance) km</b></h3>
                 </div>
             </div>
         </div>
         <!-- Receipts list -->
         <div class="card mb-4">
             <div class="card-header font-weight-bold">
-                <h2 class="h4 mb-1 text-gray-800 text-center">FUEL RECEIPTS LIST</h2>
+                <h2 class="h4 mb-1 text-gray-800 text-center">@RReport.PdfFuelRecList</h2>
             </div>
             <div class="card-body mb-1">
                 <div class="table text-gray-800">
@@ -65,28 +65,28 @@
                         <thead style="display: table-row-group">
                             <tr>
                                 <th>
-                                    DATE
+                                    @RReport.PdfDate
                                 </th>
                                 <th>
-                                    PETROL STATION NAME
+                                    @RReport.PdfPetrolStationName
                                 </th>
                                 <th>
-                                    FUEL TYPE
+                                    @RReport.PdfFuelType
                                 </th>
                                 <th>
-                                    FUEL PRICE
+                                    @RReport.PdfFuelPrice
                                 </th>
                                 <th>
-                                    FUEL AMOUNT
+                                    @RReport.PdfFuelAmount
                                 </th>
                                 <th>
-                                    DISTANCE
+                                    @RReport.PdfDistance
                                 </th>
                                 <th>
-                                    CONSUMPTION FOR 100KM
+                                    @RReport.PdfCons
                                 </th>
                                 <th>
-                                    PRICE FOR 100KM
+                                    @RReport.PdfPrice
                                 </th>
                             </tr>
                         </thead>
@@ -127,7 +127,7 @@
         </div>
         <div class="reportCard card mb-4">
             <div class="card-header font-weight-bold">
-                <h2 class="h4 mb-1 text-gray-800 text-center">FUEL CHART</h2>
+                <h2 class="h4 mb-1 text-gray-800 text-center">@RReport.PdfFuelChart</h2>
             </div>
             <div class="card-body text-center">
                 <div class="reportGraph align-content-center"><canvas id="canvas"></canvas></div>
@@ -159,7 +159,7 @@
                 document.getElementById("canvas"), {
                     "responsive": false,
                     "type":"line",
-                    "data":{"labels":lpgDateLabels,"datasets":[{"label":"LPG consumption for 100 km","data":lpgConsumptionData,"fill":false,"borderColor":"rgb(75, 192, 192)","lineTension":0.1}]},
+                    "data":{"labels":lpgDateLabels,"datasets":[{"label":"@RReport.PdfLpgCons","data":lpgConsumptionData,"fill":false,"borderColor":"rgb(75, 192, 192)","lineTension":0.1}]},
                     "options":{}
                 }
             );

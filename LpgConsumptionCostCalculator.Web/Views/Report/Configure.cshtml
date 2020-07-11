@@ -7,7 +7,7 @@
     <form>
         <!-- Page Heading -->
         <div class="text-center mb-3">
-            <h1 class="h3 mb-2 text-gray-800">Report for @Html.DisplayFor(model => model.CarData)</h1>
+            <h1 class="h3 mb-2 text-gray-800">@RReport.ReportTitle @Html.DisplayFor(model => model.CarData)</h1>
         </div>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.CarId)
@@ -17,7 +17,7 @@
             <div class="col-xl-12 col-lg-12">
                 <div class="card shadow mb-3">
                     <div class="card-header text-center">
-                        <h3 class="h5 mb-2 text-gray-800">Select date range for a report</h3>
+                        <h3 class="h5 mb-2 text-gray-800">@RReport.ReportDataRange</h3>
                     </div>
                     <div class="card-body">
                         <div class="form-group row align-items-center text-center">
@@ -47,12 +47,12 @@
                     <div class="card-body">
                         <div class="text-center">
                             <button type="submit" formaction=@Url.Action("ExportCSV") formmethod="post" style="width: 120px" class="btn btn-outline-dark btn-sm">
-                                <i class="fa fa-file-excel-o fa-sm"></i> Export to CSV
+                                <i class="fa fa-file-excel-o fa-sm"></i> @RReport.ReportExportCSV
                             </button>
                             <button type="submit" formaction=@Url.Action("ExportPDF") formmethod="post" style="width: 120px" class="btn btn-outline-dark btn-sm">
-                                <i class="fa fa-file-pdf-o fa-sm"></i> Export to PDF
+                                <i class="fa fa-file-pdf-o fa-sm"></i> @RReport.ReportExportPDF
                             </button>
-                            <button type="button" class="btn btn-outline-dark btn-sm" style="width : 120px" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-outline-dark btn-sm" style="width : 120px" data-dismiss="modal">@RReport.ReportClose</button>
                         </div>
                     </div>
                 </div>

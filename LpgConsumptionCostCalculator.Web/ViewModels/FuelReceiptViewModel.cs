@@ -1,9 +1,7 @@
 ﻿using LpgConsumptionCostCalculator.Data.Models;
+using LpgConsumptionCostCalculator.Web.Resources;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace LpgConsumptionCostCalculator.Web.ViewModels
 {
@@ -11,34 +9,35 @@ namespace LpgConsumptionCostCalculator.Web.ViewModels
     {
         public int Id { get; set; }
         [Required]
-        [Display(Name = "Car ID")]
+        [Display(Name = "ReceiptCarId", ResourceType = typeof(RModels))]
         public int FueledCarId { get; set; }
-        [Required(ErrorMessage ="Please enter date of refueling.")]
-        [Display(Name = "Refueling date")]
+        [Required(ErrorMessageResourceName = "ReceiptDate", ErrorMessageResourceType = typeof(RError))]
+        [Display(Name = "ReceiptRefuellingDate", ResourceType = typeof(RModels))]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime RefuelingDate { get; set; }
-        [Display(Name = "Petrol station name")]
+        [Display(Name = "ReceiptPetrolStationName", ResourceType = typeof(RModels))]
         public string PetrolStationName { get; set; }
-        [Required(ErrorMessage = "Please enter fuel type.")]
-        [Display(Name = "Fuel type")]
+        [Required(ErrorMessageResourceName = "ReceiptType", ErrorMessageResourceType = typeof(RError))]
+        [Display(Name = "ReceiptFuelType", ResourceType = typeof(RModels))]
         public TypeOfFuel FuelType { get; set; }
-        [Required(ErrorMessage = "Please enter fuel price.")]
-        [Display(Name = "Fuel price")]
+        [Required(ErrorMessageResourceName = "ReceiptPrice", ErrorMessageResourceType = typeof(RError))]
+        [Display(Name = "ReceiptFuelPrice", ResourceType = typeof(RModels))]
         public decimal FuelPrice { get; set; }
-        [Required(ErrorMessage = "Please enter fuel amount.")]
-        [Display(Name = "Fuel amount")]
+        [Required(ErrorMessageResourceName = "ReceiptAmount", ErrorMessageResourceType = typeof(RError))]
+        [Display(Name = "ReceiptFuelAmount", ResourceType = typeof(RModels))]
         public decimal FuelAmount { get; set; }
-        [Required(ErrorMessage = "Please enter distance from last refueling.")]
-        [Display(Name = "Distance on the tank")]
+        [Required(ErrorMessageResourceName = "ReceiptDistance", ErrorMessageResourceType = typeof(RError))]
+        [Display(Name = "ReceiptDistanceOnTank", ResourceType = typeof(RModels))]
         public decimal DistanceFromLastRefueling { get; set; }
-        [MaxLength(255)]
+        [Display(Name = "ReceiptComment", ResourceType = typeof(RModels))]
+        [MaxLength(255,ErrorMessageResourceName = "ReceiptComment", ErrorMessageResourceType = typeof(RError))]
         public string Comment { get; set; }
-        [Display(Name = "Consumption/100 km")]
+        [Display(Name = "ReceiptConsumption", ResourceType = typeof(RModels))]
         public decimal FuelConsumption
         {
             get { return (FuelAmount / DistanceFromLastRefueling * 100); }
         }
-        [Display(Name = "Total price/100 km")]
+        [Display(Name = "ReceiptTotalPrice", ResourceType = typeof(RModels))]
         public decimal PriceFor100km
         {
             get { return FuelPrice * (FuelAmount / DistanceFromLastRefueling * 100); }
