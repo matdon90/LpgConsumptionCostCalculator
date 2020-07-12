@@ -16,6 +16,11 @@ namespace LpgConsumptionCostCalculator.Web.Infrastructure
                 #endregion
 
                 #region Car
+                cfg.CreateMap<Car, CarViewModel>();
+                cfg.CreateMap<CarViewModel, Car>();
+                #endregion
+
+                #region Menu
                 cfg.CreateMap<Car, MenuViewModel>()
                 .ForMember(dest=>dest.CarId, opt=>opt.MapFrom(src =>src.Id));
                 #endregion

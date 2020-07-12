@@ -2,13 +2,13 @@
 @using LpgConsumptionCostCalculator.Data.Models
 @{
     var chartQueryOptions = (ChartQueryOptions)ViewBag.chartQueryOptions;
-    string startDate = chartQueryOptions.startingTimeRange != DateTime.MinValue ? "Starting date for data - " + @ViewBag.startingdate.ToString("dd/MM/yyyy") : "All data";
+    string startDate = chartQueryOptions.startingTimeRange != DateTime.MinValue ? RChart.ChartStartDate + @ViewBag.startingdate.ToString("dd/MM/yyyy") : RChart.ChartAllData;
 }
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-1">
-    <h1 class="h3 mb-2 text-gray-800">Fuel graphs for @Model.carData</h1>
+    <h1 class="h3 mb-2 text-gray-800">@RChart.ChartTitle @Model.carData</h1>
     <span class="d-sm-inline-block btn btn-sm btn-secondary shadow-sm" style="width: 170px" type="button" value="Configure" id="@Model.carId" onclick="ReportConfiguratorAsModal(this.id)">
-        <i class="fa fa-download fa-sm text-white-50"></i> Generate report
+        <i class="fa fa-download fa-sm text-white-50"></i> @RChart.ChartGenerateReport
     </span>
     
 </div>
@@ -26,7 +26,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center text-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Average LPG consumption</div>
+                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">@RChart.ChartAvgCons</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.averageFuelCons l</div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center text-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Minimal LPG consumption</div>
+                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">@RChart.ChartMinCons</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.minFuelCons l</div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center text-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Maximal LPG consumption</div>
+                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">@RChart.ChartMaxCons</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.maxFuelCons l</div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center text-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Average price (for 100 km)</div>
+                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">@RChart.ChartAvgPrice</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.avgPrice PLN</div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center text-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Total price for LPG</div>
+                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">@RChart.ChartTotalPrice</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.totalPrice PLN</div>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center text-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">Total distance on LPG</div>
+                        <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">@RChart.ChartTotalDist</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.totalDistance km</div>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
 <div class="card shadow mb-4">
     <!-- Card Header -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-gray-800">Fuel consumption and price graph</h6>
+        <h6 class="m-0 font-weight-bold text-gray-800">@RChart.ChartGraphTitle</h6>
     </div>
     <!-- Card Body -->
     <div class="card-body">
@@ -170,7 +170,7 @@
                         labels: lpgDateLabels,
                         datasets: [
                             {
-                                label: "Consumption",
+                                label: "@RChart.ChartLabelCons",
                                 borderColor: 'rgb(255, 99, 132)',
                                 backgroundColor: 'rgb(255, 99, 132)',
                                 fill: false,
@@ -178,7 +178,7 @@
                                 yAxisID: "y-axis-1",
                             },
                             {
-                                label: "Price",
+                                label: "@RChart.ChartLabelPrice",
                                 borderColor: 'rgb(54, 162, 235)',
                                 backgroundColor: 'rgb(54, 162, 235)',
                                 fill: false,
@@ -191,7 +191,7 @@
                     labels: petrolDateLabels,
                     datasets: [
                         {
-                            label: "Consumption",
+                            label: "@RChart.ChartLabelCons",
                             borderColor: 'rgb(255, 99, 132)',
                             backgroundColor: 'rgb(255, 99, 132)',
                             fill: false,
@@ -199,7 +199,7 @@
                             yAxisID: "y-axis-1"
                         },
                         {
-                            label: "Price",
+                            label: "@RChart.ChartLabelPrice",
                             borderColor: 'rgb(54, 162, 235)',
                             backgroundColor: 'rgb(54, 162, 235)',
                             fill: false,
@@ -218,13 +218,13 @@
                 stacked: false,
                 title: {
                 display: true,
-                text: 'LPG consumption and average price for 100 km'
+                    text: '@RChart.ChartTextLpgConsPrice'
                 },
                 scales: {
                     xAxes: [{
 						scaleLabel: {
 							display: true,
-							labelString: 'Refuelling date'
+							labelString: '@RChart.ChartLabelDate'
 						}
 					}],
                     yAxes: [{
@@ -239,7 +239,7 @@
                         scaleLabel:
                         {
                             display: true,
-                            labelString: "litres"
+                            labelString: "@RChart.ChartLabelLitres"
                         }
                     },
                     {
@@ -270,13 +270,13 @@
                 stacked: false,
                 title: {
                 display: true,
-                text: 'Petrol consumption and average price for 100 km'
+                text: '@RChart.ChartTextPetrolConsPrice'
                 },
                 scales: {
                     xAxes: [{
 						scaleLabel: {
 							display: true,
-							labelString: 'Refuelling date'
+							labelString: '@RChart.ChartLabelDate'
 						}
 					}],
                     yAxes: [{
@@ -291,7 +291,7 @@
                         scaleLabel:
                         {
                             display: true,
-                            labelString: "litres"
+                            labelString: "@RChart.ChartLabelLitres"
                         }
                     },
 {
@@ -320,7 +320,7 @@
                         labels: lpgDateLabels,
                         datasets: [
                             {
-                                label: "Consumption",
+                                label: "@RChart.ChartLabelCons",
                                 borderColor: 'rgb(255, 99, 132)',
                                 backgroundColor: 'rgb(255, 99, 132)',
                                 fill: false,
@@ -328,7 +328,7 @@
                                 yAxisID: "y-axis-1",
                             },
                             {
-                                label: "Price",
+                                label: "@RChart.ChartLabelPrice",
                                 borderColor: 'rgb(54, 162, 235)',
                                 backgroundColor: 'rgb(54, 162, 235)',
                                 fill: false,
@@ -341,7 +341,7 @@
                     labels: dieselDateLabels,
                     datasets: [
                         {
-                            label: "Consumption",
+                            label: "@RChart.ChartLabelCons",
                             borderColor: 'rgb(255, 99, 132)',
                             backgroundColor: 'rgb(255, 99, 132)',
                             fill: false,
@@ -349,7 +349,7 @@
                             yAxisID: "y-axis-1"
                         },
                         {
-                            label: "Price",
+                            label: "@RChart.ChartLabelPrice",
                             borderColor: 'rgb(54, 162, 235)',
                             backgroundColor: 'rgb(54, 162, 235)',
                             fill: false,
@@ -368,13 +368,13 @@
                 stacked: false,
                 title: {
                 display: true,
-                text: 'LPG consumption and average price for 100 km'
+                text: '@RChart.ChartTextLpgConsPrice'
                 },
                 scales: {
                     xAxes: [{
 						scaleLabel: {
 							display: true,
-							labelString: 'Refuelling date'
+							labelString: '@RChart.ChartLabelDate'
 						}
 					}],
                     yAxes: [{
@@ -389,7 +389,7 @@
                         scaleLabel:
                         {
                             display: true,
-                            labelString: "litres"
+                            labelString: "@RChart.ChartLabelLitres"
                         }
                     },
                     {
@@ -420,13 +420,13 @@
                 stacked: false,
                 title: {
                 display: true,
-                text: 'Petrol consumption and average price for 100 km'
+                text: '@RChart.ChartTextPetrolConsPrice'
                 },
                 scales: {
                     xAxes: [{
 						scaleLabel: {
 							display: true,
-							labelString: 'Refuelling date'
+							labelString: '@RChart.ChartLabelDate'
 						}
 					}],
                     yAxes: [{
@@ -441,7 +441,7 @@
                         scaleLabel:
                         {
                             display: true,
-                            labelString: "litres"
+                            labelString: "@RChart.ChartLabelLitres"
                         }
                     },
 {
@@ -471,7 +471,7 @@
                     labels: lpgDateLabels,
                     datasets: [
                         {
-                            label: "Consumption",
+                            label: "@RChart.ChartLabelCons",
                             borderColor: 'rgb(255, 99, 132)',
                             backgroundColor: 'rgb(255, 99, 132)',
                             fill: false,
@@ -484,7 +484,7 @@
                 labels: lpgDateLabels,
                 datasets: [
                     {
-                        label: "Price",
+                        label: "@RChart.ChartLabelPrice",
                         borderColor: 'rgb(54, 162, 235)',
                         backgroundColor: 'rgb(54, 162, 235)',
                         fill: false,
@@ -503,13 +503,13 @@
             stacked: false,
             title: {
             display: true,
-            text: 'LPG consumption for 100 km'
+            text: '@RChart.ChartTextLpgCons'
             },
             scales: {
                 xAxes: [{
 					scaleLabel: {
 						display: true,
-						labelString: 'Refuelling date'
+						labelString: '@RChart.ChartLabelDate'
 					}
 				}],
                 yAxes: [{
@@ -524,7 +524,7 @@
                     scaleLabel:
                     {
                         display: true,
-                        labelString: "litres"
+                        labelString: "@RChart.ChartLabelLitres"
                     }
                 }
                 ],
@@ -540,13 +540,13 @@
             stacked: false,
             title: {
             display: true,
-            text: 'LPG average price for 100 km'
+            text: '@RChart.ChartTextLpgPrice'
             },
             scales: {
                 xAxes: [{
 					scaleLabel: {
 						display: true,
-						labelString: 'Refuelling date'
+						labelString: '@RChart.ChartLabelDate'
 					}
 				}],
                 yAxes: [

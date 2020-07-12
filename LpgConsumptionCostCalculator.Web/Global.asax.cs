@@ -1,3 +1,4 @@
+using LpgConsumptionCostCalculator.Web.App_Code;
 using LpgConsumptionCostCalculator.Web.App_Start;
 using LpgConsumptionCostCalculator.Web.Infrastructure;
 using System;
@@ -24,6 +25,8 @@ namespace LpgConsumptionCostCalculator.Web
 
             AntiForgeryConfig.UniqueClaimTypeIdentifier = "name";
             AutoMapperConfig.AutoMapperRegister();
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new MultiLanguageViewEngine());
         }
     }
 }

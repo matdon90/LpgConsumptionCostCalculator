@@ -2,13 +2,13 @@
 @using LpgConsumptionCostCalculator.Data.Models
 
 @{
-    ViewBag.Title = "List of fuel receipts";
+    ViewBag.Title = RFuelReceipts.IndexTitle;
     var queryOptions = (QueryOptions)ViewBag.QueryOptions;
 }
       
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">@ViewBag.Title for @ViewBag.CarName</h1>
+<h1 class="h3 mb-2 text-gray-800">@ViewBag.Title @ViewBag.CarName</h1>
 @if (Model != null)
 { 
 <!-- Content row -->
@@ -19,12 +19,12 @@
         <div class="col-md-5 col-sm-6 col-xl-3 col-lg-5">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-gray-800">Create new</h6>
+                    <h6 class="m-0 font-weight-bold text-gray-800">@RFuelReceipts.CreateNewReceipt</h6>
                 </div>
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            @Html.ActionLink("Create New", "Create", new { id = ViewBag.CarId }, new { @class = "btn btn-outline-dark btn-block" })
+                            @Html.ActionLink(RFuelReceipts.CreateCreate, "Create", new { id = ViewBag.CarId }, new { @class = "btn btn-outline-dark btn-block" })
                         </div>
                     </div>
                 </div>
@@ -34,14 +34,14 @@
         <div class="col-md-7 col-sm-6 col-xl-9 col-lg-7">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-gray-800">Search fuel receipt</h6>
+                    <h6 class="m-0 font-weight-bold text-gray-800">@RFuelReceipts.IndexSearch</h6>
                 </div>
                 <div class="card-body">
                     @using (Html.BeginForm("Index", "FuelReceipts", FormMethod.Get))
                     {
                         <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             <div class="input-group">
-                                <input type="text" name="searchString" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                <input type="text" name="searchString" class="form-control bg-light border-0 small" placeholder="@RFuelReceipts.IndexSearchPlaceholder" aria-label="Search" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
                                     <button class="btn btn-dark" value="Search" id="btnSubmit" type="submit">
                                         <i class="fa fa-search"></i>
@@ -60,14 +60,14 @@
         <div class="col-md-12 col-sm-12 col-xl-12 col-lg-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-gray-800">Search fuel receipt</h6>
+                    <h6 class="m-0 font-weight-bold text-gray-800">@RFuelReceipts.IndexSearch</h6>
                 </div>
                 <div class="card-body">
                     @using (Html.BeginForm("Index", "FuelReceipts", FormMethod.Get))
                     {
                         <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             <div class="input-group">
-                                <input type="text" name="searchString" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                <input type="text" name="searchString" class="form-control bg-light border-0 small" placeholder="@RFuelReceipts.IndexSearchPlaceholder" aria-label="Search" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
                                     <button class="btn btn-dark" value="Search" id="btnSubmit" type="submit">
                                         <i class="fa fa-search"></i>
@@ -88,7 +88,7 @@
     <div class="col-xl-12 col-lg-12">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-gray-800">Fuel receipts table</h6>
+                <h6 class="m-0 font-weight-bold text-gray-800">@RFuelReceipts.IndexTableTitle</h6>
             </div>
             <div class="card-body">
                 @Html.BuildPaginationDetails(queryOptions, "Index")
@@ -98,25 +98,25 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.BuildSortableLink("Date", "Index", "RefuelingDate", queryOptions)
+                                    @Html.BuildSortableLink(RFuelReceipts.IndexDate, "Index", "RefuelingDate", queryOptions)
                                 </th>
                                 <th>
-                                    @Html.BuildSortableLink("Station name", "Index", "PetrolStationName", queryOptions)
+                                    @Html.BuildSortableLink(RFuelReceipts.IndexStationName, "Index", "PetrolStationName", queryOptions)
                                 </th>
                                 <th>
-                                    @Html.BuildSortableLink("Fuel price", "Index", "FuelPrice", queryOptions)
+                                    @Html.BuildSortableLink(RFuelReceipts.IndexFuelPrice, "Index", "FuelPrice", queryOptions)
                                 </th>
                                 <th>
-                                    @Html.BuildSortableLink("Fuel amount", "Index", "FuelAmount", queryOptions)
+                                    @Html.BuildSortableLink(RFuelReceipts.IndexFuelAmount, "Index", "FuelAmount", queryOptions)
                                 </th>
                                 <th>
-                                    @Html.BuildSortableLink("Consumption per 100 km", "Index", "FuelConsumption", queryOptions)
+                                    @Html.BuildSortableLink(RFuelReceipts.IndexConsumption, "Index", "FuelConsumption", queryOptions)
                                 </th>
                                 <th>
-                                    @Html.BuildSortableLink("Total price per 100 km", "Index", "PriceFor100km", queryOptions)
+                                    @Html.BuildSortableLink(RFuelReceipts.IndexTotalPrice, "Index", "PriceFor100km", queryOptions)
                                 </th>
                                 <th>
-                                    Actions
+                                    @RFuelReceipts.IndexActions
                                 </th>
                             </tr>
                         </thead>
@@ -143,11 +143,11 @@
                                         @Html.DisplayFor(modelItem => item.PriceFor100km)
                                     </td>
                                     <td align="center">
-                                        <input class="btn btn-outline-dark btn-sm" style="width: 60px" type="button" value="Details" id="@item.Id" onclick="FuelReceiptDetailsAsModal(this.id)">
+                                        <input class="btn btn-outline-dark btn-sm" style="width: 60px" type="button" value="@RFuelReceipts.IndexDetails" id="@item.Id" onclick="FuelReceiptDetailsAsModal(this.id)">
                                         @if (Context.User.Identity.IsAuthenticated)
                                         {
-                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm", @style = "width: 60px" })
-                                            <input class="btn btn-outline-danger btn-sm" style="width: 60px" type="button" value="Delete" id="@item.Id" onclick="FuelReceiptDeleteAsModal(this.id)">
+                                            @Html.ActionLink(RFuelReceipts.IndexEdit, "Edit", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm", @style = "width: 60px" })
+                                            <input class="btn btn-outline-danger btn-sm" style="width: 60px" type="button" value="@RFuelReceipts.IndexDelete" id="@item.Id" onclick="FuelReceiptDeleteAsModal(this.id)">
                                         }
                                     </td>
                                 </tr>
@@ -158,7 +158,7 @@
                 @if (queryOptions.TotalPages > 1)
                 {
                     @Html.BuildNextPreviousLinks(queryOptions, "Index")
-                    <span>Showing @((queryOptions.CurrentPage - 1) * queryOptions.PageSize + 1) to @((queryOptions.CurrentPage * queryOptions.PageSize) > ViewBag.NumberOfEntries ? ViewBag.NumberOfEntries : queryOptions.CurrentPage * queryOptions.PageSize) of @ViewBag.NumberOfEntries entries</span>
+                    <span>@RFuelReceipts.IndexShowing @((queryOptions.CurrentPage - 1) * queryOptions.PageSize + 1) @RFuelReceipts.IndexTo @((queryOptions.CurrentPage * queryOptions.PageSize) > ViewBag.NumberOfEntries ? ViewBag.NumberOfEntries : queryOptions.CurrentPage * queryOptions.PageSize) @RFuelReceipts.IndexOf @ViewBag.NumberOfEntries @RFuelReceipts.IndexEntries</span>
                 }
             </div>
         </div>

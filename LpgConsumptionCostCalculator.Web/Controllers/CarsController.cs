@@ -2,6 +2,8 @@
 using LpgConsumptionCostCalculator.Data.Services;
 using LpgConsumptionCostCalculator.Web.Behaviors;
 using LpgConsumptionCostCalculator.Web.Filters;
+using LpgConsumptionCostCalculator.Web.Infrastructure;
+using LpgConsumptionCostCalculator.Web.ViewModels;
 using System;
 using System.Linq;
 using System.Linq.Dynamic;
@@ -11,7 +13,7 @@ using System.Web.Mvc;
 
 namespace LpgConsumptionCostCalculator.Web.Controllers
 {
-    public class CarsController : Controller
+    public class CarsController : BaseController
     {
         private readonly ICarData db;
         public CarsController(ICarData db)
@@ -26,15 +28,16 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             var start = QueryOptionsCalculator.CalculateStartPage(queryOptions);
             var model = await db.GetAll();
             ViewBag.NumberOfEntries = model.Count();
+            var viewModels = model.Select(m => m.ToViewModel());
             if (!String.IsNullOrEmpty(searchString))
             {
                 searchString = searchString.ToUpper();
-                model = model.Where(c => c.CarModel.ToUpper().Contains(searchString) || c.CarProducer.ToUpper().Contains(searchString) 
+                viewModels = viewModels.Where(c => c.CarModel.ToUpper().Contains(searchString) || c.CarProducer.ToUpper().Contains(searchString) 
                 || c.CarProductionYear.ToString().Contains(searchString) || c.LpgInstallationModel.ToUpper().Contains(searchString)
                 || c.LpgInstallationProducer.ToUpper().Contains(searchString));
             }
-            queryOptions.TotalPages = QueryOptionsCalculator.CalculateTotalPages(model.Count(), queryOptions.PageSize);
-            return View(model.OrderBy(queryOptions.Sort).Skip(start).Take(queryOptions.PageSize).ToList());
+            queryOptions.TotalPages = QueryOptionsCalculator.CalculateTotalPages(viewModels.Count(), queryOptions.PageSize);
+            return View(viewModels.OrderBy(queryOptions.Sort).Skip(start).Take(queryOptions.PageSize).ToList());
         }
 
         [HttpGet]
@@ -48,7 +51,8 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
                     Response.StatusCode = 403;
                     return View("NotFound");
                 }
-                return PartialView(model);
+                var viewModel = model.ToViewModel();
+                return PartialView(viewModel);
             }
             else
             {
@@ -87,22 +91,24 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             {
                 return View("NotFound");
             }
-            return View(model);
+            var viewModel = model.ToViewModel();
+            return View(viewModel);
         }
 
         [Authorize]
         [LogUsersActivity]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(Car car)
+        public async Task<ActionResult> Edit(CarViewModel carViewModel)
         {
             if (ModelState.IsValid)
             {
+                var car = carViewModel.ToEntityModel();
                 await db.Update(car);
                 TempData["Message"] = "You have saved the car!";
                 return RedirectToAction("Index");
             }
-            return View(car);
+            return View(carViewModel);
         }
 
         [Authorize]
@@ -117,7 +123,8 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
                     Response.StatusCode = 403;
                     return View("NotFound");
                 }
-                return PartialView(model);
+                var viewModel = model.ToViewModel();
+                return PartialView(viewModel);
             }
             else
             {

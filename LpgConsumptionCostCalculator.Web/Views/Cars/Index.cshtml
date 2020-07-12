@@ -1,7 +1,7 @@
-﻿@model IEnumerable<LpgConsumptionCostCalculator.Data.Models.Car>
+﻿@model IEnumerable<LpgConsumptionCostCalculator.Web.ViewModels.CarViewModel>
 @using LpgConsumptionCostCalculator.Data.Models
 @{
-    ViewBag.Title = "List of cars";
+    ViewBag.Title = RCars.IndexTitle;
     var queryOptions = (QueryOptions)ViewBag.QueryOptions;
 }
 
@@ -16,12 +16,12 @@
         <div class="col-md-5 col-sm-6 col-xl-3 col-lg-5">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-gray-800">Create new</h6>
+                    <h6 class="m-0 font-weight-bold text-gray-800">@RCars.CreateNewCar</h6>
                 </div>
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            @Html.ActionLink("Create", "Create", null, new { @class = "btn btn-outline-dark btn-block" })
+                            @Html.ActionLink(RCars.CreateCreate, "Create", null, new { @class = "btn btn-outline-dark btn-block" })
                         </div>
                     </div>
                 </div>
@@ -31,14 +31,14 @@
         <div class="col-md-7 col-sm-6 col-xl-9 col-lg-7">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-gray-800">Search car</h6>
+                    <h6 class="m-0 font-weight-bold text-gray-800">@RCars.IndexSearch</h6>
                 </div>
                 <div class="card-body">
                     @using (Html.BeginForm("Index", "Cars", FormMethod.Get))
                     {
                         <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             <div class="input-group">
-                                <input type="text" name="searchString" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                <input type="text" name="searchString" class="form-control bg-light border-0 small" placeholder="@RCars.IndexSearchPlaceholder" aria-label="Search" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
                                     <button class="btn btn-dark" value="Search" id="btnSubmit" type="submit">
                                         <i class="fa fa-search"></i>
@@ -56,14 +56,14 @@
         <div class="col-md-12 col-sm-12 col-xl-12 col-lg-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-gray-800">Search car</h6>
+                    <h6 class="m-0 font-weight-bold text-gray-800">@RCars.IndexSearch</h6>
                 </div>
                 <div class="card-body">
                     @using (Html.BeginForm("Index", "Cars", FormMethod.Get))
                     {
                         <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             <div class="input-group">
-                                <input type="text" name="searchString" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                <input type="text" name="searchString" class="form-control bg-light border-0 small" placeholder="@RCars.IndexSearchPlaceholder" aria-label="Search" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
                                     <button class="btn btn-dark" value="Search" id="btnSubmit" type="submit">
                                         <i class="fa fa-search"></i>
@@ -84,7 +84,7 @@
     <div class="col-xl-12 col-lg-12">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-gray-800">Cars table</h6>
+                <h6 class="m-0 font-weight-bold text-gray-800">@RCars.IndexTableTitle</h6>
             </div>
             <div class="card-body">
                 @Html.BuildPaginationDetails(queryOptions, "Index")
@@ -94,22 +94,22 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.BuildSortableLink("Manufacturer", "Index", "CarProducer", queryOptions)
+                                    @Html.BuildSortableLink(RCars.IndexManufacturer, "Index", "CarProducer", queryOptions)
                                 </th>
                                 <th>
-                                    @Html.BuildSortableLink("Model", "Index", "CarModel", queryOptions)
+                                    @Html.BuildSortableLink(RCars.IndexModel, "Index", "CarModel", queryOptions)
                                 </th>
                                 <th>
-                                    @Html.BuildSortableLink("Production year", "Index", "CarProductionYear", queryOptions)
+                                    @Html.BuildSortableLink(RCars.IndexProductionYear, "Index", "CarProductionYear", queryOptions)
                                 </th>
                                 <th>
-                                    @Html.BuildSortableLink("LPG installation manufacturer", "Index", "LpgInstallationProducer", queryOptions)
+                                    @Html.BuildSortableLink(RCars.IndexLPGManufacturer, "Index", "LpgInstallationProducer", queryOptions)
                                 </th>
                                 <th>
-                                    @Html.BuildSortableLink("LPG installation model", "Index", "LpgInstallationModel", queryOptions)
+                                    @Html.BuildSortableLink(RCars.IndexLPGModel, "Index", "LpgInstallationModel", queryOptions)
                                 </th>
                                 <th>
-                                    Actions
+                                    @RCars.IndexActions
                                 </th>
                             </tr>
                         </thead>
@@ -133,11 +133,11 @@
                                         @Html.DisplayFor(modelItem => item.LpgInstallationModel)
                                     </td>
                                     <td align="center">
-                                        <input class="btn btn-outline-dark btn-sm" style="width: 60px" type="button" value="Details" id="@item.Id" onclick="CarDetailsAsModal(this.id)">
+                                        <input class="btn btn-outline-dark btn-sm" style="width: 60px" type="button" value="@RCars.IndexDetails" id="@item.Id" onclick="CarDetailsAsModal(this.id)">
                                         @if (Context.User.Identity.IsAuthenticated)
                                         {
-                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm", @style = "width: 60px" })
-                                            <input class="btn btn-outline-danger btn-sm" style="width: 60px" type="button" value="Delete" id="@item.Id" onclick="CarDeleteAsModal(this.id)">
+                                            @Html.ActionLink(RCars.IndexEdit, "Edit", new { id = item.Id }, new { @class = "btn btn-outline-dark btn-sm", @style = "width: 60px" })
+                                            <input class="btn btn-outline-danger btn-sm" style="width: 60px" type="button" value="@RCars.IndexDelete" id="@item.Id" onclick="CarDeleteAsModal(this.id)">
                                         }
                                     </td>
                                 </tr>
@@ -148,7 +148,7 @@
                 @if (queryOptions.TotalPages > 1)
                 {
                     @Html.BuildNextPreviousLinks(queryOptions, "Index")
-                    <span>Showing @((queryOptions.CurrentPage - 1) * queryOptions.PageSize + 1) to @((queryOptions.CurrentPage * queryOptions.PageSize) > ViewBag.NumberOfEntries ? ViewBag.NumberOfEntries : queryOptions.CurrentPage * queryOptions.PageSize) of @ViewBag.NumberOfEntries entries</span>
+                    <span>@RCars.IndexShowing @((queryOptions.CurrentPage - 1) * queryOptions.PageSize + 1) @RCars.IndexTo @((queryOptions.CurrentPage * queryOptions.PageSize) > ViewBag.NumberOfEntries ? ViewBag.NumberOfEntries : queryOptions.CurrentPage * queryOptions.PageSize) @RCars.IndexOf @ViewBag.NumberOfEntries @RCars.IndexEntries</span>
                 }
             </div>
         </div>

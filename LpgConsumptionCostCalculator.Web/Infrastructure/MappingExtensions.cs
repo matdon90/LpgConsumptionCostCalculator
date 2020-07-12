@@ -27,10 +27,21 @@ namespace LpgConsumptionCostCalculator.Web.Infrastructure
         }
         #endregion
 
-        #region Car
+        #region Menu
         public static MenuViewModel ToMenuViewModel(this Car entity)
         {
             return entity.MapTo<Car, MenuViewModel>();
+        }
+        #endregion
+
+        #region Car
+        public static CarViewModel ToViewModel(this Car entity)
+        {
+            return entity.MapTo<Car, CarViewModel>();
+        }
+        public static Car ToEntityModel(this CarViewModel model)
+        {
+            return model.MapTo<CarViewModel, Car>();
         }
         #endregion
     }
