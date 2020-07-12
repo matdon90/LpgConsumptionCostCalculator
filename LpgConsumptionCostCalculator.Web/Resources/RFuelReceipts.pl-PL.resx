@@ -142,7 +142,7 @@
     <value>Wymagana informacja</value>
   </data>
   <data name="CreateStationPlaceholder" xml:space="preserve">
-    <value>eg. Shell</value>
+    <value>np. Shell</value>
   </data>
   <data name="DeleteClose" xml:space="preserve">
     <value>Zamknij</value>
