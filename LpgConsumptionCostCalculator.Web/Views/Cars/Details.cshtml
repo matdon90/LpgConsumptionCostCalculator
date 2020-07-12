@@ -1,6 +1,7 @@
-﻿@model LpgConsumptionCostCalculator.Data.Models.Car
+﻿@model LpgConsumptionCostCalculator.Web.ViewModels.CarViewModel
 
-<h1 class="h4 mb-2 text-gray-800 text-center">@Html.DisplayFor(model => model.CarProducer) @Html.DisplayFor(model => model.CarModel) details</h1>
+
+<h1 class="h4 mb-2 text-gray-800 text-center">@Html.DisplayFor(model => model.CarProducer) @Html.DisplayFor(model => model.CarModel) @RCars.DetailsDetails</h1>
 <div class="text-center">
     <hr />
 
@@ -53,10 +54,10 @@
 <p class="text-center">
     @if (Context.User.Identity.IsAuthenticated)
     {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-outline-dark btn-sm", @style = "width: 60px" })
-        <input class="btn btn-outline-danger btn-sm" style="width : 60px" type="button" value="Delete" id="@Model.Id" onclick="CarDeleteAsModal(this.id)">
+        @Html.ActionLink(RCars.DetailsEdit, "Edit", new { id = Model.Id }, new { @class = "btn btn-outline-dark btn-sm", @style = "width: 70px" })
+        <input class="btn btn-outline-danger btn-sm" style="width : 70px" type="button" value="@RCars.DetailsDelete" id="@Model.Id" onclick="CarDeleteAsModal(this.id)">
     }
-    <button type="button" class="btn btn-outline-dark btn-sm" style="width : 60px" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-outline-dark btn-sm" style="width : 70px" data-dismiss="modal">@RCars.DetailsClose</button>
 </p>
 
 <!-- Modal -->
@@ -71,7 +72,7 @@
 </div>
 
 @section scripts{
-<script>
+    <script>
     function CarDeleteAsModal(id) {
         $.get("@Url.Action("Delete","Cars")/" + id,
             function (data) { $('.modal-body').html(data); })
@@ -81,5 +82,5 @@
     $('#Modal').on('hidden.bs.modal', function (e) {
         $('.modal-body').html("")
     })
-</script>
+    </script>
 }

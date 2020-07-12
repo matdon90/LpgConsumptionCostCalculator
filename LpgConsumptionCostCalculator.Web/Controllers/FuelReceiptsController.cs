@@ -13,7 +13,7 @@ using System.Web.Mvc;
 
 namespace LpgConsumptionCostCalculator.Web.Controllers
 {
-    public class FuelReceiptsController : Controller
+    public class FuelReceiptsController : BaseController
     {
         private readonly IFuelReceiptData dbReceipt;
         private readonly ICarData dbCar;

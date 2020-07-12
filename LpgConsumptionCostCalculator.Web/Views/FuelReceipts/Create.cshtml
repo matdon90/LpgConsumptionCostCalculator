@@ -5,8 +5,8 @@
     @Html.AntiForgeryToken()
     <form>
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Create new fuel receipt for @ViewBag.CarName</h1>
-        <h1 class="h6 mb-2 text-gray-800"><span class="text-danger">*</span> Required information</h1>
+        <h1 class="h3 mb-2 text-gray-800">@RFuelReceipts.CreateNewReceipt @ViewBag.CarName</h1>
+        <h1 class="h6 mb-2 text-gray-800"><span class="text-danger">*</span> @RFuelReceipts.CreateRequired</h1>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <!-- Row -->
         <div class="row">
@@ -25,7 +25,7 @@
                             <div class="col-sm-12 col-md-12 col-xl-5 col-lg-5 mb-3 mb-sm-0">
                                 @Html.LabelFor(model => model.PetrolStationName, htmlAttributes: new { @class = "control-label, text-gray-800" })
                                 <div class="col-md-12">
-                                    @Html.EditorFor(model => model.PetrolStationName, new { htmlAttributes = new { placeholder = "eg. Shell", @class = "form-control" } })
+                                    @Html.EditorFor(model => model.PetrolStationName, new { htmlAttributes = new { placeholder = RFuelReceipts.CreateStationPlaceholder, @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.PetrolStationName, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -52,7 +52,7 @@
                                 @Html.LabelFor(model => model.FuelPrice, htmlAttributes: new { @class = "control-label, text-gray-800" })
                                 <span class="text-danger">*</span>
                                 <div class="col-md-12">
-                                    @Html.EditorFor(model => model.FuelPrice, new { htmlAttributes = new { placeholder = "eg. 2.99", @class = "form-control" } })
+                                    @Html.EditorFor(model => model.FuelPrice, new { htmlAttributes = new { placeholder = RFuelReceipts.CreateFuelPricePlaceholder, @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.FuelPrice, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
                                 @Html.LabelFor(model => model.FuelAmount, htmlAttributes: new { @class = "control-label, text-gray-800" })
                                 <span class="text-danger">*</span>
                                 <div class="col-md-12">
-                                    @Html.EditorFor(model => model.FuelAmount, new { htmlAttributes = new { placeholder = "eg. 23.56", @class = "form-control" } })
+                                    @Html.EditorFor(model => model.FuelAmount, new { htmlAttributes = new { placeholder = RFuelReceipts.CreateFuelAmountPlaceholder, @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.FuelAmount, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                                 @Html.LabelFor(model => model.DistanceFromLastRefueling, htmlAttributes: new { @class = "control-label, text-gray-800" })
                                 <span class="text-danger">*</span>
                                 <div class="col-md-12">
-                                    @Html.EditorFor(model => model.DistanceFromLastRefueling, new { htmlAttributes = new { placeholder = "eg. 456.23", @class = "form-control" } })
+                                    @Html.EditorFor(model => model.DistanceFromLastRefueling, new { htmlAttributes = new { placeholder = RFuelReceipts.CreateDistancePlaceholder, @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.DistanceFromLastRefueling, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -86,7 +86,7 @@
                             <div class="col-sm-12 col-md-12 col-xl-12 col-lg-12 mb-3 mb-sm-0">
                                 @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label, text-gray-800" })
                                 <div class="col-md-12">
-                                    @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { placeholder = "Optional comment", @class = "form-control" } })
+                                    @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { placeholder = RFuelReceipts.CreateCommandPlaceholder, @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -108,8 +108,8 @@
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <div class="text-center">
-                            <input type="submit" value="Create" style="width: 120px" class="btn btn-outline-dark btn-sm" />
-                            @Html.ActionLink("Back to List", "Index", new { id = ViewBag.CarId }, new { @class = "btn btn-outline-dark btn-sm", @style = "width: 120px" })
+                            <input type="submit" value="@RFuelReceipts.CreateCreate" style="width: 120px" class="btn btn-outline-dark btn-sm" />
+                            @Html.ActionLink(RFuelReceipts.CreateBackToList, "Index", new { id = ViewBag.CarId }, new { @class = "btn btn-outline-dark btn-sm", @style = "width: 120px" })
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-﻿@model LpgConsumptionCostCalculator.Data.Models.Car
+﻿@model LpgConsumptionCostCalculator.Web.ViewModels.CarViewModel
 
 
 @using (Html.BeginForm())
@@ -6,15 +6,15 @@
     @Html.AntiForgeryToken()
     <form>
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Create new car</h1>
-        <h1 class="h6 mb-2 text-gray-800"><span class="text-danger">*</span> Required information</h1>
+        <h1 class="h3 mb-2 text-gray-800">@RCars.CreateNewCar</h1>
+        <h1 class="h6 mb-2 text-gray-800"><span class="text-danger">*</span> @RCars.CreateRequired</h1>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <!-- Form for car data -->
         <div class="row">
             <div class="col-xl-12 col-lg-12">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-gray-800">Car</h6>
+                        <h6 class="m-0 font-weight-bold text-gray-800">@RCars.CreateCar</h6>
                     </div>
                     <div class="card-body">
                         <div class="form-group row align-items-center">
@@ -22,7 +22,7 @@
                                 @Html.LabelFor(model => model.CarProducer, htmlAttributes: new { @class = "control-label, text-gray-800" })
                                 <span class="text-danger">*</span>
                                 <div class="col-md-12">
-                                    @Html.EditorFor(model => model.CarProducer, new { htmlAttributes = new { placeholder = "eg. Skoda", @class = "form-control" } })
+                                    @Html.EditorFor(model => model.CarProducer, new { htmlAttributes = new { placeholder = RCars.CreateProducerHolder, @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.CarProducer, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -30,7 +30,7 @@
                                 @Html.LabelFor(model => model.CarModel, htmlAttributes: new { @class = "control-label, text-gray-800" })
                                 <span class="text-danger">*</span>
                                 <div class="col-md-12">
-                                    @Html.EditorFor(model => model.CarModel, new { htmlAttributes = new { placeholder = "eg. Fabia", @class = "form-control" } })
+                                    @Html.EditorFor(model => model.CarModel, new { htmlAttributes = new { placeholder = RCars.CreateModelHolder, @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.CarModel, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
                                 @Html.LabelFor(model => model.CarProductionYear, htmlAttributes: new { @class = "control-label, text-gray-800" })
                                 <span class="text-danger">*</span>
                                 <div class="col-md-12">
-                                    @Html.EditorFor(model => model.CarProductionYear, new { htmlAttributes = new { placeholder = "eg. 2000", @class = "form-control" } })
+                                    @Html.EditorFor(model => model.CarProductionYear, new { htmlAttributes = new { placeholder = RCars.CreateYearHolder, @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.CarProductionYear, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -52,23 +52,23 @@
             <div class="col-xl-12 col-lg-12">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-gray-800">LPG installation</h6>
+                        <h6 class="m-0 font-weight-bold text-gray-800">@RCars.CreateLpgInstallation</h6>
                     </div>
                     <div class="card-body">
                         <div class="form-group row align-items-center">
                             <div class="col-sm-12 col-md-12 col-xl-6 col-lg-6 mb-3 mb-sm-0">
-                                <label class="control-label text-gray-800">Producer</label>
+                                <label class="control-label text-gray-800">@RCars.CreateProducer</label>
                                 <span class="text-danger">*</span>
                                 <div class="col-md-12">
-                                    @Html.EditorFor(model => model.LpgInstallationProducer, new { htmlAttributes = new { placeholder = "eg. BRC", @class = "form-control" } })
+                                    @Html.EditorFor(model => model.LpgInstallationProducer, new { htmlAttributes = new { placeholder = RCars.CreateLpgProducerHolder, @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.LpgInstallationProducer, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-12 col-xl-6 col-lg-6 mb-3 mb-sm-0">
-                                <label class="control-label text-gray-800">Model</label>
+                                <label class="control-label text-gray-800">@RCars.CreateModel</label>
                                 <span class="text-danger">*</span>
                                 <div class="col-md-12">
-                                    @Html.EditorFor(model => model.LpgInstallationModel, new { htmlAttributes = new { placeholder = "eg. ODB32", @class = "form-control" } })
+                                    @Html.EditorFor(model => model.LpgInstallationModel, new { htmlAttributes = new { placeholder = RCars.CreateLpgModelHolder, @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.LpgInstallationModel, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -83,8 +83,8 @@
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <div class="text-center">
-                            <input type="submit" value="Create" style="width: 120px" class="btn btn-outline-dark btn-sm" />
-                            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-outline-dark btn-sm", @style = "width: 120px" })
+                            <input type="submit" value="@RCars.CreateCreate" style="width: 120px" class="btn btn-outline-dark btn-sm" />
+                            @Html.ActionLink(RCars.CreateBackToList, "Index", null, new { @class = "btn btn-outline-dark btn-sm", @style = "width: 120px" })
                         </div>
                     </div>
                 </div>

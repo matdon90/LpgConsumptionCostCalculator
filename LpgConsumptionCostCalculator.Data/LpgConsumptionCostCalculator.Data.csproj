@@ -133,6 +133,16 @@
     <Compile Include="Models\SortOrder.cs" />
     <Compile Include="Models\TypeOfFuel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\RTypeOfFuel.Designer.cs">
+      <DependentUpon>RTypeOfFuel.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\RTypeOfFuel.pl-PL.Designer.cs">
+      <DependentUpon>RTypeOfFuel.pl-PL.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Services\FirebaseConn.cs" />
     <Compile Include="Services\FirebaseDatabaseCarData.cs" />
     <Compile Include="Services\FirebaseDatabaseFuelReceiptData.cs" />
@@ -140,11 +150,20 @@
     <Compile Include="Services\ICarData.cs" />
     <Compile Include="Services\IFuelReceiptData.cs" />
     <Compile Include="Services\ILoginData.cs" />
-    <Compile Include="Validations\CheckCarProductionDate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\RTypeOfFuel.pl-PL.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RTypeOfFuel.pl-PL.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\RTypeOfFuel.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RTypeOfFuel.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

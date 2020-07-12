@@ -11,6 +11,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/multiLang")
 </head>
 <body id="page-top">
     <!--Page wrapper-->
@@ -24,6 +25,14 @@
             <div id="content">
                 <!--Topbar-->
                 <nav class="navbar navbar-expand navbar-dark bg-gradient-secondary topbar mb-4 static-top shadow">
+                    <ul class="navbar-nav" style="list-style:none;">
+                        <li style="display:inline;">
+                            <a href="" class="setLang" data-lang="pl-PL"><img style="width: 30px; height: 30px" title="PL" src="@Url.GetImage("poland.png",false)" /></a>
+                        </li>
+                        <li style="display:inline;">
+                            <a href="" class="setLang" data-lang="en-US"><img style="width: 30px; height: 30px" title="EN" src="@Url.GetImage("usa.png", false)" /></a>
+                        </li>
+                    </ul>
                     @if (Context.User.Identity.IsAuthenticated)
                     {
                         <ul class="navbar-nav ml-auto">
@@ -31,14 +40,14 @@
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fa fa-user fa-fw mr-2 text-gray-200"></i>
-                                    <span class="mr-2 d-none d-lg-inline text-gray-200 small">Hello, <b>@Context.User.Identity.Name</b></span>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-200 small">@RGlobal.Hello <b>@Context.User.Identity.Name</b></span>
                                 </a>
 
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-left shadow animated--grow-in" aria-labelledby="userDropdown">
                                     <a class="dropdown-item text-gray-800" onclick="document.getElementById('logout_form').submit();" data-toggle="modal" data-target="#logoutModal">
                                         <i class="fa fa-sign-out fa-sm fa-fw"></i>
-                                        Log out
+                                        @RGlobal.LogOut
                                     </a>
                                 </div>
                             </li>
@@ -52,7 +61,7 @@
                             <li class="nav-item">
                                 <a class="nav-link text-gray-200" href="/Account/Login">
                                     <i class="fa fa-sign-in fa-fw mr-2 "></i>
-                                    <span>Log in</span>
+                                    <span>@RGlobal.LogIn</span>
                                 </a>
                             </li>
                         </ul>
@@ -94,5 +103,18 @@
     <script src="~/Scripts/sb-admin-2.min.js"></script>
     @Scripts.Render("~/bundles/chartjs")
     @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+
+            var lang = MultiLanguageDemo.Cookies.getCookie("LangForMultiLanguage");
+            $(".setLang[data-lang='" + lang + "'] img").addClass("active-lang");
+
+            $(".setLang").on("click", function (event) {
+                var lang = $(this).attr("data-lang");
+                MultiLanguageDemo.Cookies.setCookie("LangForMultiLanguage", lang, 30);
+                location.reload(true);
+            })
+        });
+    </script>
 </body>
 </html>
