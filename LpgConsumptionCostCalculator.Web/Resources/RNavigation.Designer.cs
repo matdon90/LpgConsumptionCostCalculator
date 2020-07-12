@@ -79,7 +79,7 @@ namespace LpgConsumptionCostCalculator.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Administration.
+        ///   Looks up a localized string similar to Admin panel.
         /// </summary>
         public static string Administration {
             get {

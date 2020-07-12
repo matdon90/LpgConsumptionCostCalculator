@@ -608,6 +608,8 @@
     <Content Include="Views\Home\pl-PL\Index.cshtml" />
     <Content Include="Views\Home\pl-PL\Contact.cshtml" />
     <Content Include="Views\Home\pl-PL\Privacy.cshtml" />
+    <Content Include="Scripts\pl-PL\jquery.validate.extension.js" />
+    <Content Include="Views\Shared\DisplayTemplates\Enum.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

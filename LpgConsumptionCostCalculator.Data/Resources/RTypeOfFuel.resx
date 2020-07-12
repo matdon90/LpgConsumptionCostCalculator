@@ -117,37 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>About</value>
+  <data name="Diesel" xml:space="preserve">
+    <value>Diesel</value>
   </data>
-  <data name="AddCar" xml:space="preserve">
-    <value>Add car</value>
+  <data name="LPG" xml:space="preserve">
+    <value>LPG</value>
   </data>
-  <data name="Administration" xml:space="preserve">
-    <value>Admin panel</value>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
   </data>
-  <data name="Cars" xml:space="preserve">
-    <value>Cars</value>
-  </data>
-  <data name="Contact" xml:space="preserve">
-    <value>Contact</value>
-  </data>
-  <data name="Extras" xml:space="preserve">
-    <value>Extras</value>
-  </data>
-  <data name="FuelDetails" xml:space="preserve">
-    <value>Fuel details</value>
-  </data>
-  <data name="FuelReceipts" xml:space="preserve">
-    <value>Fuel receipts</value>
-  </data>
-  <data name="Graphs" xml:space="preserve">
-    <value>Graphs</value>
-  </data>
-  <data name="List" xml:space="preserve">
-    <value>List</value>
-  </data>
-  <data name="Logs" xml:space="preserve">
-    <value>Logs</value>
+  <data name="Petrol" xml:space="preserve">
+    <value>Petrol</value>
   </data>
 </root>
