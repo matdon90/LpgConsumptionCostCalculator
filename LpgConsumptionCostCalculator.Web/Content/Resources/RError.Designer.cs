@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LpgConsumptionCostCalculator.Web.Resources {
+namespace LpgConsumptionCostCalculator.Web.Content.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace LpgConsumptionCostCalculator.Web.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class RModels {
+    public class RError {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal RModels() {
+        internal RError() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace LpgConsumptionCostCalculator.Web.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LpgConsumptionCostCalculator.Web.Resources.RModels", typeof(RModels).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LpgConsumptionCostCalculator.Web.Content.Resources.RError", typeof(RError).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,61 +61,106 @@ namespace LpgConsumptionCostCalculator.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LPG installation manufacturer.
+        ///   Looks up a localized string similar to Back to List.
         /// </summary>
-        public static string CarLpgInstallationManufacturer {
+        public static string BackToList {
             get {
-                return ResourceManager.GetString("CarLpgInstallationManufacturer", resourceCulture);
+                return ResourceManager.GetString("BackToList", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LPG installation model.
+        ///   Looks up a localized string similar to Please enter LPG installation manufacturer..
         /// </summary>
-        public static string CarLpgInstallationModel {
+        public static string CarLpgManufacturerRequired {
             get {
-                return ResourceManager.GetString("CarLpgInstallationModel", resourceCulture);
+                return ResourceManager.GetString("CarLpgManufacturerRequired", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manufacturer.
+        ///   Looks up a localized string similar to Please enter LPG installation model..
         /// </summary>
-        public static string CarManufacturer {
+        public static string CarLpgModelRequired {
             get {
-                return ResourceManager.GetString("CarManufacturer", resourceCulture);
+                return ResourceManager.GetString("CarLpgModelRequired", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Model.
+        ///   Looks up a localized string similar to Please enter car manufacturer..
         /// </summary>
-        public static string CarModel {
+        public static string CarManufacturerRequired {
             get {
-                return ResourceManager.GetString("CarModel", resourceCulture);
+                return ResourceManager.GetString("CarManufacturerRequired", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Production year.
+        ///   Looks up a localized string similar to Please enter car model..
         /// </summary>
-        public static string CarProductionYear {
+        public static string CarModelRequired {
             get {
-                return ResourceManager.GetString("CarProductionYear", resourceCulture);
+                return ResourceManager.GetString("CarModelRequired", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Car ID.
+        ///   Looks up a localized string similar to It looks like car was not found....
         /// </summary>
-        public static string ReceiptCarId {
+        public static string CarNotFound {
             get {
-                return ResourceManager.GetString("ReceiptCarId", resourceCulture);
+                return ResourceManager.GetString("CarNotFound", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Comment.
+        ///   Looks up a localized string similar to Production date cannot be from future, bigger than.
+        /// </summary>
+        public static string CarProductionFuture {
+            get {
+                return ResourceManager.GetString("CarProductionFuture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Production date cannot be smaller than.
+        /// </summary>
+        public static string CarProductionPast {
+            get {
+                return ResourceManager.GetString("CarProductionPast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter car production year..
+        /// </summary>
+        public static string CarYearRequired {
+            get {
+                return ResourceManager.GetString("CarYearRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page Not Found.
+        /// </summary>
+        public static string PageNotFound {
+            get {
+                return ResourceManager.GetString("PageNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter fuel amount..
+        /// </summary>
+        public static string ReceiptAmount {
+            get {
+                return ResourceManager.GetString("ReceiptAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comment cannot be longer than 255 characters..
         /// </summary>
         public static string ReceiptComment {
             get {
@@ -124,92 +169,47 @@ namespace LpgConsumptionCostCalculator.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Consumption/100 km.
+        ///   Looks up a localized string similar to Please enter date of refueling..
         /// </summary>
-        public static string ReceiptConsumption {
+        public static string ReceiptDate {
             get {
-                return ResourceManager.GetString("ReceiptConsumption", resourceCulture);
+                return ResourceManager.GetString("ReceiptDate", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Distance on the tank.
+        ///   Looks up a localized string similar to Please enter distance from last refueling..
         /// </summary>
-        public static string ReceiptDistanceOnTank {
+        public static string ReceiptDistance {
             get {
-                return ResourceManager.GetString("ReceiptDistanceOnTank", resourceCulture);
+                return ResourceManager.GetString("ReceiptDistance", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fuel amount.
+        ///   Looks up a localized string similar to It looks like fuel receipt was not found....
         /// </summary>
-        public static string ReceiptFuelAmount {
+        public static string ReceiptNotFound {
             get {
-                return ResourceManager.GetString("ReceiptFuelAmount", resourceCulture);
+                return ResourceManager.GetString("ReceiptNotFound", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fuel price.
+        ///   Looks up a localized string similar to Please enter fuel price..
         /// </summary>
-        public static string ReceiptFuelPrice {
+        public static string ReceiptPrice {
             get {
-                return ResourceManager.GetString("ReceiptFuelPrice", resourceCulture);
+                return ResourceManager.GetString("ReceiptPrice", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fuel type.
+        ///   Looks up a localized string similar to Please enter fuel type..
         /// </summary>
-        public static string ReceiptFuelType {
+        public static string ReceiptType {
             get {
-                return ResourceManager.GetString("ReceiptFuelType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Petrol station name.
-        /// </summary>
-        public static string ReceiptPetrolStationName {
-            get {
-                return ResourceManager.GetString("ReceiptPetrolStationName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Refueling date.
-        /// </summary>
-        public static string ReceiptRefuellingDate {
-            get {
-                return ResourceManager.GetString("ReceiptRefuellingDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Total price/100 km.
-        /// </summary>
-        public static string ReceiptTotalPrice {
-            get {
-                return ResourceManager.GetString("ReceiptTotalPrice", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to End date.
-        /// </summary>
-        public static string ReportEndDate {
-            get {
-                return ResourceManager.GetString("ReportEndDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Start date.
-        /// </summary>
-        public static string ReportStartDate {
-            get {
-                return ResourceManager.GetString("ReportStartDate", resourceCulture);
+                return ResourceManager.GetString("ReceiptType", resourceCulture);
             }
         }
     }
