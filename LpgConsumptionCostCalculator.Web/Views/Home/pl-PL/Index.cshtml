@@ -1,32 +1,76 @@
 ﻿@{
-    ViewBag.Title = "O LPG CCC";
+    ViewBag.Title = "O aplikacji LPG CCC";
 }
 
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">@ViewBag.Title</h1>
-<p class="mb-4">Kalkulator kosztów spalania LPG jest aplikacją internetową do zarządzania kosztami konsumpcji paliwa dla samochodów z zamontowaną instalacją LPG.</p>
+<p class="mb-4">Kalkulator kosztów spalania LPG jest aplikacją internetową do przechowywania, analizy i zarządzania kosztami konsumpcji paliwa i gazu dla samochodów z zamontowaną instalacją LPG.</p>
 
-<!--Page Content-->
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-gray-800">Aplikacja umożliwia użytkownikom</h6>
+<!--Anonymoust-->
+<div class="card shadow mb-3">
+    <div class="card-header py-1">
+        <h6 class="m-0 font-weight-bold text-gray-800">Anonimowy użytkownik może:</h6>
     </div>
     <div class="card-body">
-        <table class="table table-striped">
+        <table class="table table-sm table-striped">
             <tr>
-                <td>Utworzyć nowy samochód</td>
+                <td>Zmienić język aplikacji.</td>
             </tr>
             <tr>
-                <td>Edytować istniejący samochów</td>
+                <td>Zobaczyć listę wprowadzonych samochodów wraz z detalami.</td>
             </tr>
             <tr>
-                <td>Dodać nowy paragon z tankowania</td>
+                <td>Zobaczyć listę wprowadzonych paragonów dla poszczególnych samochodów.</td>
             </tr>
             <tr>
-                <td>Zarządzać istniejącymi paragonami z tankowania</td>
+                <td>Zobaczyć dla wybranego zakresu czasu zużycia paliwa i średnią cenę dla wybranego samochodu.</td>
             </tr>
             <tr>
-                <td>Sprawdzić konsumpcje paliwa</td>
+                <td>Zobaczyć dla wybranego zakresu czasu dane dotyczące średniego, maksymalnego, minimalnego zużycia LPG.</td>
+            </tr>
+            <tr>
+                <td>Zobaczyć dla wybranego zakresu czasu dane dotyczące średniej, całkowitej ceny za LPG oraz całkowitego dystansu przejechanego.</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!--Logged-->
+<div class="card shadow mb-3">
+    <div class="card-header py-1">
+        <h6 class="m-0 font-weight-bold text-gray-800">Zalogowany użytkownik może:</h6>
+    </div>
+    <div class="card-body">
+        <table class="table table-sm table-striped">
+            <tr>
+                <td>Wszystko to co użytkownik anonimowy.</td>
+            </tr>
+            <tr>
+                <td>Dodać nowy, edytować lub usunąć istniejący samochód.</td>
+            </tr>
+            <tr>
+                <td>Dodać nowy, edytować lub usunąć istniejący paragon z tankowania.</td>
+            </tr>
+            <tr>
+                <td>Wygenerować raport do pliku CSV z wybranego zakresu czasu.</td>
+            </tr>
+            <tr>
+                <td>Wygenerować raport do pliku PDF z wybranego zakresu czasu.</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!--Administrator-->
+<div class="card shadow mb-3">
+    <div class="card-header py-1">
+        <h6 class="m-0 font-weight-bold text-gray-800">Administrator może:</h6>
+    </div>
+    <div class="card-body">
+        <table class="table table-sm table-striped">
+            <tr>
+                <td>Wszystko to co użytkownik zalogowany.</td>
+            </tr>
+            <tr>
+                <td>Zobaczyć listę logów aktywności użytkowników aplikacji.</td>
             </tr>
         </table>
     </div>

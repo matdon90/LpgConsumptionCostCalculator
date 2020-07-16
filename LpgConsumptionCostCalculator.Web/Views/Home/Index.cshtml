@@ -4,29 +4,73 @@
 
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">@ViewBag.Title</h1>
-<p class="mb-4">LPG consumption costs calculator is web application for managing costs and fuel consumption in cars with LPG installation.</p>
+<p class="mb-4">The LPG consumption cost calculator is a web application for storing, analyzing and managing the costs of fuel and gas consumption for cars with an LPG installation.</p>
 
-<!--Page Content-->
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-gray-800">Application allows users</h6>
+<!--Anonymoust-->
+<div class="card shadow mb-3">
+    <div class="card-header py-1">
+        <h6 class="m-0 font-weight-bold text-gray-800">Anonymous user can:</h6>
     </div>
     <div class="card-body">
-        <table class="table table-striped">
+        <table class="table table-sm table-striped">
             <tr>
-                <td>Create new car</td>
+                <td>Change application language.</td>
             </tr>
             <tr>
-                <td>Edit car</td>
+                <td>View the list of entered cars with details.</td>
             </tr>
             <tr>
-                <td>Add new fuel refuelling receipt</td>
+                <td>View the list of entered receipts for individual cars.</td>
             </tr>
             <tr>
-                <td>Manage already added receipts</td>
+                <td>View for the selected time range fuel consumption and the average price for the selected car.</td>
             </tr>
             <tr>
-                <td>Check fuel consumption</td>
+                <td>View the average, maximum, minimum LPG consumption data for the selected time range.</td>
+            </tr>
+            <tr>
+                <td>View the average, total LPG price and total distance traveled for the selected time range.</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!--Logged-->
+<div class="card shadow mb-3">
+    <div class="card-header py-1">
+        <h6 class="m-0 font-weight-bold text-gray-800">Logged user can:</h6>
+    </div>
+    <div class="card-body">
+        <table class="table table-sm table-striped">
+            <tr>
+                <td>Everything what an anonymous user can do.</td>
+            </tr>
+            <tr>
+                <td>Add a new, edit or delete an existing car.</td>
+            </tr>
+            <tr>
+                <td>Add a new, edit or delete an existing fuel receipt.</td>
+            </tr>
+            <tr>
+                <td>Generate a report to a CSV file from the selected time range.</td>
+            </tr>
+            <tr>
+                <td>Generate a report to a PDF file from the selected time range.</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!--Administrator-->
+<div class="card shadow mb-3">
+    <div class="card-header py-1">
+        <h6 class="m-0 font-weight-bold text-gray-800">Administrator can:</h6>
+    </div>
+    <div class="card-body">
+        <table class="table table-sm table-striped">
+            <tr>
+                <td>Everything what a logged user can do.</td>
+            </tr>
+            <tr>
+                <td>View the list of application user's activity logs.</td>
             </tr>
         </table>
     </div>
