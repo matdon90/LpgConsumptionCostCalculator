@@ -1,4 +1,4 @@
-﻿using LpgConsumptionCostCalculator.Web.Resources;
+﻿using LpgConsumptionCostCalculator.Web.Content.Resources;
 using LpgConsumptionCostCalculator.Web.Validations;
 using System.ComponentModel.DataAnnotations;
 
