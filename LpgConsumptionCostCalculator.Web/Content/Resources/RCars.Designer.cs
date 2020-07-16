@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LpgConsumptionCostCalculator.Web.Resources {
+namespace LpgConsumptionCostCalculator.Web.Content.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace LpgConsumptionCostCalculator.Web.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class RFuelReceipts {
+    public class RCars {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal RFuelReceipts() {
+        internal RCars() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace LpgConsumptionCostCalculator.Web.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LpgConsumptionCostCalculator.Web.Resources.RFuelReceipts", typeof(RFuelReceipts).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LpgConsumptionCostCalculator.Web.Content.Resources.RCars", typeof(RCars).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -70,11 +70,11 @@ namespace LpgConsumptionCostCalculator.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Optional comment.
+        ///   Looks up a localized string similar to Car.
         /// </summary>
-        public static string CreateCommandPlaceholder {
+        public static string CreateCar {
             get {
-                return ResourceManager.GetString("CreateCommandPlaceholder", resourceCulture);
+                return ResourceManager.GetString("CreateCar", resourceCulture);
             }
         }
         
@@ -88,38 +88,74 @@ namespace LpgConsumptionCostCalculator.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to eg. 456.23.
+        ///   Looks up a localized string similar to LPG installation.
         /// </summary>
-        public static string CreateDistancePlaceholder {
+        public static string CreateLpgInstallation {
             get {
-                return ResourceManager.GetString("CreateDistancePlaceholder", resourceCulture);
+                return ResourceManager.GetString("CreateLpgInstallation", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to eg. 23.56.
+        ///   Looks up a localized string similar to eg. ODB32.
         /// </summary>
-        public static string CreateFuelAmountPlaceholder {
+        public static string CreateLpgModelHolder {
             get {
-                return ResourceManager.GetString("CreateFuelAmountPlaceholder", resourceCulture);
+                return ResourceManager.GetString("CreateLpgModelHolder", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to eg. 2.99.
+        ///   Looks up a localized string similar to eg. BRC.
         /// </summary>
-        public static string CreateFuelPricePlaceholder {
+        public static string CreateLpgProducerHolder {
             get {
-                return ResourceManager.GetString("CreateFuelPricePlaceholder", resourceCulture);
+                return ResourceManager.GetString("CreateLpgProducerHolder", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create new fuel receipt for.
+        ///   Looks up a localized string similar to Model.
         /// </summary>
-        public static string CreateNewReceipt {
+        public static string CreateModel {
             get {
-                return ResourceManager.GetString("CreateNewReceipt", resourceCulture);
+                return ResourceManager.GetString("CreateModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to eg. Fabia.
+        /// </summary>
+        public static string CreateModelHolder {
+            get {
+                return ResourceManager.GetString("CreateModelHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create new car.
+        /// </summary>
+        public static string CreateNewCar {
+            get {
+                return ResourceManager.GetString("CreateNewCar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Producer.
+        /// </summary>
+        public static string CreateProducer {
+            get {
+                return ResourceManager.GetString("CreateProducer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to eg. Skoda.
+        /// </summary>
+        public static string CreateProducerHolder {
+            get {
+                return ResourceManager.GetString("CreateProducerHolder", resourceCulture);
             }
         }
         
@@ -133,11 +169,11 @@ namespace LpgConsumptionCostCalculator.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to eg. Shell.
+        ///   Looks up a localized string similar to eg. 2000.
         /// </summary>
-        public static string CreateStationPlaceholder {
+        public static string CreateYearHolder {
             get {
-                return ResourceManager.GetString("CreateStationPlaceholder", resourceCulture);
+                return ResourceManager.GetString("CreateYearHolder", resourceCulture);
             }
         }
         
@@ -160,7 +196,7 @@ namespace LpgConsumptionCostCalculator.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to delete this receipt?.
+        ///   Looks up a localized string similar to Are you sure you want to delete.
         /// </summary>
         public static string DeleteQuestion {
             get {
@@ -205,20 +241,11 @@ namespace LpgConsumptionCostCalculator.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Receipt.
+        ///   Looks up a localized string similar to Edit car.
         /// </summary>
-        public static string DetailsReceipt {
+        public static string EditEditCar {
             get {
-                return ResourceManager.GetString("DetailsReceipt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Edit fuel receipt for.
-        /// </summary>
-        public static string EditEditReceipt {
-            get {
-                return ResourceManager.GetString("EditEditReceipt", resourceCulture);
+                return ResourceManager.GetString("EditEditCar", resourceCulture);
             }
         }
         
@@ -237,24 +264,6 @@ namespace LpgConsumptionCostCalculator.Web.Resources {
         public static string IndexActions {
             get {
                 return ResourceManager.GetString("IndexActions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Consumption per 100 km.
-        /// </summary>
-        public static string IndexConsumption {
-            get {
-                return ResourceManager.GetString("IndexConsumption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Date.
-        /// </summary>
-        public static string IndexDate {
-            get {
-                return ResourceManager.GetString("IndexDate", resourceCulture);
             }
         }
         
@@ -295,20 +304,38 @@ namespace LpgConsumptionCostCalculator.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fuel amount.
+        ///   Looks up a localized string similar to LPG installation manufacturer.
         /// </summary>
-        public static string IndexFuelAmount {
+        public static string IndexLPGManufacturer {
             get {
-                return ResourceManager.GetString("IndexFuelAmount", resourceCulture);
+                return ResourceManager.GetString("IndexLPGManufacturer", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fuel price.
+        ///   Looks up a localized string similar to LPG installation model.
         /// </summary>
-        public static string IndexFuelPrice {
+        public static string IndexLPGModel {
             get {
-                return ResourceManager.GetString("IndexFuelPrice", resourceCulture);
+                return ResourceManager.GetString("IndexLPGModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manufacturer.
+        /// </summary>
+        public static string IndexManufacturer {
+            get {
+                return ResourceManager.GetString("IndexManufacturer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Model.
+        /// </summary>
+        public static string IndexModel {
+            get {
+                return ResourceManager.GetString("IndexModel", resourceCulture);
             }
         }
         
@@ -322,7 +349,16 @@ namespace LpgConsumptionCostCalculator.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search fuel receipts.
+        ///   Looks up a localized string similar to Production year.
+        /// </summary>
+        public static string IndexProductionYear {
+            get {
+                return ResourceManager.GetString("IndexProductionYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search car.
         /// </summary>
         public static string IndexSearch {
             get {
@@ -349,16 +385,7 @@ namespace LpgConsumptionCostCalculator.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Station name.
-        /// </summary>
-        public static string IndexStationName {
-            get {
-                return ResourceManager.GetString("IndexStationName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Fuel receipts table.
+        ///   Looks up a localized string similar to Cars table.
         /// </summary>
         public static string IndexTableTitle {
             get {
@@ -367,7 +394,7 @@ namespace LpgConsumptionCostCalculator.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List of fuel receipts for.
+        ///   Looks up a localized string similar to List of cars.
         /// </summary>
         public static string IndexTitle {
             get {
@@ -381,15 +408,6 @@ namespace LpgConsumptionCostCalculator.Web.Resources {
         public static string IndexTo {
             get {
                 return ResourceManager.GetString("IndexTo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Total price per 100 km.
-        /// </summary>
-        public static string IndexTotalPrice {
-            get {
-                return ResourceManager.GetString("IndexTotalPrice", resourceCulture);
             }
         }
     }
