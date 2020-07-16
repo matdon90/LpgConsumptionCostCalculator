@@ -1,5 +1,5 @@
 ﻿using LpgConsumptionCostCalculator.Data.Models;
-using LpgConsumptionCostCalculator.Web.Resources;
+using LpgConsumptionCostCalculator.Web.Content.Resources;
 using System;
 using System.ComponentModel.DataAnnotations;
 

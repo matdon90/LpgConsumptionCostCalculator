@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LpgConsumptionCostCalculator.Web.Resources {
+namespace LpgConsumptionCostCalculator.Web.Content.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace LpgConsumptionCostCalculator.Web.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LpgConsumptionCostCalculator.Web.Resources.RNavigation", typeof(RNavigation).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LpgConsumptionCostCalculator.Web.Content.Resources.RNavigation", typeof(RNavigation).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

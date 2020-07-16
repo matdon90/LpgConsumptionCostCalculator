@@ -254,107 +254,107 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helper\GlobalHelper.cs" />
+    <Compile Include="Helpers\GlobalHelper.cs" />
     <Compile Include="Infrastructure\AutoMapperConfiguration.cs" />
     <Compile Include="Infrastructure\AutoMapperStartupTask.cs" />
     <Compile Include="Infrastructure\MappingExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\RModels.Designer.cs">
+    <Compile Include="Content\Resources\RModels.Designer.cs">
       <DependentUpon>RModels.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\RModels.pl-PL.Designer.cs">
+    <Compile Include="Content\Resources\RModels.pl-PL.Designer.cs">
       <DependentUpon>RModels.pl-PL.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\RFuelReceipts.Designer.cs">
+    <Compile Include="Content\Resources\RFuelReceipts.Designer.cs">
       <DependentUpon>RFuelReceipts.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\RFuelReceipts.pl-PL.Designer.cs">
+    <Compile Include="Content\Resources\RFuelReceipts.pl-PL.Designer.cs">
       <DependentUpon>RFuelReceipts.pl-PL.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\RReport.Designer.cs">
+    <Compile Include="Content\Resources\RReport.Designer.cs">
       <DependentUpon>RReport.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\RReport.pl-PL.Designer.cs">
+    <Compile Include="Content\Resources\RReport.pl-PL.Designer.cs">
       <DependentUpon>RReport.pl-PL.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\RLogging.Designer.cs">
+    <Compile Include="Content\Resources\RLogging.Designer.cs">
       <DependentUpon>RLogging.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\RLogging.pl-PL.Designer.cs">
+    <Compile Include="Content\Resources\RLogging.pl-PL.Designer.cs">
       <DependentUpon>RLogging.pl-PL.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\RError.pl-PL.Designer.cs">
+    <Compile Include="Content\Resources\RError.pl-PL.Designer.cs">
       <DependentUpon>RError.pl-PL.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\RError.Designer.cs">
+    <Compile Include="Content\Resources\RError.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RError.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\RCars.Designer.cs">
+    <Compile Include="Content\Resources\RCars.Designer.cs">
       <DependentUpon>RCars.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\RCars.pl-PL.Designer.cs">
+    <Compile Include="Content\Resources\RCars.pl-PL.Designer.cs">
       <DependentUpon>RCars.pl-PL.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\RChart.Designer.cs">
+    <Compile Include="Content\Resources\RChart.Designer.cs">
       <DependentUpon>RChart.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\RChart.pl-PL.Designer.cs">
+    <Compile Include="Content\Resources\RChart.pl-PL.Designer.cs">
       <DependentUpon>RChart.pl-PL.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\RNavigation.Designer.cs">
+    <Compile Include="Content\Resources\RNavigation.Designer.cs">
       <DependentUpon>RNavigation.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\RNavigation.pl-PL.Designer.cs">
+    <Compile Include="Content\Resources\RNavigation.pl-PL.Designer.cs">
       <DependentUpon>RNavigation.pl-PL.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\RHome.pl-PL.Designer.cs">
+    <Compile Include="Content\Resources\RHome.pl-PL.Designer.cs">
       <DependentUpon>RHome.pl-PL.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\RHome.Designer.cs">
+    <Compile Include="Content\Resources\RHome.Designer.cs">
       <DependentUpon>RHome.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\RGlobal.pl-PL.Designer.cs">
+    <Compile Include="Content\Resources\RGlobal.pl-PL.Designer.cs">
       <DependentUpon>RGlobal.pl-PL.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\RGlobal.Designer.cs">
+    <Compile Include="Content\Resources\RGlobal.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RGlobal.resx</DependentUpon>
@@ -369,15 +369,15 @@
     <Compile Include="ViewModels\ReportConfigureViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-grid.css" />
-    <Content Include="Content\bootstrap-grid.min.css" />
-    <Content Include="Content\bootstrap-reboot.css" />
-    <Content Include="Content\bootstrap-reboot.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Chart.css" />
-    <Content Include="Content\Chart.min.css" />
-    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\Styles\bootstrap-grid.css" />
+    <Content Include="Content\Styles\bootstrap-grid.min.css" />
+    <Content Include="Content\Styles\bootstrap-reboot.css" />
+    <Content Include="Content\Styles\bootstrap-reboot.min.css" />
+    <Content Include="Content\Styles\bootstrap.css" />
+    <Content Include="Content\Styles\bootstrap.min.css" />
+    <Content Include="Content\Styles\Chart.css" />
+    <Content Include="Content\Styles\Chart.min.css" />
+    <Content Include="Content\Styles\font-awesome.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\Images\poland.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -385,87 +385,81 @@
     <Content Include="Content\Images\usa.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\sb-admin-2.css" />
-    <Content Include="Content\sb-admin-2.min.css" />
-    <Content Include="Content\site.css" />
-    <Content Include="Content\themes\base\accordion.css" />
-    <Content Include="Content\themes\base\all.css" />
-    <Content Include="Content\themes\base\autocomplete.css" />
-    <Content Include="Content\themes\base\base.css" />
-    <Content Include="Content\themes\base\button.css" />
-    <Content Include="Content\themes\base\core.css" />
-    <Content Include="Content\themes\base\datepicker.css" />
-    <Content Include="Content\themes\base\dialog.css" />
-    <Content Include="Content\themes\base\draggable.css" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
-    <Content Include="Content\jquery-ui.css" />
-    <Content Include="Content\jquery-ui.min.css" />
-    <Content Include="Content\themes\base\menu.css" />
-    <Content Include="Content\themes\base\progressbar.css" />
-    <Content Include="Content\themes\base\resizable.css" />
-    <Content Include="Content\themes\base\selectable.css" />
-    <Content Include="Content\themes\base\selectmenu.css" />
-    <Content Include="Content\themes\base\slider.css" />
-    <Content Include="Content\themes\base\sortable.css" />
-    <Content Include="Content\themes\base\spinner.css" />
-    <Content Include="Content\themes\base\tabs.css" />
-    <Content Include="Content\themes\base\theme.css" />
-    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\Styles\sb-admin-2.css" />
+    <Content Include="Content\Styles\sb-admin-2.min.css" />
+    <Content Include="Content\Styles\site.css" />
+    <Content Include="Content\Styles\themes\base\accordion.css" />
+    <Content Include="Content\Styles\themes\base\all.css" />
+    <Content Include="Content\Styles\themes\base\autocomplete.css" />
+    <Content Include="Content\Styles\themes\base\base.css" />
+    <Content Include="Content\Styles\themes\base\button.css" />
+    <Content Include="Content\Styles\themes\base\core.css" />
+    <Content Include="Content\Styles\themes\base\datepicker.css" />
+    <Content Include="Content\Styles\themes\base\dialog.css" />
+    <Content Include="Content\Styles\themes\base\draggable.css" />
+    <Content Include="Content\Styles\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\Styles\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\Styles\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\Styles\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\Styles\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\Styles\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\Styles\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\Styles\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\Styles\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\Styles\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\Styles\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\Styles\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\Styles\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\Styles\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\Styles\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\Styles\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\Styles\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\Styles\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\Styles\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\Styles\jquery-ui.css" />
+    <Content Include="Content\Styles\jquery-ui.min.css" />
+    <Content Include="Content\Styles\themes\base\menu.css" />
+    <Content Include="Content\Styles\themes\base\progressbar.css" />
+    <Content Include="Content\Styles\themes\base\resizable.css" />
+    <Content Include="Content\Styles\themes\base\selectable.css" />
+    <Content Include="Content\Styles\themes\base\selectmenu.css" />
+    <Content Include="Content\Styles\themes\base\slider.css" />
+    <Content Include="Content\Styles\themes\base\sortable.css" />
+    <Content Include="Content\Styles\themes\base\spinner.css" />
+    <Content Include="Content\Styles\themes\base\tabs.css" />
+    <Content Include="Content\Styles\themes\base\theme.css" />
+    <Content Include="Content\Styles\themes\base\tooltip.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Rotativa\help-wkhtmltoimage.txt" />
     <Content Include="Rotativa\help-wkhtmltopdf.txt" />
     <Content Include="Rotativa\wkhtmltoimage.exe" />
     <Content Include="Rotativa\wkhtmltopdf.exe" />
-    <Content Include="Scripts\bootstrap.bundle.js" />
-    <Content Include="Scripts\bootstrap.bundle.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\Chart.js" />
-    <Content Include="Scripts\Chart.min.js" />
-    <Content Include="Scripts\esm\popper-utils.js" />
-    <Content Include="Scripts\esm\popper-utils.min.js" />
-    <Content Include="Scripts\esm\popper.js" />
-    <Content Include="Scripts\esm\popper.min.js" />
-    <Content Include="Scripts\index.js.flow" />
-    <Content Include="Scripts\esm\popper.min.js.map" />
-    <Content Include="Scripts\esm\popper.js.map" />
-    <Content Include="Scripts\esm\popper-utils.min.js.map" />
-    <Content Include="Scripts\esm\popper-utils.js.map" />
-    <Content Include="Scripts\bootstrap.min.js.map" />
-    <Content Include="Scripts\bootstrap.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.js.map" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include="fonts\FontAwesome.otf" />
-    <Content Include="fonts\fontawesome-webfont.woff2" />
-    <Content Include="fonts\fontawesome-webfont.woff" />
-    <Content Include="fonts\fontawesome-webfont.ttf" />
-    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Scripts\bootstrap.bundle.js" />
+    <Content Include="Content\Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Content\Scripts\bootstrap.js" />
+    <Content Include="Content\Scripts\bootstrap.min.js" />
+    <Content Include="Content\Scripts\Chart.js" />
+    <Content Include="Content\Scripts\Chart.min.js" />
+    <Content Include="Content\Scripts\esm\popper-utils.js" />
+    <Content Include="Content\Scripts\esm\popper-utils.min.js" />
+    <Content Include="Content\Scripts\esm\popper.js" />
+    <Content Include="Content\Scripts\esm\popper.min.js" />
+    <Content Include="Content\Scripts\index.js.flow" />
+    <Content Include="Content\Scripts\esm\popper.min.js.map" />
+    <Content Include="Content\Scripts\esm\popper.js.map" />
+    <Content Include="Content\Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Content\Scripts\esm\popper-utils.js.map" />
+    <Content Include="Content\Scripts\bootstrap.min.js.map" />
+    <Content Include="Content\Scripts\bootstrap.js.map" />
+    <Content Include="Content\Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Content\Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\Styles\bootstrap.min.css.map" />
+    <Content Include="Content\Styles\bootstrap.css.map" />
+    <Content Include="Content\Styles\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\Styles\bootstrap-reboot.css.map" />
+    <Content Include="Content\Styles\bootstrap-grid.min.css.map" />
+    <Content Include="Content\Styles\bootstrap-grid.css.map" />
     <Content Include="App_Browsers\qt.browser" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
@@ -473,96 +467,96 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\lpgccc - Web Deploy.pubxml" />
-    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.3.1.js" />
-    <Content Include="Scripts\jquery-3.3.1.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery-ui-1.12.1.js" />
-    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
-    <Content Include="Scripts\jquery.easing.compatibility.js" />
-    <Content Include="Scripts\jquery.easing.js" />
-    <Content Include="Scripts\jquery.easing.min.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\multiLang.js" />
-    <Content Include="Scripts\popper-utils.js" />
-    <Content Include="Scripts\popper-utils.min.js" />
-    <Content Include="Scripts\popper.js" />
-    <Content Include="Scripts\popper.min.js" />
-    <Content Include="Scripts\sb-admin-2.js" />
-    <Content Include="Scripts\sb-admin-2.min.js" />
-    <Content Include="Scripts\src\index.js" />
-    <Content Include="Scripts\src\methods\defaults.js" />
-    <Content Include="Scripts\src\methods\destroy.js" />
-    <Content Include="Scripts\src\methods\disableEventListeners.js" />
-    <Content Include="Scripts\src\methods\enableEventListeners.js" />
-    <Content Include="Scripts\src\methods\placements.js" />
-    <Content Include="Scripts\src\methods\update.js" />
-    <Content Include="Scripts\src\modifiers\applyStyle.js" />
-    <Content Include="Scripts\src\modifiers\arrow.js" />
-    <Content Include="Scripts\src\modifiers\computeStyle.js" />
-    <Content Include="Scripts\src\modifiers\flip.js" />
-    <Content Include="Scripts\src\modifiers\hide.js" />
-    <Content Include="Scripts\src\modifiers\index.js" />
-    <Content Include="Scripts\src\modifiers\inner.js" />
-    <Content Include="Scripts\src\modifiers\keepTogether.js" />
-    <Content Include="Scripts\src\modifiers\offset.js" />
-    <Content Include="Scripts\src\modifiers\preventOverflow.js" />
-    <Content Include="Scripts\src\modifiers\shift.js" />
-    <Content Include="Scripts\src\utils\clockwise.js" />
-    <Content Include="Scripts\src\utils\computeAutoPlacement.js" />
-    <Content Include="Scripts\src\utils\debounce.js" />
-    <Content Include="Scripts\src\utils\find.js" />
-    <Content Include="Scripts\src\utils\findCommonOffsetParent.js" />
-    <Content Include="Scripts\src\utils\findIndex.js" />
-    <Content Include="Scripts\src\utils\getBordersSize.js" />
-    <Content Include="Scripts\src\utils\getBoundaries.js" />
-    <Content Include="Scripts\src\utils\getBoundingClientRect.js" />
-    <Content Include="Scripts\src\utils\getClientRect.js" />
-    <Content Include="Scripts\src\utils\getFixedPositionOffsetParent.js" />
-    <Content Include="Scripts\src\utils\getOffsetParent.js" />
-    <Content Include="Scripts\src\utils\getOffsetRect.js" />
-    <Content Include="Scripts\src\utils\getOffsetRectRelativeToArbitraryNode.js" />
-    <Content Include="Scripts\src\utils\getOppositePlacement.js" />
-    <Content Include="Scripts\src\utils\getOppositeVariation.js" />
-    <Content Include="Scripts\src\utils\getOuterSizes.js" />
-    <Content Include="Scripts\src\utils\getParentNode.js" />
-    <Content Include="Scripts\src\utils\getPopperOffsets.js" />
-    <Content Include="Scripts\src\utils\getReferenceNode.js" />
-    <Content Include="Scripts\src\utils\getReferenceOffsets.js" />
-    <Content Include="Scripts\src\utils\getRoot.js" />
-    <Content Include="Scripts\src\utils\getRoundedOffsets.js" />
-    <Content Include="Scripts\src\utils\getScroll.js" />
-    <Content Include="Scripts\src\utils\getScrollParent.js" />
-    <Content Include="Scripts\src\utils\getStyleComputedProperty.js" />
-    <Content Include="Scripts\src\utils\getSupportedPropertyName.js" />
-    <Content Include="Scripts\src\utils\getViewportOffsetRectRelativeToArtbitraryNode.js" />
-    <Content Include="Scripts\src\utils\getWindow.js" />
-    <Content Include="Scripts\src\utils\getWindowSizes.js" />
-    <Content Include="Scripts\src\utils\includeScroll.js" />
-    <Content Include="Scripts\src\utils\index.js" />
-    <Content Include="Scripts\src\utils\isBrowser.js" />
-    <Content Include="Scripts\src\utils\isFixed.js" />
-    <Content Include="Scripts\src\utils\isFunction.js" />
-    <Content Include="Scripts\src\utils\isIE.js" />
-    <Content Include="Scripts\src\utils\isModifierEnabled.js" />
-    <Content Include="Scripts\src\utils\isModifierRequired.js" />
-    <Content Include="Scripts\src\utils\isNumeric.js" />
-    <Content Include="Scripts\src\utils\isOffsetContainer.js" />
-    <Content Include="Scripts\src\utils\removeEventListeners.js" />
-    <Content Include="Scripts\src\utils\runModifiers.js" />
-    <Content Include="Scripts\src\utils\setAttributes.js" />
-    <Content Include="Scripts\src\utils\setStyles.js" />
-    <Content Include="Scripts\src\utils\setupEventListeners.js" />
-    <Content Include="Scripts\umd\popper-utils.js" />
-    <Content Include="Scripts\umd\popper-utils.min.js" />
-    <Content Include="Scripts\umd\popper.js" />
-    <Content Include="Scripts\umd\popper.min.js" />
+    <None Include="Content\Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Content\Scripts\jquery-3.3.1.js" />
+    <Content Include="Content\Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Content\Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Content\Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Content\Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Content\Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Content\Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Content\Scripts\jquery.easing.compatibility.js" />
+    <Content Include="Content\Scripts\jquery.easing.js" />
+    <Content Include="Content\Scripts\jquery.easing.min.js" />
+    <Content Include="Content\Scripts\jquery.validate.js" />
+    <Content Include="Content\Scripts\jquery.validate.min.js" />
+    <Content Include="Content\Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Content\Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Content\Scripts\modernizr-2.8.3.js" />
+    <Content Include="Content\Scripts\multiLang.js" />
+    <Content Include="Content\Scripts\popper-utils.js" />
+    <Content Include="Content\Scripts\popper-utils.min.js" />
+    <Content Include="Content\Scripts\popper.js" />
+    <Content Include="Content\Scripts\popper.min.js" />
+    <Content Include="Content\Scripts\sb-admin-2.js" />
+    <Content Include="Content\Scripts\sb-admin-2.min.js" />
+    <Content Include="Content\Scripts\src\index.js" />
+    <Content Include="Content\Scripts\src\methods\defaults.js" />
+    <Content Include="Content\Scripts\src\methods\destroy.js" />
+    <Content Include="Content\Scripts\src\methods\disableEventListeners.js" />
+    <Content Include="Content\Scripts\src\methods\enableEventListeners.js" />
+    <Content Include="Content\Scripts\src\methods\placements.js" />
+    <Content Include="Content\Scripts\src\methods\update.js" />
+    <Content Include="Content\Scripts\src\modifiers\applyStyle.js" />
+    <Content Include="Content\Scripts\src\modifiers\arrow.js" />
+    <Content Include="Content\Scripts\src\modifiers\computeStyle.js" />
+    <Content Include="Content\Scripts\src\modifiers\flip.js" />
+    <Content Include="Content\Scripts\src\modifiers\hide.js" />
+    <Content Include="Content\Scripts\src\modifiers\index.js" />
+    <Content Include="Content\Scripts\src\modifiers\inner.js" />
+    <Content Include="Content\Scripts\src\modifiers\keepTogether.js" />
+    <Content Include="Content\Scripts\src\modifiers\offset.js" />
+    <Content Include="Content\Scripts\src\modifiers\preventOverflow.js" />
+    <Content Include="Content\Scripts\src\modifiers\shift.js" />
+    <Content Include="Content\Scripts\src\utils\clockwise.js" />
+    <Content Include="Content\Scripts\src\utils\computeAutoPlacement.js" />
+    <Content Include="Content\Scripts\src\utils\debounce.js" />
+    <Content Include="Content\Scripts\src\utils\find.js" />
+    <Content Include="Content\Scripts\src\utils\findCommonOffsetParent.js" />
+    <Content Include="Content\Scripts\src\utils\findIndex.js" />
+    <Content Include="Content\Scripts\src\utils\getBordersSize.js" />
+    <Content Include="Content\Scripts\src\utils\getBoundaries.js" />
+    <Content Include="Content\Scripts\src\utils\getBoundingClientRect.js" />
+    <Content Include="Content\Scripts\src\utils\getClientRect.js" />
+    <Content Include="Content\Scripts\src\utils\getFixedPositionOffsetParent.js" />
+    <Content Include="Content\Scripts\src\utils\getOffsetParent.js" />
+    <Content Include="Content\Scripts\src\utils\getOffsetRect.js" />
+    <Content Include="Content\Scripts\src\utils\getOffsetRectRelativeToArbitraryNode.js" />
+    <Content Include="Content\Scripts\src\utils\getOppositePlacement.js" />
+    <Content Include="Content\Scripts\src\utils\getOppositeVariation.js" />
+    <Content Include="Content\Scripts\src\utils\getOuterSizes.js" />
+    <Content Include="Content\Scripts\src\utils\getParentNode.js" />
+    <Content Include="Content\Scripts\src\utils\getPopperOffsets.js" />
+    <Content Include="Content\Scripts\src\utils\getReferenceNode.js" />
+    <Content Include="Content\Scripts\src\utils\getReferenceOffsets.js" />
+    <Content Include="Content\Scripts\src\utils\getRoot.js" />
+    <Content Include="Content\Scripts\src\utils\getRoundedOffsets.js" />
+    <Content Include="Content\Scripts\src\utils\getScroll.js" />
+    <Content Include="Content\Scripts\src\utils\getScrollParent.js" />
+    <Content Include="Content\Scripts\src\utils\getStyleComputedProperty.js" />
+    <Content Include="Content\Scripts\src\utils\getSupportedPropertyName.js" />
+    <Content Include="Content\Scripts\src\utils\getViewportOffsetRectRelativeToArtbitraryNode.js" />
+    <Content Include="Content\Scripts\src\utils\getWindow.js" />
+    <Content Include="Content\Scripts\src\utils\getWindowSizes.js" />
+    <Content Include="Content\Scripts\src\utils\includeScroll.js" />
+    <Content Include="Content\Scripts\src\utils\index.js" />
+    <Content Include="Content\Scripts\src\utils\isBrowser.js" />
+    <Content Include="Content\Scripts\src\utils\isFixed.js" />
+    <Content Include="Content\Scripts\src\utils\isFunction.js" />
+    <Content Include="Content\Scripts\src\utils\isIE.js" />
+    <Content Include="Content\Scripts\src\utils\isModifierEnabled.js" />
+    <Content Include="Content\Scripts\src\utils\isModifierRequired.js" />
+    <Content Include="Content\Scripts\src\utils\isNumeric.js" />
+    <Content Include="Content\Scripts\src\utils\isOffsetContainer.js" />
+    <Content Include="Content\Scripts\src\utils\removeEventListeners.js" />
+    <Content Include="Content\Scripts\src\utils\runModifiers.js" />
+    <Content Include="Content\Scripts\src\utils\setAttributes.js" />
+    <Content Include="Content\Scripts\src\utils\setStyles.js" />
+    <Content Include="Content\Scripts\src\utils\setupEventListeners.js" />
+    <Content Include="Content\Scripts\umd\popper-utils.js" />
+    <Content Include="Content\Scripts\umd\popper-utils.min.js" />
+    <Content Include="Content\Scripts\umd\popper.js" />
+    <Content Include="Content\Scripts\umd\popper.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -578,16 +572,16 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Privacy.cshtml" />
     <Content Include="Views\Cars\Index.cshtml" />
-    <Content Include="Scripts\umd\popper.min.js.map" />
-    <Content Include="Scripts\umd\popper.js.map" />
-    <Content Include="Scripts\umd\popper.js.flow" />
-    <Content Include="Scripts\umd\popper-utils.min.js.map" />
-    <Content Include="Scripts\umd\popper-utils.js.map" />
-    <Content Include="Scripts\README.md" />
-    <Content Include="Scripts\popper.min.js.map" />
-    <Content Include="Scripts\popper.js.map" />
-    <Content Include="Scripts\popper-utils.min.js.map" />
-    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Content\Scripts\umd\popper.min.js.map" />
+    <Content Include="Content\Scripts\umd\popper.js.map" />
+    <Content Include="Content\Scripts\umd\popper.js.flow" />
+    <Content Include="Content\Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Content\Scripts\umd\popper-utils.js.map" />
+    <Content Include="Content\Scripts\README.md" />
+    <Content Include="Content\Scripts\popper.min.js.map" />
+    <Content Include="Content\Scripts\popper.js.map" />
+    <Content Include="Content\Scripts\popper-utils.min.js.map" />
+    <Content Include="Content\Scripts\popper-utils.js.map" />
     <Content Include="Views\Cars\NotFound.cshtml" />
     <Content Include="Views\Cars\Details.cshtml" />
     <Content Include="Views\Cars\Edit.cshtml" />
@@ -608,16 +602,14 @@
     <Content Include="Views\Home\pl-PL\Index.cshtml" />
     <Content Include="Views\Home\pl-PL\Contact.cshtml" />
     <Content Include="Views\Home\pl-PL\Privacy.cshtml" />
-    <Content Include="Scripts\pl-PL\jquery.validate.extension.js" />
+    <Content Include="Content\Scripts\pl-PL\jquery.validate.extension.js" />
     <Content Include="Views\Shared\DisplayTemplates\Enum.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Content\Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Content\Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LpgConsumptionCostCalculator.Data\LpgConsumptionCostCalculator.Data.csproj">
@@ -626,89 +618,89 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Scripts\index.d.ts" />
+    <TypeScriptCompile Include="Content\Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\RModels.resx">
+    <EmbeddedResource Include="Content\Resources\RModels.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RModels.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\RModels.pl-PL.resx">
+    <EmbeddedResource Include="Content\Resources\RModels.pl-PL.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RModels.pl-PL.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\RFuelReceipts.resx">
+    <EmbeddedResource Include="Content\Resources\RFuelReceipts.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RFuelReceipts.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\RFuelReceipts.pl-PL.resx">
+    <EmbeddedResource Include="Content\Resources\RFuelReceipts.pl-PL.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RFuelReceipts.pl-PL.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\RReport.resx">
+    <EmbeddedResource Include="Content\Resources\RReport.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RReport.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\RReport.pl-PL.resx">
+    <EmbeddedResource Include="Content\Resources\RReport.pl-PL.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RReport.pl-PL.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\RLogging.resx">
+    <EmbeddedResource Include="Content\Resources\RLogging.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RLogging.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\RLogging.pl-PL.resx">
+    <EmbeddedResource Include="Content\Resources\RLogging.pl-PL.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RLogging.pl-PL.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\RError.pl-PL.resx">
+    <EmbeddedResource Include="Content\Resources\RError.pl-PL.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RError.pl-PL.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\RError.resx">
+    <EmbeddedResource Include="Content\Resources\RError.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RError.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\RCars.resx">
+    <EmbeddedResource Include="Content\Resources\RCars.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RCars.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\RCars.pl-PL.resx">
+    <EmbeddedResource Include="Content\Resources\RCars.pl-PL.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RCars.pl-PL.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\RChart.resx">
+    <EmbeddedResource Include="Content\Resources\RChart.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RChart.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\RChart.pl-PL.resx">
+    <EmbeddedResource Include="Content\Resources\RChart.pl-PL.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RChart.pl-PL.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\RNavigation.resx">
+    <EmbeddedResource Include="Content\Resources\RNavigation.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RNavigation.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\RNavigation.pl-PL.resx">
+    <EmbeddedResource Include="Content\Resources\RNavigation.pl-PL.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RNavigation.pl-PL.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\RHome.pl-PL.resx">
+    <EmbeddedResource Include="Content\Resources\RHome.pl-PL.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RHome.pl-PL.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\RHome.resx">
+    <EmbeddedResource Include="Content\Resources\RHome.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RHome.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\RGlobal.pl-PL.resx">
+    <EmbeddedResource Include="Content\Resources\RGlobal.pl-PL.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RGlobal.pl-PL.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\RGlobal.resx">
+    <EmbeddedResource Include="Content\Resources\RGlobal.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RGlobal.Designer.cs</LastGenOutput>
     </EmbeddedResource>
