@@ -27,7 +27,7 @@
 ## Table of Contents
 
 * [About the Project](#about-the-project)
-  * [Built With](#built-with)
+* [Used Technologies](#used-technologies)
 * [Getting Started](#getting-started)
 * [Usage](#usage)
 * [Contributing](#contributing)
@@ -41,10 +41,10 @@
 LpgConsumptionCostCalculator is a ASP.NET MVC5 web app designed for storing, analyzing and managing the costs of fuel and gas consumption for cars with an LPG installation.
 Project created for my own needs to support me and my wife with cooperatively analyzing and managing costs of travel with petrol car using LPG installation, but it can either be use for diesel cars with LPG installation. More details in Usage section.
 
+<!-- USED TECHNOLOGIES -->
+### Used Technologies
 
-### Used technologies
-
-* [ASP.NET MVC v5.2.7.0]https://dotnet.microsoft.com/apps/aspnet)
+* [ASP.NET MVC v5.2.7.0](https://dotnet.microsoft.com/apps/aspnet)
 * [Firebase Database](https://firebase.google.com/)
 * [Autofac](https://autofac.org/)
 * [AutoMapper](https://automapper.org/)
@@ -101,34 +101,40 @@ Please note that I have tested the app in Chrome browser where no issues where d
 
 This section contains screens of application's parts with all main functionalities.
 
-1. List of cars
+###1. List of cars
 
 After clicking `List` in `CARS` section from navigation bar the list of cars is shown. 
 Anonymous user can view the list of entered cars and check selected car details on seperate modal.
 In addition, it is possible to search the list, order columns and set the number of entries on one page.
+
 <img src="https://user-images.githubusercontent.com/49766006/87756090-8bdc8500-c808-11ea-8412-09ce5dc2567a.JPG" title="List of cars" alt="List of cars">
 
 Logged user can additionally add new car, edit or delete existing one.
+
 <img src="https://user-images.githubusercontent.com/49766006/87756099-91d26600-c808-11ea-8486-b1b4a9f1a38e.JPG" title="New car form" alt="New car form">
 
-2. List of receipts
+###2. List of receipts
 
 After clicking name of the chosen car and then selecting `Fuel receipts` in `FUEL RECEIPTS` section from navigation bar the list of receipts is shown. 
 Anonymous user can view the list of receipts for selected car and check details of fuel recipt.
 In addition, it is possible to search the list, order columns and set the number of entries on one page.
+
 <img src="https://user-images.githubusercontent.com/49766006/87756110-9565ed00-c808-11ea-88b6-fa41a6aa6bd2.JPG" title="List of receipts" alt="List of receipts">
 
 Logged user can additionally add fuel receipt, edit or delete existing one.
+
 <img src="https://user-images.githubusercontent.com/49766006/87756114-97c84700-c808-11ea-9cb4-38e2631e5b6d.JPG" title="New fuel receipt form" alt="New fuel receipt form">
 
-3. Important data, trends and reports generating
+###3. Important data, trends and reports generating
 
 After clicking name of the chosen car and then selecting `Graphs` in `FUEL RECEIPTS` section from navigation bar the graphs and reports section is shown. 
 Anonymous user can view the important fuel consumption and fuel price data from selected time range.
 In addition the graphs with fuel consumption and fuel price for 100 km is shown.
+
 <img src="https://user-images.githubusercontent.com/49766006/87756121-9b5bce00-c808-11ea-8dc3-85bbce2b572c.JPG" title="Graphs" alt="Graphs">
 
 Logged user can additionally export report to PDF or CSV file from selected time range.
+
 <img src="https://user-images.githubusercontent.com/49766006/87756130-9dbe2800-c808-11ea-8d43-617dc0f98fcd.JPG" title="Report configuration" alt="Report configuration">
 
 <!-- CONTRIBUTING -->
