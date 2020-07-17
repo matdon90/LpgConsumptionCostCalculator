@@ -101,7 +101,7 @@ Please note that I have tested the app in Chrome browser where no issues where d
 
 This section contains screens of application's parts with all main functionalities.
 
-###1. List of cars
+#### List of cars
 
 After clicking `List` in `CARS` section from navigation bar the list of cars is shown. 
 Anonymous user can view the list of entered cars and check selected car details on seperate modal.
@@ -113,7 +113,7 @@ Logged user can additionally add new car, edit or delete existing one.
 
 <img src="https://user-images.githubusercontent.com/49766006/87756099-91d26600-c808-11ea-8486-b1b4a9f1a38e.JPG" title="New car form" alt="New car form">
 
-###2. List of receipts
+#### List of receipts
 
 After clicking name of the chosen car and then selecting `Fuel receipts` in `FUEL RECEIPTS` section from navigation bar the list of receipts is shown. 
 Anonymous user can view the list of receipts for selected car and check details of fuel recipt.
@@ -125,7 +125,7 @@ Logged user can additionally add fuel receipt, edit or delete existing one.
 
 <img src="https://user-images.githubusercontent.com/49766006/87756114-97c84700-c808-11ea-9cb4-38e2631e5b6d.JPG" title="New fuel receipt form" alt="New fuel receipt form">
 
-###3. Important data, trends and reports generating
+#### Important data, trends and reports generating
 
 After clicking name of the chosen car and then selecting `Graphs` in `FUEL RECEIPTS` section from navigation bar the graphs and reports section is shown. 
 Anonymous user can view the important fuel consumption and fuel price data from selected time range.
