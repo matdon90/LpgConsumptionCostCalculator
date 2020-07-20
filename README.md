@@ -104,7 +104,7 @@ This section contains screens of application's parts with all main functionaliti
 #### List of cars
 
 After clicking `List` in `CARS` section from navigation bar the list of cars is shown. 
-Anonymous user can view the list of entered cars and check selected car details on seperate modal.
+Guest can view the list of entered cars and check selected car details on seperate modal.
 In addition, it is possible to search the list, order columns and set the number of entries on one page.
 
 <img src="https://user-images.githubusercontent.com/49766006/87756090-8bdc8500-c808-11ea-8412-09ce5dc2567a.JPG" title="List of cars" alt="List of cars">
