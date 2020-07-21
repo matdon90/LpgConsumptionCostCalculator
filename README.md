@@ -116,7 +116,7 @@ Logged user can additionally add new car, edit or delete existing one.
 #### List of receipts
 
 After clicking name of the chosen car and then selecting `Fuel receipts` in `FUEL RECEIPTS` section from navigation bar the list of receipts is shown. 
-Anonymous user can view the list of receipts for selected car and check details of fuel recipt.
+Guest can view the list of receipts for selected car and check details of fuel recipt.
 In addition, it is possible to search the list, order columns and set the number of entries on one page.
 
 <img src="https://user-images.githubusercontent.com/49766006/87756110-9565ed00-c808-11ea-88b6-fa41a6aa6bd2.JPG" title="List of receipts" alt="List of receipts">
@@ -128,7 +128,7 @@ Logged user can additionally add fuel receipt, edit or delete existing one.
 #### Important data, trends and reports generating
 
 After clicking name of the chosen car and then selecting `Graphs` in `FUEL RECEIPTS` section from navigation bar the graphs and reports section is shown. 
-Anonymous user can view the important fuel consumption and fuel price data from selected time range.
+Guest can view the important fuel consumption and fuel price data from selected time range.
 In addition the graphs with fuel consumption and fuel price for 100 km is shown.
 
 <img src="https://user-images.githubusercontent.com/49766006/87756121-9b5bce00-c808-11ea-8dc3-85bbce2b572c.JPG" title="Graphs" alt="Graphs">
