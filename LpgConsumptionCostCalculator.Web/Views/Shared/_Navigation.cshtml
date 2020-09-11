@@ -18,7 +18,7 @@
             <span>@RNavigation.About</span>
         </a>
     </li>
-    @if (Context.User.Identity.Name == "Mateusz Donhefner")
+    @if (Context.User.Identity.Name == "Mateusz Donhefner" || Context.User.Identity.Name == "Admin Administrator")
     {
         <!--Divider-->
         <hr class="sidebar-divider">

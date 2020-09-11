@@ -7,10 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LpgConsumptionCostCalculato
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LpgConsumptionCostCalculator.Data", "LpgConsumptionCostCalculator.Data\LpgConsumptionCostCalculator.Data.csproj", "{DACF3FC4-B99F-4F90-82E1-697D767DD05C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{243CF2AE-C646-4BDB-9E96-343645F4446E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LpgConsumptionCostCalculatorDataTests", "LpgConsumptionCostCalculatorDataTests\LpgConsumptionCostCalculatorDataTests.csproj", "{E94FA3B5-0149-4C94-BD31-13830712F0DE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,16 +21,9 @@ Global
 		{DACF3FC4-B99F-4F90-82E1-697D767DD05C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DACF3FC4-B99F-4F90-82E1-697D767DD05C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DACF3FC4-B99F-4F90-82E1-697D767DD05C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E94FA3B5-0149-4C94-BD31-13830712F0DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E94FA3B5-0149-4C94-BD31-13830712F0DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E94FA3B5-0149-4C94-BD31-13830712F0DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E94FA3B5-0149-4C94-BD31-13830712F0DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{E94FA3B5-0149-4C94-BD31-13830712F0DE} = {243CF2AE-C646-4BDB-9E96-343645F4446E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA57039E-435F-4AF7-9C35-25ACD9E778EB}

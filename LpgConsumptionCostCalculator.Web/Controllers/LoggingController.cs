@@ -19,7 +19,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
             _db = db;
         }
 
-        [Authorize(Users = "Mateusz Donhefner")]
+        [Authorize(Users = "Mateusz Donhefner, Admin Administrator")]
         [HttpGet]
         public async Task<ActionResult> Logs([Form] QueryOptions queryOptions, string searchString)
         {
