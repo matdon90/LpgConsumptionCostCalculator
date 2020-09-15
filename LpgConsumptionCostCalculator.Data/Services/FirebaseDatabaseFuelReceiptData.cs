@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Firebase.Database;
 using Firebase.Database.Query;
+using LpgConsumptionCostCalculator.Data.Interfaces;
 using LpgConsumptionCostCalculator.Data.Models;
 
 namespace LpgConsumptionCostCalculator.Data.Services

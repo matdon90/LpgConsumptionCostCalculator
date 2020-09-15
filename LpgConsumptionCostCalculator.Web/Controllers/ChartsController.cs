@@ -1,12 +1,13 @@
-﻿using LpgConsumptionCostCalculator.Data.Models;
-using LpgConsumptionCostCalculator.Data.Services;
-using LpgConsumptionCostCalculator.Web.ViewModels;
+﻿using LpgConsumptionCostCalculator.Web.ViewModels;
 using LpgConsumptionCostCalculator.Web.Infrastructure;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.ModelBinding;
 using System.Web.Mvc;
+using LpgConsumptionCostCalculator.Data.Interfaces;
+using LpgConsumptionCostCalculator.Data.Enums;
+using LpgConsumptionCostCalculator.Data.QueryOptions;
 
 namespace LpgConsumptionCostCalculator.Web.Controllers
 {

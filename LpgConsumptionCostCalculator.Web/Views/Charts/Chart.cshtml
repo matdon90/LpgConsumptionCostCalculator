@@ -1,5 +1,5 @@
 ﻿@model LpgConsumptionCostCalculator.Web.ViewModels.ChartViewModel
-@using LpgConsumptionCostCalculator.Data.Models
+@using LpgConsumptionCostCalculator.Data.QueryOptions
 @{
     var chartQueryOptions = (ChartQueryOptions)ViewBag.chartQueryOptions;
     string startDate = chartQueryOptions.startingTimeRange != DateTime.MinValue ? RChart.ChartStartDate + @ViewBag.startingdate.ToString("dd/MM/yyyy") : RChart.ChartAllData;

@@ -1,5 +1,6 @@
-﻿using LpgConsumptionCostCalculator.Data.Models;
-using LpgConsumptionCostCalculator.Data.Services;
+﻿using LpgConsumptionCostCalculator.Data.Interfaces;
+using LpgConsumptionCostCalculator.Data.Models;
+using LpgConsumptionCostCalculator.Data.QueryOptions;
 using LpgConsumptionCostCalculator.Web.Behaviors;
 using LpgConsumptionCostCalculator.Web.Filters;
 using LpgConsumptionCostCalculator.Web.Infrastructure;
@@ -25,7 +26,7 @@ namespace LpgConsumptionCostCalculator.Web.Controllers
         }
 
         // GET: FuelReceipts
-        public async Task<ActionResult> Index(int? id, [Form] QueryOptions queryOptions, string searchString)
+        public async Task<ActionResult> Index(int? id, [Form] TableQueryOptions queryOptions, string searchString)
         {
             ViewBag.QueryOptions = queryOptions;
             var start = QueryOptionsCalculator.CalculateStartPage(queryOptions);

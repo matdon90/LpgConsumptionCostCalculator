@@ -1,5 +1,5 @@
-﻿using LpgConsumptionCostCalculator.Data.Models;
-using LpgConsumptionCostCalculator.Data.Services;
+﻿using LpgConsumptionCostCalculator.Data.Enums;
+using LpgConsumptionCostCalculator.Data.Interfaces;
 using LpgConsumptionCostCalculator.Web.Behaviors;
 using LpgConsumptionCostCalculator.Web.Filters;
 using LpgConsumptionCostCalculator.Web.Infrastructure;

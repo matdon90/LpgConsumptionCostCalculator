@@ -1,4 +1,4 @@
-﻿using LpgConsumptionCostCalculator.Data.Models;
+﻿using LpgConsumptionCostCalculator.Data.Enums;
 using LpgConsumptionCostCalculator.Web.Content.Resources;
 using System;
 using System.ComponentModel.DataAnnotations;

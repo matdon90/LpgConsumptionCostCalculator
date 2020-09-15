@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace LpgConsumptionCostCalculator.Data.Services
+namespace LpgConsumptionCostCalculator.Data.Interfaces
 {
     public interface ICarData
     {

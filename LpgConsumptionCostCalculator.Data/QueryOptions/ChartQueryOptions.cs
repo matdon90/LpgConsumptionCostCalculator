@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LpgConsumptionCostCalculator.Data.Models
+namespace LpgConsumptionCostCalculator.Data.QueryOptions
 {
     public class ChartQueryOptions
     {

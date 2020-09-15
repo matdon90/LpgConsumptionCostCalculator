@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
+using LpgConsumptionCostCalculator.Data.Interfaces;
 using LpgConsumptionCostCalculator.Data.Services;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -18,8 +19,8 @@ namespace LpgConsumptionCostCalculator.Web
             builder.RegisterType<FirebaseDatabaseCarData>()
                 .As<ICarData>()
                 .InstancePerRequest();
-            builder.RegisterType<FirebaseDatabaseLoginData>()
-               .As<ILoginData>()
+            builder.RegisterType<FirebaseDatabaseLogData>()
+               .As<ILogData>()
                .InstancePerRequest();
             builder.RegisterType<FirebaseDatabaseFuelReceiptData>()
                 .As<IFuelReceiptData>()

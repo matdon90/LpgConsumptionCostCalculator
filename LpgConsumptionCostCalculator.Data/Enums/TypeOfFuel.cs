@@ -1,7 +1,7 @@
 ﻿using LpgConsumptionCostCalculator.Data.Resources;
 using System.ComponentModel.DataAnnotations;
 
-namespace LpgConsumptionCostCalculator.Data.Models
+namespace LpgConsumptionCostCalculator.Data.Enums
 {
     public enum TypeOfFuel
     {

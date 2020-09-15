@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<LpgConsumptionCostCalculator.Web.ViewModels.CarViewModel>
-@using LpgConsumptionCostCalculator.Data.Models
+@using LpgConsumptionCostCalculator.Data.QueryOptions
 @{
     ViewBag.Title = RCars.IndexTitle;
-    var queryOptions = (QueryOptions)ViewBag.QueryOptions;
+    var queryOptions = (TableQueryOptions)ViewBag.QueryOptions;
 }
 
 <!-- Page Heading -->

@@ -62,6 +62,7 @@ To get a local copy up and running follow these simple steps:
 
 * Download the latest stable version from the download tab and unzip it to your folder
 * Open the solution in Visual Studio 2019. 
+* Clean solution.
 * Build the solution to install Nuget packages.
 * In case of RoslynCompilerBug run following in PM Console:
 

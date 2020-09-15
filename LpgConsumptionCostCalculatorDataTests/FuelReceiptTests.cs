@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using LpgConsumptionCostCalculator.Data.Enums;
 using LpgConsumptionCostCalculator.Data.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

@@ -1,4 +1,5 @@
-﻿using LpgConsumptionCostCalculator.Data.Models;
+﻿using LpgConsumptionCostCalculator.Data.Enums;
+using LpgConsumptionCostCalculator.Data.QueryOptions;
 using LpgConsumptionCostCalculator.Web.Content.Resources;
 using Newtonsoft.Json;
 using System;
@@ -19,7 +20,7 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
             return new HtmlString(JsonConvert.SerializeObject(model, settings));
         }
 
-        public static MvcHtmlString BuildSortableLink(this HtmlHelper htmlHelper, string fieldName, string actionName, string sortField, QueryOptions queryOptions)
+        public static MvcHtmlString BuildSortableLink(this HtmlHelper htmlHelper, string fieldName, string actionName, string sortField, TableQueryOptions queryOptions)
         {
             var urlHelper = new UrlHelper(htmlHelper.ViewContext.RequestContext);
             var isCurrentSortField = queryOptions.SortField == sortField;
@@ -35,7 +36,7 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
                 BuildSortIcon(isCurrentSortField, queryOptions)));
         }
 
-        private static object BuildSortIcon(bool isCurrentSortField, QueryOptions queryOptions)
+        private static object BuildSortIcon(bool isCurrentSortField, TableQueryOptions queryOptions)
         {
             string sortIcon = "fa-sort";
             if (isCurrentSortField)
@@ -45,7 +46,7 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
             return string.Format("<i class=\"{0} {1}\"></i>", "fa", sortIcon);
         }
 
-        public static MvcHtmlString BuildNextPreviousLinks(this HtmlHelper htmlHelper, QueryOptions queryOptions, string actionName)
+        public static MvcHtmlString BuildNextPreviousLinks(this HtmlHelper htmlHelper, TableQueryOptions queryOptions, string actionName)
         {
             var urlHelper = new UrlHelper(htmlHelper.ViewContext.RequestContext);
             return new MvcHtmlString(string.Format(
@@ -66,15 +67,15 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
                 BuildPageNumbers(urlHelper, queryOptions, actionName)
                 ));
         }
-        private static string IsPreviousDisabled(QueryOptions queryOptions)
+        private static string IsPreviousDisabled(TableQueryOptions queryOptions)
         {
             return (queryOptions.CurrentPage == 1) ? "disabled" : string.Empty;
         }
-        private static string IsNextDisabled(QueryOptions queryOptions)
+        private static string IsNextDisabled(TableQueryOptions queryOptions)
         {
             return (queryOptions.CurrentPage == queryOptions.TotalPages) ? "disabled" : string.Empty;
         }
-        private static string BuildPreviousLink(UrlHelper urlHelper, QueryOptions queryOptions, string actionName)
+        private static string BuildPreviousLink(UrlHelper urlHelper, TableQueryOptions queryOptions, string actionName)
         {
             return string.Format(
                 "<a class=\"page-link\" href=\"{0}\">{1}</a>",
@@ -86,7 +87,7 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
                     PageSize = queryOptions.PageSize
                 }), RGlobal.Previous);
         }
-        private static string BuildNextLink(UrlHelper urlHelper, QueryOptions queryOptions, string actionName)
+        private static string BuildNextLink(UrlHelper urlHelper, TableQueryOptions queryOptions, string actionName)
         {
             return string.Format(
                 "<a class=\"page-link\" href=\"{0}\">{1}</a>",
@@ -99,7 +100,7 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
                 }), RGlobal.Next);
         }
 
-        private static string BuildPageNumbers(UrlHelper urlHelper, QueryOptions queryOptions, string actionName)
+        private static string BuildPageNumbers(UrlHelper urlHelper, TableQueryOptions queryOptions, string actionName)
         {
             string paginationPagesButtons = string.Empty;
             for (int i = 1; i <= queryOptions.TotalPages; i++)
@@ -122,7 +123,7 @@ namespace LpgConsumptionCostCalculator.Web.Extensions
             return paginationPagesButtons;                
         }
 
-        public static MvcHtmlString BuildPaginationDetails(this HtmlHelper htmlHelper, QueryOptions queryOptions, string actionName)
+        public static MvcHtmlString BuildPaginationDetails(this HtmlHelper htmlHelper, TableQueryOptions queryOptions, string actionName)
         {
             var urlHelper = new UrlHelper(htmlHelper.ViewContext.RequestContext);
             return new MvcHtmlString(string.Format(

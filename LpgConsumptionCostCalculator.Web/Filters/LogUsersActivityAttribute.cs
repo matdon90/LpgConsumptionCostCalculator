@@ -10,11 +10,11 @@ namespace LpgConsumptionCostCalculator.Web.Filters
 {
     public class LogUsersActivityAttribute : ActionFilterAttribute
     {
-        private FirebaseDatabaseLoginData _db;
+        private FirebaseDatabaseLogData _db;
 
         public LogUsersActivityAttribute()
         {
-            _db = new FirebaseDatabaseLoginData();
+            _db = new FirebaseDatabaseLogData();
         }
 
         private Stopwatch sw = new Stopwatch();
@@ -41,7 +41,7 @@ namespace LpgConsumptionCostCalculator.Web.Filters
             var logTime = DateTime.Now;
             var requestDuration = actionDurationTime.ToString();
             var message = String.Format("LpgCCC Log - Method: {0} - Controller: {1} - Action: {2}", methodName, controllerName, actionName);
-            var log = new LoginData()
+            var log = new LogData()
             {
                 UserName = user,
                 LogTime = logTime,

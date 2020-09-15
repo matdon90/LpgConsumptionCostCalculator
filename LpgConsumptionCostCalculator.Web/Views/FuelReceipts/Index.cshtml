@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<LpgConsumptionCostCalculator.Web.ViewModels.FuelReceiptViewModel>
-@using LpgConsumptionCostCalculator.Data.Models
+@using LpgConsumptionCostCalculator.Data.QueryOptions
 
 @{
     ViewBag.Title = RFuelReceipts.IndexTitle;
-    var queryOptions = (QueryOptions)ViewBag.QueryOptions;
+    var queryOptions = (TableQueryOptions)ViewBag.QueryOptions;
 }
       
 

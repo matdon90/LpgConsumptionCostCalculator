@@ -1,5 +1,6 @@
 ﻿using Firebase.Database;
 using Firebase.Database.Query;
+using LpgConsumptionCostCalculator.Data.Interfaces;
 using LpgConsumptionCostCalculator.Data.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,25 +8,25 @@ using System.Threading.Tasks;
 
 namespace LpgConsumptionCostCalculator.Data.Services
 {
-    public class FirebaseDatabaseLoginData : ILoginData
+    public class FirebaseDatabaseLogData : ILogData
     {
         private FirebaseClient firebase;
 
-        public FirebaseDatabaseLoginData()
+        public FirebaseDatabaseLogData()
         {
             this.firebase = new FirebaseConn().firebase;
         }
 
-        public void AddUserData(LoginData log)
+        public void AddUserData(LogData log)
         {
-            firebase.Child("logs/").PostAsync<LoginData>(log);
+            firebase.Child("logs/").PostAsync<LogData>(log);
         }
 
-        public async Task<IEnumerable<LoginData>> GetUsersData()
+        public async Task<IEnumerable<LogData>> GetUsersData()
         {
-            var result = await firebase.Child("logs/").OnceAsync<LoginData>();
+            var result = await firebase.Child("logs/").OnceAsync<LogData>();
 
-            return result.Select(l => new LoginData
+            return result.Select(l => new LogData
             {
                 Id = l.Object.Id,
                 UserName = l.Object.UserName,

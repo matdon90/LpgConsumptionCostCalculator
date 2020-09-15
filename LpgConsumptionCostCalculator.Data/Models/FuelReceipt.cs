@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LpgConsumptionCostCalculator.Data.Enums;
+using System;
 
 namespace LpgConsumptionCostCalculator.Data.Models
 {

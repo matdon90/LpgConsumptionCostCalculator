@@ -23,6 +23,7 @@ namespace LpgConsumptionCostCalculator.Web.Behaviors
                                             vm.PetrolStationName,
                                             vm.FuelType.ToString(),
                                             decimal.Round(vm.FuelPrice, 2, MidpointRounding.AwayFromZero).ToString().Replace(',','.'),
+                                            decimal.Round(vm.FuelAmount, 2, MidpointRounding.AwayFromZero).ToString().Replace(',','.'),
                                             decimal.Round(vm.DistanceFromLastRefueling, 2, MidpointRounding.AwayFromZero).ToString().Replace(',','.'),
                                             decimal.Round(vm.FuelConsumption, 2, MidpointRounding.AwayFromZero).ToString().Replace(',','.'),
                                             decimal.Round(vm.PriceFor100km, 2, MidpointRounding.AwayFromZero).ToString().Replace(',','.')

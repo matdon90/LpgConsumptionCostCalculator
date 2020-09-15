@@ -1,8 +1,8 @@
-﻿@model IEnumerable<LpgConsumptionCostCalculator.Data.Models.LoginData>
-@using LpgConsumptionCostCalculator.Data.Models
+﻿@model IEnumerable<LpgConsumptionCostCalculator.Data.Models.LogData>
+@using LpgConsumptionCostCalculator.Data.QueryOptions
 @{
     ViewBag.Title = RLogging.LogsTitle;
-    var queryOptions = (QueryOptions)ViewBag.QueryOptions;
+    var queryOptions = (TableQueryOptions)ViewBag.QueryOptions;
 }
 
 <!-- Page Heading -->

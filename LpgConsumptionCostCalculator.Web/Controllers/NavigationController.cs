@@ -1,10 +1,10 @@
-﻿using LpgConsumptionCostCalculator.Data.Services;
-using LpgConsumptionCostCalculator.Web.ViewModels;
+﻿using LpgConsumptionCostCalculator.Web.ViewModels;
 using LpgConsumptionCostCalculator.Web.Infrastructure;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Web.Mvc;
+using LpgConsumptionCostCalculator.Data.Interfaces;
 
 namespace LpgConsumptionCostCalculator.Web.Controllers
 {

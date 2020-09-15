@@ -2,7 +2,7 @@
 
 namespace LpgConsumptionCostCalculator.Data.Models
 {
-    public class LoginData
+    public class LogData
     {
         public int Id { get; set; }
         public string UserName { get; set; }
