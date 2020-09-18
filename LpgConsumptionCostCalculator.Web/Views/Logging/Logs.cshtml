@@ -86,7 +86,7 @@
                 </div>
                 @if (queryOptions.TotalPages > 1)
                 {
-                    @Html.BuildNextPreviousLinks(queryOptions, "Index")
+                    @Html.BuildNextPreviousLinks(queryOptions, "Logs")
             <span>@RLogging.LogsShowing @((queryOptions.CurrentPage - 1) * queryOptions.PageSize + 1) @RLogging.LogsTo @((queryOptions.CurrentPage * queryOptions.PageSize) > ViewBag.NumberOfEntries ? ViewBag.NumberOfEntries : queryOptions.CurrentPage * queryOptions.PageSize) @RLogging.LogsOf @ViewBag.NumberOfEntries @RLogging.LogsEntries</span>
                 }
             </div>
