@@ -6,8 +6,8 @@ namespace LpgConsumptionCostCalculator.Data.Services
 {
     public class FirebaseConn
     {
-        private const string databaseUrl = "https://lpgconsumptioncostcalculator.firebaseio.com/";
-        private const string databaseSecret = "EzKZld9GBLP5o6BzvWQqXqpQeD1NHIDQ7NdPKKu2";
+        private const string databaseUrl = "yourDatabaseUrl";
+        private const string databaseSecret = "yourDatabaseSecret";
         public FirebaseClient firebase;
         public FirebaseConn()
         {
